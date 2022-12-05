@@ -15,6 +15,7 @@ import MyPage from './5. MyPage/MyPage';
 import Navber from './Navber/Nav';
 // import Test from './test/test';
 import '../src/App.css';
+import KakaoToken from './2. Login/KakaoToken';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/Socket' element={<SocketTest/>}/>
         <Route path='/Matching' element={<Matching/>}/>
         {/* <Route path='/test' element={<Test/>}/> */}
+        <Route path='/login/kakao' element={<KakaoToken />}/>
       </Routes>
     </Router>
   );

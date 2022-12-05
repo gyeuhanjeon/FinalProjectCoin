@@ -27,8 +27,10 @@ const TeamAPI = {
   },
 
   /* 회원가입 */
-  memberReg: async function (name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2) {
+  memberReg: async function (kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2) {
     const memberObj = {
+      kakaoId: kakaoId,
+      kakaoEmail: kakaoEmail,
       name: name,
       id: id,
       pwd: pwd,
@@ -93,8 +95,6 @@ const TeamAPI = {
     // @GetMapping("/FindId")
     return await axios.get(TEAM_DOMAIN + `FindId?name=${name}&email=${email}&birth=${birth}`, HEADER);
   },
-
-
 
   /* 회원정보 수정 */
   memberUpdate: async function (id, pwd, nickname, introduce, email, region1, region2) {
@@ -231,11 +231,19 @@ const TeamAPI = {
     return await axios.post(TEAM_DOMAIN + "GoogleInfo", regCmd, HEADER);
   },
 
+  /* 카카오 회원 조회 */
+  kakaomember: async function (id_num) {
+    // @GetMapping("/MyPage")
+    return await axios.post(TEAM_DOMAIN + `MyPage?id_num=${id_num}`, HEADER);
+  },
 
-
-
-
-
+   // 카카오 로그인
+   KakaoLogin: async function (access_token) {
+    const regCmd = {
+      access_token: access_token
+    }
+    return await axios.post(TEAM_DOMAIN + "login/kakao", regCmd, HEADER);
+  },
 
 }
 

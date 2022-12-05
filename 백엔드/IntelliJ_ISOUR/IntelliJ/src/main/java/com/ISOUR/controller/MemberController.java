@@ -226,6 +226,14 @@ public class MemberController {
         return new ResponseEntity<>(memberDTO, HttpStatus.OK);
     }
 
+    /* 카카오 회원 조회 */
+    @PostMapping("/MyPage")
+    public ResponseEntity<MemberDTO> KakaomemberInfo(@RequestParam Long id_num) {
+        log.warn("★★★★★★★★★카카오 회원 조회 Controller★★★★★★★★★");
+        MemberDTO memberDTO = memberService.KakaoMemberInfo(id_num);
+        return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+    }
+
     /* 비밀번호 찾기 정보 조회 */
     @GetMapping("/FindPwd")
     public ResponseEntity<MemberDTO> memberInfo(@RequestParam String id, String email, String birth) {

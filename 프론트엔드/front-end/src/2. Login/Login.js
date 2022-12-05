@@ -8,12 +8,16 @@ import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../firebase';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Cookies from 'universal-cookie';
-
-
-
+import kakao from '../images/kakao_login_small (1).png';
+import { REST_API_KEY, REDIRECT_URI } from '../0. API/kakaoAPI';
 
 
 function Login() {
+    // ▼ 로그인되어 있으면 바로 HOME 으로 이동 
+    const isLogin = window.sessionStorage.getItem("isLogin");
+    if (isLogin === "TRUE") window.location.replace("/home");
+    // ▲ 로그인되어 있으면 바로 HOME 으로 이동
+  
   const cookies = new Cookies();
 
   const signInWithGoogle = () => {
@@ -70,12 +74,12 @@ function Login() {
     }
   };
 
+  // 카카오톡 로그인
+  const kakao_Auth_Url = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-
-  // ▼ 로그인되어 있으면 바로 HOME 으로 이동 
-  const isLogin = window.localStorage.getItem("isLogin");
-  if (isLogin === "TRUE") window.location.replace("/home");
-  // ▲ 로그인되어 있으면 바로 HOME 으로 이동
+  const handlerLogin = () => {
+    window.location.href = kakao_Auth_Url;
+  }
 
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -114,11 +118,15 @@ function Login() {
     console.log("입력한 ID : " + id);
     console.log("입력한 Password : " + pwd);
     console.log("LOGIN 버튼 눌렀어요.");
+    window.sessionStorage.setItem("id", id);
+    window.sessionStorage.setItem("pwd", pwd);
 
     try {
       const res = await TeamAPI.userLogin(id, pwd);
       // 로그인을 위한 axios 호출
       // console.log("호출 TRY : " + res.data.result);
+      
+      window.sessionStorage.setItem("isLogin", "TRUE");
       console.log("res.data : " + res.data);
       console.log("checkedItems : " + checkedItems);
       console.log(Math.floor(Date.now() / 1000) + (60 * 60));
@@ -133,18 +141,17 @@ function Login() {
             expires: Autologin
           }
           );
-          // window.location.replace("/home");
+          
         } else {
           console.log('그냥로그인  여기 찍힘? : ');
           cookies.set('rememberId', id, {
             path: '/',
             expires: 0
-
-          }
+          },
           );
-          // window.location.replace("/home");
+          
         }
-
+        window.location.replace("/home");
       } else {
         alert("아이디 또는 비밀번호를 확인하세요!");
       }
@@ -199,6 +206,13 @@ function Login() {
 
         <div className="Login-footer">
           가입하고 친구를 만들어봐요! <p><a href="/signup">회원가입</a></p>
+        </div>
+
+        {/* 소셜로그인 */}
+        <div>
+          <a href={kakao_Auth_Url}>
+            <img src={kakao}   />
+          </a>
         </div>
 
         <div>
