@@ -54,10 +54,8 @@ export default function KakaoToken() {
                         console.log("res.data(이거 필요) : ", res.status);
                         console.log(res.status === 201);
 
-                        window.sessionStorage.setItem("kakaoId", res.data.kakaoId);
-                        window.sessionStorage.setItem("kakaoNickname", res.data.kakaoNickname);
-                        window.sessionStorage.setItem("kakaoEmail", res.data.kakaoEmail);
-                        window.sessionStorage.setItem("kakaoId_num", res.data.kakaoId_num);
+                        console.log("id : ", res.data.id);
+                        console.log("id_num : ", res.data.id_num);
 
                        
                         if(res.status === 201) {    // 201: 카카오톡 인증 완료 (로그인 성공)

@@ -1,12 +1,16 @@
 package com.ISOUR.service;
 
+import com.ISOUR.dto.MemberDTO;
 import com.ISOUR.entity.KakaoLogin;
 import com.ISOUR.dto.KakaoDTO;
+import com.ISOUR.entity.MemberInfo;
 import com.ISOUR.repository.KakaoRepository;
+import com.ISOUR.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +26,8 @@ import java.util.Map;
 public class KakaoLoginService {
 
     private final KakaoRepository kakaoRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
     public KakaoLoginService(KakaoRepository kakaoRepository) {
         this.kakaoRepository = kakaoRepository;
@@ -34,16 +40,27 @@ public class KakaoLoginService {
 
         KakaoLogin kakaoLogin = kakaoRepository.findBykakaoEmail(email);
         if(kakaoLogin != null) {
-        Map<String, String> kakaoDTO = new HashMap<>();
-        String kakaoId_num = kakaoLogin.getId_num().toString();
-        String kakaoId = kakaoLogin.getKakaoId().toString();
-        String kakaoEmail = kakaoLogin.getKakaoEmail();
+            Map<String, String> kakaoDTO = new HashMap<>();
+//            String kakaoId_num = kakaoLogin.getId_num().toString();
+            String id_num = kakaoLogin.getId_num().toString();
+//            String kakaoId = kakaoLogin.getKakaoId().toString();
+//            String kakaoEmail = kakaoLogin.getKakaoEmail();
 
-        kakaoDTO.put("kakaoId_num", kakaoId_num);
-        kakaoDTO.put("kakaoEmail", kakaoEmail);
-        kakaoDTO.put("kakaoId", kakaoId);
+//            kakaoDTO.put("kakaoId_num", kakaoId_num);
+//            kakaoDTO.put("kakaoEmail", kakaoEmail);
+//            kakaoDTO.put("kakaoId", kakaoId);
+//            kakaoDTO.put("kakaoId_num", id_num);
 
-        return kakaoDTO;
+            MemberInfo memberInfo = memberRepository.findByIdNum(Long.valueOf(id_num));
+            Map<String, String> memberDTO = new HashMap<>();
+
+            String id = memberInfo.getId();
+            String id_num2 = memberInfo.getIdNum().toString();
+
+            memberDTO.put("id", id);
+            memberDTO.put("id_num", id_num2);
+
+            return memberDTO;
 
         } else {
             return null;
@@ -112,3 +129,4 @@ public class KakaoLoginService {
         return result;
     }
 }
+

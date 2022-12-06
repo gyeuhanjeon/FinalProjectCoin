@@ -1,6 +1,7 @@
 package com.ISOUR.controller;
 
 
+import com.ISOUR.entity.MemberInfo;
 import com.ISOUR.service.KakaoLoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +44,6 @@ public class KakaoController {
                 return new ResponseEntity<>(userInfo, HttpStatus.OK);
             } else {
                 // 카카오톡 로그인 정보 있음 -> 성공(code: 201)
-//                Map<String, String> k = kakaoLoginService.getUserInfo(access_token);
 //                result.put("CODE", "777");
                 log.warn(">>>>> 201");
                 log.warn("> isres -> " + isres);
