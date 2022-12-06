@@ -16,11 +16,12 @@ function Logout() {
 
         // const logoutID = window.localStorage.setItem("userId", "");
         // const logoutPW = window.localStorage.setItem("userPw", "");
-        window.localStorage.setItem("isLogin", "FALSE");
+        // window.localStorage.setItem("isLogin", "FALSE");
 
-        const logoutID = cookies.remove('rememberId');
-
-        console.log("로그아웃 ID : " + logoutID)
+        cookies.remove('rememberId');
+        cookies.remove('rememberEmail');
+        window.sessionStorage.setItem("kakaoId_num", '');
+        window.sessionStorage.setItem("id",'');
 
 
         alert("콘솔 확인용");
