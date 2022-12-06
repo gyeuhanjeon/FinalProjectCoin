@@ -20,6 +20,8 @@ function Logout() {
 
         cookies.remove('rememberId');
         cookies.remove('rememberEmail');
+        window.sessionStorage.setItem("kakaoId_num", '');
+        window.sessionStorage.setItem("id",'');
 
 
         alert("콘솔 확인용");

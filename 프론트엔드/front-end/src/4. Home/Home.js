@@ -7,7 +7,7 @@ const Home = () => {
   const cookies = new Cookies();
 
   const localId = cookies.get('rememberId');
-  const id = window.sessionStorage.getItem("id");
+  // const id = window.sessionStorage.getItem("id");
   const localId_num = window.sessionStorage.getItem("id_num");
   const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
   const kakaoNickname = window.sessionStorage.getItem("kakaoNickname");
@@ -33,7 +33,7 @@ useEffect(() => {
     // ▲ 로그인 안 되어 있으면 로그인 페이지로 
         
   const memberData = async () => {
-    console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
+    // console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
     console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
     console.log("\n\n현재 sessionStorage 에 저장된 카카오 Id_num : " + kakaoId_num);
 
