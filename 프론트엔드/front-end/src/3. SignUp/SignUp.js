@@ -410,7 +410,7 @@ function SignUp() {
   구글 로그인 -> 회원 가입시 */
   useEffect(() => {
     console.log('쿠키에 찍힌 구글아이디' + cookies.get('rememberEmail'));
-    if(cookies.get('rememberEmail')!==null){
+    if(cookies.get('rememberEmail')!==undefined){
     setEmail(cookies.get('rememberEmail'));
     setIsEmail(true);
     }
@@ -568,7 +568,7 @@ function SignUp() {
     console.log("introduce 값 : " + introduce);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
+      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, cookies.get('rememberEmail'), birth, gender, region1, region2, introduce, check_term1, check_term2);
 
       console.log("name : " + name);
       console.log("id : " + id);
