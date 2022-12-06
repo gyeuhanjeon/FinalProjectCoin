@@ -409,6 +409,7 @@ function SignUp() {
   /*
   구글 로그인 -> 회원 가입시 */
   useEffect(() => {
+    console.log('쿠키에 찍힌 구글아이디' + cookies.get('rememberEmail'));
     if(cookies.get('rememberEmail')!==null){
     setEmail(cookies.get('rememberEmail'));
     setIsEmail(true);
@@ -419,8 +420,9 @@ function SignUp() {
   /*이메일 변경*/
   const OnChangeEmail = e => {
 
-    let temp_email = e.target.value;
-    setEmail(temp_email);
+    console.log(cookies.get('rememberEmail'));
+    let temp_email = cookies.get('rememberEmail');
+    setEmail(cookies.get('rememberEmail'));
 
     if (temp_email === '' || !regexEmail.test(temp_email)) {
       setIsEmail(false);
@@ -437,7 +439,7 @@ function SignUp() {
     e.preventDefault();
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailDuplicateCheck(email);
+      const emailResult = await TeamAPI.emailDuplicateCheck(cookies.get('rememberEmail'));
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.data === false) {
@@ -459,7 +461,7 @@ function SignUp() {
     e.preventDefault();
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailCheck(email);
+      const emailResult = await TeamAPI.emailCheck(cookies.get('rememberEmail'));
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.status === 200) {
@@ -607,7 +609,7 @@ function SignUp() {
           <form action="" className="SignUp-card-form">
 
             {/* 이메일 인증 모달창 */}
-            <EmailModal open={open} modalName={email} modalContent={() => setEmailConfirm(true)} onHide={() => setOpen(false)} />
+            <EmailModal open={open} modalName={cookies.get('rememberEmail')} modalContent={() => setEmailConfirm(true)} onHide={() => setOpen(false)} />
             {/* 이름 */}
             <div className="Form-item">
               {/* <span style={{display: 'inline-block', width: 150}}>이름</span> */}

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import TeamAPI from '../0. API/TeamAPI';
 import './EmailModal.css';
+import Cookies from 'universal-cookie';
+
 
 const EmailModal = ({ open, show, onHide, modalName, modalContent }) => {
     const [code, setCode] = useState("");
+    const cookies = new Cookies();
+
 
     const onChangeCode = e => {
         setCode(e.target.value);
