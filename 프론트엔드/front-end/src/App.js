@@ -8,8 +8,8 @@ import Home from './4. Home/Home';
 import Logout from './other/Logout';
 import Postbox from './7. PostBOX/Postbox';
 import FindInfo from './2. Login/FindInfo';
-import Chat from './9.Chat/Chatting';
-import SocketTest from './9.Chat/ChatTest';
+import GChat from './9.Chat/GChat';
+import ChatHome from './9.Chat/ChatHome';
 import Matching from './8.Matching/Matching_원본';
 import MyPage from './5. MyPage/MyPage';
 import Navber from './Navber/Nav';
@@ -32,8 +32,8 @@ function App() {
         <Route path='/MbtiTypes' element={<MbtiTypes />} />
         <Route path='/Postbox' element={<Postbox />} />
         <Route path='/FindInfo' element={<FindInfo />} />
-        <Route path='/Chat' element={<Chat/>}/>
-        <Route path='/Socket' element={<SocketTest/>}/>
+        <Route path='/GChat' element={<GChat/>}/>
+        <Route path='/ChatHome' element={<ChatHome/>}/>
         <Route path='/Matching' element={<Matching/>}/>
         {/* <Route path='/test' element={<Test/>}/> */}
         <Route path='/login/kakao' element={<KakaoToken />}/>

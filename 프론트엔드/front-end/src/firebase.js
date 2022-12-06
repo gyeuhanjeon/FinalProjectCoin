@@ -6,17 +6,33 @@ import {initializeApp} from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-
+import { getFirestore} from "firebase/firestore";
 //전규한 파이어 베이스
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBurxEEhA3aHtbt_ZmuiidIO1DN4zttzoc",
+//   authDomain: "firstproject-4d0dc.firebaseapp.com",
+//   projectId: "firstproject-4d0dc",
+//   storageBucket: "firstproject-4d0dc.appspot.com",
+//   messagingSenderId: "937511952405",
+//   appId: "1:937511952405:web:dfe14a8e01e9a5edeb6e1c",
+//   measurementId: "G-H66KBPYK5D"
+// };
+
+
+
+//민형님 파이어 베이스
 const firebaseConfig = {
-  apiKey: "AIzaSyBurxEEhA3aHtbt_ZmuiidIO1DN4zttzoc",
-  authDomain: "firstproject-4d0dc.firebaseapp.com",
-  projectId: "firstproject-4d0dc",
-  storageBucket: "firstproject-4d0dc.appspot.com",
-  messagingSenderId: "937511952405",
-  appId: "1:937511952405:web:dfe14a8e01e9a5edeb6e1c",
-  measurementId: "G-H66KBPYK5D"
+    // firebase 설정과 관련된 개인 정보
+    apiKey: "AIzaSyCmz_ZlEhqdw-65Yuw6778InG-HbtBB3io",
+  authDomain: "isour-c9756.firebaseapp.com",
+  databaseURL: "https://isour-c9756-default-rtdb.firebaseio.com",
+  projectId: "isour-c9756",
+  storageBucket: "isour-c9756.appspot.com",
+  messagingSenderId: "1077838894993",
+  appId: "1:1077838894993:web:4c88b2cb105722fe642c30",
+  measurementId: "G-LEHTB63R1J"
 };
+
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
@@ -24,7 +40,7 @@ export const storage = getStorage(app);
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-
+export const db = getFirestore(app);
 
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
@@ -41,19 +57,6 @@ export const signInWithGoogle = () => {
   })
 };
 
-
-
-//민형님 파이어 베이스
-// const firebaseConfig = {
-//     // firebase 설정과 관련된 개인 정보
-//     apiKey: "AIzaSyBs0S61mQ1_FVuZOXXse8tcdBPjdsgHGVQ",
-//     authDomain: "isour-6fdb0.firebaseapp.com",
-//     projectId: "isour-6fdb0",
-//     storageBucket: "isour-6fdb0.appspot.com",
-//     messagingSenderId: "401033832008",
-//     appId: "1:401033832008:web:2e89eafdf0e03229ebda7d",
-//     measurementId: "G-R236HPRYRK"
-// };
 
 // firebaseConfig 정보로 firebase 시작
 firebase.initializeApp(firebaseConfig);
