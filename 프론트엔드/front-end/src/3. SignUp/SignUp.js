@@ -32,6 +32,8 @@ const Msg = styled.div`
 function SignUp() {
 
   const cookies = new Cookies();
+  const localId = cookies.get('rememberId') ;  
+  if (localId !== undefined) window.location.replace("/home");
 
   const [mode, setMode] = useState("agree");
   const [checkedItems, setCheckedItems] = useState([]);
@@ -459,9 +461,9 @@ function SignUp() {
   구글 로그인 -> 회원 가입시 */
   useEffect(() => {
     if(cookies.get('rememberEmail')!==null){
-    setEmail(cookies.get('rememberEmail'));
-    setIsEmail(true);
+      setIsEmail(true);
     }
+    setEmail(cookies.get('rememberEmail'));
     console.log('email 저장 무엇? ' + email);
   }, []);
 

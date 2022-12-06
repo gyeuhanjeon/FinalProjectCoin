@@ -39,21 +39,10 @@ useEffect(() => {
 
     console.log(typeof(kakaoId_num));
     try {
-
-      if (kakaoId !== null) {
-        const res = await TeamAPI.kakaomember(kakaoId_num);
-        window.sessionStorage.setItem("id", res.data.id);
-        window.sessionStorage.setItem("id_num", res.data.idNum);
-        window.sessionStorage.setItem("nickname", res.data.nickname);
-        setNickName(res.data.nickname)
-      } else {
         const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
         setNickName(response.data.nickname)
-        window.sessionStorage.setItem("id",response.data.id);
-        window.sessionStorage.setItem("id_num",response.data.idNum);
-        window.sessionStorage.setItem("nickname",response.data.nickname);
         console.log(response.data)
-      }
+      
     } catch (e) {
       console.log(e);
     }

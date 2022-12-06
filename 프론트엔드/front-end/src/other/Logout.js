@@ -8,10 +8,10 @@ function Logout() {
     const onClickLogout = () => {
         //     const currentId = window.localStorage.getItem("userId");
         //     const currentPw = window.localStorage.getItem("userPw");
-        const localId = cookies.get('rememberId');
+        // const localId = cookies.get('rememberId');
 
 
-        console.log("\n\n현재 localStorage 에 저장된 ID : " + localId);
+        // console.log("\n\n현재 localStorage 에 저장된 ID : " + localId);
         // console.log("\n\n현재 localStorage 에 저장된 PASSWORD : " + currentPw);
 
         // const logoutID = window.localStorage.setItem("userId", "");
@@ -20,8 +20,12 @@ function Logout() {
 
         cookies.remove('rememberId');
         cookies.remove('rememberEmail');
+        
         window.sessionStorage.setItem("kakaoId_num", '');
-        window.sessionStorage.setItem("id",'');
+        window.sessionStorage.setItem("id", '');
+        window.sessionStorage.setItem("nickname", '');
+        window.sessionStorage.setItem("kakaoNickname", '');
+        window.sessionStorage.setItem("kakaoEmail",'');
 
 
         alert("콘솔 확인용");
