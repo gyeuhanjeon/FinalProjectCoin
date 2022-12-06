@@ -74,33 +74,37 @@ public class MemberController {
     public ResponseEntity<Boolean> memberSignUp(@RequestBody Map<String, String> signUpData) {
         log.warn("★★★★★★★★★회원가입 Controller★★★★★★★★★");
         log.warn("항목 : 이름, 아이디, 비밀번호, 닉네임, 이메일, 생년월일, 성별, 시도, 시구군, 자기소개");
-
-        Long kakaoId = Long.valueOf(signUpData.get("kakaoId"));
-        String kakaoEmail = signUpData.get("kakaoEmail");
-        String getName = signUpData.get("name");
-        String getId = signUpData.get("id");
-        String getPwd = signUpData.get("pwd");
-        String getNickname = signUpData.get("nickname");
-        String getEmail = signUpData.get("email");
-        String getBirth = signUpData.get("birth");
-        String getGender = signUpData.get("gender");
-        String getRegion1 = signUpData.get("region1");
-        String getRegion2 = signUpData.get("region2");
-        String getIntroduce = signUpData.get("introduce");
-        log.warn(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
-
-        boolean isTrue = memberService.signUpMember(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
-        if (isTrue) log.warn("I_MEMBER 테이블 DB 저장 " + isTrue);
-
-        String getCheck_term1 = signUpData.get("check_term1");
-        String getCheck_term2 = signUpData.get("check_term2");
-
-        boolean isSave = memberService.agreeTerms(getId, getCheck_term1, getCheck_term2);
-        if (isSave) log.warn("Terms 테이블 DB 저장 : " + isSave);
-
-        // 카카오톡 정보가 있으면 저장
+        boolean isTrue = false;
+        boolean isSave = false;
         boolean isKakaoSignup = false;
-        if ( kakaoId > 0 ) {
+
+        if (signUpData.get("kakaoId") == null) {
+            String getName = signUpData.get("name");
+            String getId = signUpData.get("id");
+            String getPwd = signUpData.get("pwd");
+            String getNickname = signUpData.get("nickname");
+            String getEmail = signUpData.get("email");
+            String getBirth = signUpData.get("birth");
+            String getGender = signUpData.get("gender");
+            String getRegion1 = signUpData.get("region1");
+            String getRegion2 = signUpData.get("region2");
+            String getIntroduce = signUpData.get("introduce");
+            log.warn(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
+
+            isTrue = memberService.signUpMember(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
+            if (isTrue) log.warn("I_MEMBER 테이블 DB 저장 " + isTrue);
+
+            String getCheck_term1 = signUpData.get("check_term1");
+            String getCheck_term2 = signUpData.get("check_term2");
+
+            isSave = memberService.agreeTerms(getId, getCheck_term1, getCheck_term2);
+            if (isSave) log.warn("Terms 테이블 DB 저장 : " + isSave);
+        } else {
+            // 카카오톡 정보가 있으면 저장
+
+            Long kakaoId = Long.valueOf(signUpData.get("kakaoId"));
+            String kakaoEmail = signUpData.get("kakaoEmail");
+            String getId = signUpData.get("id");
             log.warn("***** 카카오톡 저장 왔니????");
             Long id_num = memberService.findMemberId(getId);
             isKakaoSignup = kakaoLoginService.kakaoSignup(kakaoEmail, kakaoId, id_num);

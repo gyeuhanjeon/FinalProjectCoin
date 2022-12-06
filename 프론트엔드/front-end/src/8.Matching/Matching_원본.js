@@ -8,6 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmailIcon from '@mui/icons-material/Email';
 import face from '../images/기본 프로필.png'
 import Cookies from 'universal-cookie';
+import '../0. API/defultMain.css'
 
 const Matching = () => {
   const cookies = new Cookies();
@@ -145,72 +146,72 @@ const Matching = () => {
   };
 
   return (
-    <StyleMat>
-    <MatchingPostModal open={modalOn} close={closeModal} receiver={receiverNickname} getInputContent={getInputContent} onSendPost={onSendPost}/>
-    <div className='Matching-Container'>
+    <div className='Container'>
+        <MatchingPostModal open={modalOn} close={closeModal} receiver={receiverNickname} getInputContent={getInputContent} onSendPost={onSendPost}/>
+        <div className='Matching-Container'>
 
-    {/* MyProfile-Container 의 시작 */}
-      <div className='MyProfile-Container' style={{height: "400px", background: "grey"}}>
+        {/* MyProfile-Container 의 시작 */}
+          <div className='MyProfile-Container' style={{height: "400px", background: "grey"}}>
 
-      {myFace != null 
-        ? <img src={myFace} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
-        : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
-        
-        <div className="Form-item">
-          <span>닉네임</span>
-          <input type="text" value={myNickname} />
-        </div>
-        <div className="Form-item">
-          <span>MBTI</span>
-          <input type="text" value={myMbti} />
-        </div>
-        <div className="Form-item">
-          <span>자기소개</span>
-          <input type="text" value={myIntroduce} />
-        </div>
-      </div> 
-    {/* MyProfile-Container 의 끝 */}
+          {myFace != null 
+            ? <img src={myFace} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+            : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
+            
+            <div className="Form-item">
+              <span>닉네임</span>
+              <input type="text" value={myNickname} />
+            </div>
+            <div className="Form-item">
+              <span>MBTI</span>
+              <input type="text" value={myMbti} />
+            </div>
+            <div className="Form-item">
+              <span>자기소개</span>
+              <input type="text" value={myIntroduce} />
+            </div>
+          </div> 
+        {/* MyProfile-Container 의 끝 */}
 
     {/* Matching-Container 의 시작 */}
-  { mat_memberInfo.map((mat) => (
-    <div className='Matching-Container' style={{height: "300px", background: "grey"}} key={mat.id}>
-      {mat.mat_face != null 
-      ? <img src={mat.mat_face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
-      : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
-      <div className="Form-item">
-        <span>닉네임</span>
-        <input type="text" value={mat.mat_nick} />
-      </div>
-      <div className="Form-item">
-        <span>MBTI</span>
-        <input type="text" value={mat.mat_mbti} />
-      </div>
-      <div className="Form-item">
-        <span>자기소개</span>
-        <input type="text" value={mat.mat_introduce} />
-      </div>
-      <div>
-        <FavoriteIcon onClick={()=>alert("좋아요")}/>
-        <SmsIcon onClick={onClickChat}/>
-        <EmailIcon onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
-      </div>
-            
-      {/* { like_num === 0 ?
-          <img src={Click} onClick={Click_like} value={mat.mat_id_num} style={{width: 30}}/>
-          : <img src={unClick} onClick={UnClick_like} value={mat.mat_id_num} style={{width: 25}} />   
-      } */}
-    </div> 
-    ))}
+        { mat_memberInfo.map((mat) => (
+        <div className='Matching-Container' style={{height: "300px", background: "grey"}} key={mat.id}>
+          {mat.mat_face != null 
+          ? <img src={mat.mat_face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+          : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
+          <div className="Form-item">
+            <span>닉네임</span>
+            <input type="text" value={mat.mat_nick} />
+          </div>
+          <div className="Form-item">
+            <span>MBTI</span>
+            <input type="text" value={mat.mat_mbti} />
+          </div>
+          <div className="Form-item">
+            <span>자기소개</span>
+            <input type="text" value={mat.mat_introduce} />
+          </div>
+          <div>
+            <FavoriteIcon onClick={()=>alert("좋아요")}/>
+            <SmsIcon onClick={onClickChat}/>
+            <EmailIcon onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
+          </div>
+                
+          {/* { like_num === 0 ?
+              <img src={Click} onClick={Click_like} value={mat.mat_id_num} style={{width: 30}}/>
+              : <img src={unClick} onClick={UnClick_like} value={mat.mat_id_num} style={{width: 25}} />   
+          } */}
+        </div> 
+        ))}
     {/* Matching-Container 의 끝 */}   
     
     </div>
         
 
 
-    <button onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>이전</button>   
-    <button onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>다음</button>   
+      <button onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>이전</button>   
+      <button onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>다음</button>   
             
-    </StyleMat>     
+    </div>     
     )
 }
 
