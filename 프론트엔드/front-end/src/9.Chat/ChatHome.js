@@ -28,7 +28,6 @@ const ChatHome = () => {
   const cookies = new Cookies();
   // ▼ 로그인 안 되어 있으면 로그인 페이지로
   const localId = cookies.get('rememberId');
-  const session_id = window.sessionStorage.getItem("id");
   const id = localId;
   
   const user1 = id;
@@ -116,6 +115,8 @@ const ChatHome = () => {
 
     setText("");
   }
+
+  
 
   return (
     <div>
