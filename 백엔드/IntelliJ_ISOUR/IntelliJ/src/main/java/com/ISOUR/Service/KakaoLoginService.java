@@ -1,4 +1,4 @@
-package com.ISOUR.Service;
+package com.ISOUR.service;
 
 import com.ISOUR.entity.KakaoLogin;
 import com.ISOUR.dto.KakaoDTO;

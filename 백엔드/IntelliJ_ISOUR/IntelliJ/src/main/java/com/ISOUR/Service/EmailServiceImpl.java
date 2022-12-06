@@ -1,4 +1,4 @@
-package com.ISOUR.Service;
+package com.ISOUR.service;
 
 import java.util.Random;
 

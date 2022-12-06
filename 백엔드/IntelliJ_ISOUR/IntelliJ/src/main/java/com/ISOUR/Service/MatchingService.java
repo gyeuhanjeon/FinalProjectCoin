@@ -1,4 +1,4 @@
-package com.ISOUR.Service;
+package com.ISOUR.service;
 
 import com.ISOUR.dto.MatDTO;
 import com.ISOUR.repository.*;

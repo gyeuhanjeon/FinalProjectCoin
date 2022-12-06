@@ -1,4 +1,4 @@
-package com.ISOUR.Service;
+package com.ISOUR.service;
 
 import com.ISOUR.dto.GChatDTO;
 import com.ISOUR.entity.GChat;

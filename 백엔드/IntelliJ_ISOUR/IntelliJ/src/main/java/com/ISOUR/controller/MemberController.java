@@ -1,8 +1,8 @@
 package com.ISOUR.controller;
 
-import com.ISOUR.Service.KakaoLoginService;
+import com.ISOUR.service.KakaoLoginService;
 import com.ISOUR.dto.MemberDTO;
-import com.ISOUR.Service.MemberService;
+import com.ISOUR.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,7 +1,7 @@
 package com.ISOUR.controller;
 
 
-import com.ISOUR.Service.KakaoLoginService;
+import com.ISOUR.service.KakaoLoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

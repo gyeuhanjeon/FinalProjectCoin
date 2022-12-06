@@ -1,4 +1,4 @@
-package com.ISOUR.Service;
+package com.ISOUR.service;
 
 import com.ISOUR.entity.MemberInfo;
 import com.ISOUR.entity.Postbox;

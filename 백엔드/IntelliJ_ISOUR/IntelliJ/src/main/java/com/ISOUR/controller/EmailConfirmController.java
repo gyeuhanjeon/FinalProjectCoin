@@ -1,6 +1,6 @@
 package com.ISOUR.controller;
 
-import com.ISOUR.Service.MemberService;
+import com.ISOUR.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.ISOUR.Service.EmailServiceImpl;
-import com.ISOUR.Service.EmailService;
+import com.ISOUR.service.EmailServiceImpl;
+import com.ISOUR.service.EmailService;
 
 import java.util.Map;
 
