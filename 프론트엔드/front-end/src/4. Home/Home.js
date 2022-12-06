@@ -3,8 +3,7 @@ import TeamAPI from '../0. API/TeamAPI';
 import Cookies from 'universal-cookie';
 
 const Home = () => {
-    // if(localId === undefined) window.location.replace("/login");
-    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
+    
   const cookies = new Cookies();
 
   const localId = cookies.get('rememberId');
@@ -30,6 +29,8 @@ const Home = () => {
     
 }
 useEffect(() => {
+  if(localId === undefined) window.location.replace("/login");
+    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
         
   const memberData = async () => {
     console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
@@ -46,7 +47,7 @@ useEffect(() => {
         window.sessionStorage.setItem("nickname", res.data.nickname);
         setNickName(res.data.nickname)
       } else {
-        const response = await TeamAPI.memberInfo(id); // 원래는 전체 회원 조회용
+        const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
         setNickName(response.data.nickname)
         window.sessionStorage.setItem("id",response.data.id);
         window.sessionStorage.setItem("id_num",response.data.id_num);

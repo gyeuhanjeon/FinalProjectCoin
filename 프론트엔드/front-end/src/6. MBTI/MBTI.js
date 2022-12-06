@@ -204,7 +204,7 @@ const Quiz = (props) => {
   const cookies = new Cookies();
 
   const localId = cookies.get('rememberId');
-  if (localId === "FALSE") window.location.replace("/");
+  if (localId === undefined) window.location.replace("/");
 
 
   const [count, setCount] = useState(0);
@@ -1406,7 +1406,7 @@ const MBTI = () => {
 
   const cookies = new Cookies();
   const localId = cookies.get('rememberId')  ;
-  if (localId === "FALSE") window.location.replace("/login");
+  if (localId === undefined) window.location.replace("/login");
 
   const currentId = window.localStorage.getItem("userId");
   const currentPw = window.localStorage.getItem("userPw");

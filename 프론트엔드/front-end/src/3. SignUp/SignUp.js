@@ -413,6 +413,7 @@ function SignUp() {
     setEmail(cookies.get('rememberEmail'));
     setIsEmail(true);
     }
+    console.log('email 저장 무엇? ' + email);
   }, []);
 
 
@@ -437,7 +438,7 @@ function SignUp() {
     e.preventDefault();
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailDuplicateCheck(email);
+      const emailResult = await TeamAPI.emailDuplicateCheck(cookies.get('rememberEmail'));
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.data === false) {
@@ -566,13 +567,13 @@ function SignUp() {
     console.log("introduce 값 : " + introduce);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
+      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, cookies.get('rememberEmail'), birth, gender, region1, region2, introduce, check_term1, check_term2);
 
       console.log("name : " + name);
       console.log("id : " + id);
       console.log("pwd : " + pwd);
       console.log("nickname : " + nickname);
-      console.log("email : " + email);
+      console.log("email : " + cookies.get('rememberEmail'));
       console.log("birth : " + birth);
       // console.log("age : " + age);
       console.log("gender : " + gender);

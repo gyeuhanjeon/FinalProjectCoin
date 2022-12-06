@@ -65,7 +65,7 @@ const Matching = () => {
 
     const memberData = async () => {
       console.log("\n>> 매칭 결과 조회(useEffect)");
-      const id = localId;
+      // const id = localId;
       console.log(">>>>>>>>>>>>>>");
       console.log(typeof(id));
       console.log(id);
@@ -73,7 +73,7 @@ const Matching = () => {
       console.log(pageNum);
 
       try {
-        const Mat = await TeamAPI.MatchingMember2(id, localId_num, pageNum);
+        const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
         console.log("****************");
         setMat_MemberInfo(Mat.data);
         

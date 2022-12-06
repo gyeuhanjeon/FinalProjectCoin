@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import TeamAPI from "../0. API/TeamAPI";
+import Cookies from 'universal-cookie';
 
 const Chat = () => {
-    const isLogin = window.localStorage.getItem("isLogin");
-    if(isLogin === "FALSE") window.location.replace("/login");
+    // const isLogin = window.localStorage.getItem("isLogin");
+    // if(isLogin === "FALSE") window.location.replace("/login");
+    
+
+
 
     const [nickName, setNickName] = useState('');
     const [content, setContent] = useState('');
     const [chatInfo,setChatinfo] = useState([]);
     const [isText, setIsText] = useState('');
-  
+    const cookies = new Cookies();
 
 
-
+    const localId = cookies.get('rememberId')  ;
 
     const onChangeText = e => {
         let textShow = e.target.value;
@@ -55,9 +59,11 @@ const Chat = () => {
         }
     ]
     useEffect(() => {
-        
+        if (localId === undefined) window.location.replace("/login");
+        //로그인 안될시 로그인 화면으로 이동.
+
         const chatData = async () => {
-          console.log("\n\n현재 localStorage 에 저장된 isLogin : " + isLogin);
+        //   console.log("\n\n현재 localStorage 에 저장된 isLogin : " + isLogin);
           let id = content;
           try {
             const response = await TeamAPI.chatInfo(id); // 원래는 전체 회원 조회용

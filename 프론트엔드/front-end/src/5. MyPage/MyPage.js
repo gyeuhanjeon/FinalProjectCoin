@@ -69,7 +69,7 @@ const MyPage = () => {
       console.log("\n>> 회원 정보 조회(useEffect)");
       console.log("localId : "+ session_id);
       try {
-        const response = await TeamAPI.memberInfo(session_id); // 회원 정보 조회
+        const response = await TeamAPI.memberInfo(localId); // 회원 정보 조회
         if(response.status == 200) {
           console.log("통신 성공(200)");
           const member = response.data;

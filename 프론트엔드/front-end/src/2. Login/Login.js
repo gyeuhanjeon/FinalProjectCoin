@@ -13,13 +13,16 @@ import { REST_API_KEY, REDIRECT_URI } from '../0. API/kakaoAPI';
 
 
 function Login() {
-    // ▼ 로그인되어 있으면 바로 HOME 으로 이동 
-    const isLogin = window.sessionStorage.getItem("isLogin");
-    if (isLogin === "TRUE") window.location.replace("/home");
-    // ▲ 로그인되어 있으면 바로 HOME 으로 이동
-  
-  const cookies = new Cookies();
+  // // ▼ 로그인되어 있으면 바로 HOME 으로 이동 
+  // const isLogin = window.sessionStorage.getItem("isLogin");
+  // if (isLogin === "TRUE") window.location.replace("/home");
+  // // ▲ 로그인되어 있으면 바로 HOME 으로 이동
 
+  const cookies = new Cookies();
+  const localId = cookies.get('rememberId')  ;
+
+  if (localId !== undefined) window.location.replace("/home");
+  
   const signInWithGoogle = () => {
 
 
@@ -118,18 +121,17 @@ function Login() {
     console.log("입력한 ID : " + id);
     console.log("입력한 Password : " + pwd);
     console.log("LOGIN 버튼 눌렀어요.");
-    window.sessionStorage.setItem("id", id);
-    window.sessionStorage.setItem("pwd", pwd);
+    // window.sessionStorage.setItem("id", id);
+    // window.sessionStorage.setItem("pwd", pwd);
 
     try {
       const res = await TeamAPI.userLogin(id, pwd);
       // 로그인을 위한 axios 호출
       // console.log("호출 TRY : " + res.data.result);
-      
+
       window.sessionStorage.setItem("isLogin", "TRUE");
       console.log("res.data : " + res.data);
       console.log("checkedItems : " + checkedItems);
-      console.log(Math.floor(Date.now() / 1000) + (60 * 60));
       // if(res.data.result === "OK") {
       if (res.data === true) {
         if (checkedItems === true) {
@@ -141,7 +143,7 @@ function Login() {
             expires: Autologin
           }
           );
-          
+
         } else {
           console.log('그냥로그인  여기 찍힘? : ');
           cookies.set('rememberId', id, {
@@ -149,7 +151,7 @@ function Login() {
             expires: 0
           },
           );
-          
+
         }
         window.location.replace("/home");
       } else {
@@ -211,7 +213,7 @@ function Login() {
         {/* 소셜로그인 */}
         <div>
           <a href={kakao_Auth_Url}>
-            <img src={kakao}   />
+            <img src={kakao} />
           </a>
         </div>
 
