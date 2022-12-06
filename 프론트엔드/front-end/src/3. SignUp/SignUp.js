@@ -487,7 +487,7 @@ function SignUp() {
     e.preventDefault();
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailDuplicateCheck(cookies.get('rememberEmail'));
+      const emailResult = await TeamAPI.emailDuplicateCheck(email);
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.data === false) {
