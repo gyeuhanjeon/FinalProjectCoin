@@ -27,7 +27,7 @@ public class MatchingController {
         log.warn("★★★★★★★★★매칭 회원 조회 Controller★★★★★★★★★");
         String id = PageData.get("id");
         int pageNum = Integer.parseInt(PageData.get("pageNum"));
-        int id_num = Integer.parseInt(PageData.get("local_id_num"));
+        int id_num = Integer.parseInt(PageData.get("localId_num"));
         log.warn("★★★★★★★★★ 페이지넘버 : " + pageNum);
         List<MatDTO> list = matchingService.Mat_MemberListPage(id, id_num, pageNum);
         log.warn("★★ 매칭 회원 정보 : " + list);

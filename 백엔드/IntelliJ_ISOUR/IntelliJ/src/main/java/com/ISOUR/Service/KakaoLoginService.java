@@ -33,6 +33,7 @@ public class KakaoLoginService {
         log.warn("입력한 아이디(email) : " + email);
 
         KakaoLogin kakaoLogin = kakaoRepository.findBykakaoEmail(email);
+        if(kakaoLogin != null) {
         Map<String, String> kakaoDTO = new HashMap<>();
         String kakaoId_num = kakaoLogin.getId_num().toString();
         String kakaoId = kakaoLogin.getKakaoId().toString();
@@ -41,8 +42,9 @@ public class KakaoLoginService {
         kakaoDTO.put("kakaoId_num", kakaoId_num);
         kakaoDTO.put("kakaoEmail", kakaoEmail);
         kakaoDTO.put("kakaoId", kakaoId);
-        if(kakaoLogin != null) {
-            return kakaoDTO;
+
+        return kakaoDTO;
+
         } else {
             return null;
         }

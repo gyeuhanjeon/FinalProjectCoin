@@ -83,6 +83,13 @@ public class MemberService {
         return true;
     }
 
+    // 회원번호 찾기
+    public Long findMemberId(String id) {
+        Long id_num = memberRepository.findById(id).getIdNum();
+
+        return id_num;
+    }
+
     /* 로그인 서비스 */
     public boolean loginMember(String id, String pwd) {
         log.warn("★★★★★★★★★로그인 서비스★★★★★★★★★");
