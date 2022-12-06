@@ -9,7 +9,6 @@ import Cookies from 'universal-cookie';
 const Postbox = () => {
 
   const cookies = new Cookies();
-  const localId = cookies.get('rememberId')
 
   /* 변수(useState) 선언 */
   const [loading, setLoading] = useState(false);
@@ -23,6 +22,8 @@ const Postbox = () => {
   /* 
   최초 통신(useEffect) */
   useEffect(() => {
+    const localId = cookies.get('rememberId');
+
     if(localId === undefined) window.location.replace("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로 
 
