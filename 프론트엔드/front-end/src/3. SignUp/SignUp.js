@@ -5,6 +5,10 @@ import hangjungdong from '../other/hangjungdong';
 import '../3. SignUp/SignUp.css';
 import EmailModal from './EmailModal';
 import Cookies from 'universal-cookie';
+import { auth, db } from "../firebase";
+import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 
 // 정규식 - 이름, 아이디, 비밀번호
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
@@ -225,6 +229,51 @@ function SignUp() {
   const [showAcceptPwd, setShowAcceptPwd] = useState(false);
   const [showErrorPwdcheck, setShowErrorPwdcheck] = useState(false);
   const [showAcceptPwdcheck, setShowAcceptPwdcheck] = useState(false);
+
+  const [data, setData] = useState({
+    name: "",
+    id:"",
+    email: "",
+    password: "",
+    error: null,
+    loading: false,
+  });
+
+  const { Nname, Nid, Nemail, password, error, loading } = data;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(data);
+    setData({ ...data, error: null, loading: true });
+    if (!name || !email || !password) {
+      setData({ ...data, error: "All fields are required" });
+    }
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // console.log(result.user);
+      await setDoc(doc(db, "users", result.user.uid), {
+        uid: result.user.uid,
+        name,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+      });
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        error: null,
+        loading: false,
+      });
+          } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    }
+  };
+
 
 
   /*
