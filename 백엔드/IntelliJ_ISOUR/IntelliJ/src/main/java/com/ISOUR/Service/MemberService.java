@@ -72,7 +72,7 @@ public class MemberService {
         log.warn(memberInfo.toString());
 
         Terms terms = new Terms();
-        terms.setId_num(memberInfo.getId_num());
+        terms.setId_num(memberInfo.getIdNum());
         terms.setTerm1(check_term1);
         terms.setTerm2(check_term2);
         terms.setRegistrationTime(LocalDateTime.now());
@@ -81,6 +81,13 @@ public class MemberService {
         log.warn(result.toString());
 
         return true;
+    }
+
+    // 회원번호 찾기
+    public Long findMemberId(String id) {
+        Long id_num = memberRepository.findById(id).getIdNum();
+
+        return id_num;
     }
 
     /* 로그인 서비스 */
@@ -103,7 +110,7 @@ public class MemberService {
         log.warn("아이디(id) : " + id);
 
         MemberInfo memberInfo = memberRepository.findById(id);
-        memberInfo.setId_num(memberInfo.getId_num());
+        memberInfo.setIdNum(memberInfo.getIdNum());
         memberInfo.setName(memberInfo.getName());
         memberInfo.setId(memberInfo.getId());
         memberInfo.setPwd(memberInfo.getPwd());
@@ -125,7 +132,7 @@ public class MemberService {
         log.warn("저장할 URL : " + url);
 
         MemberInfo memberInfo = memberRepository.findById(id);
-        memberInfo.setId_num(memberInfo.getId_num());
+        memberInfo.setIdNum(memberInfo.getIdNum());
         memberInfo.setId(memberInfo.getId());
         memberInfo.setPwd(memberInfo.getPwd());
         memberInfo.setName(memberInfo.getName());
@@ -156,7 +163,7 @@ public class MemberService {
         log.warn("변경한 시구군(region2) : " + region2);
 
         MemberInfo memberInfo = memberRepository.findById(id);
-        memberInfo.setId_num(memberInfo.getId_num());
+        memberInfo.setIdNum(memberInfo.getIdNum());
         memberInfo.setPwd(pwd);
         memberInfo.setNickname(nickname);
         memberInfo.setIntroduce(introduce);
@@ -188,7 +195,30 @@ public class MemberService {
         log.warn("조회할 아이디(id) : " + id);
         MemberInfo memberInfo = memberRepository.findById(id);
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setId_num(memberInfo.getId_num());
+        memberDTO.setIdNum(memberInfo.getIdNum());
+        memberDTO.setName(memberInfo.getName());
+        memberDTO.setId(memberInfo.getId());
+        memberDTO.setPwd(memberInfo.getPwd());
+        memberDTO.setNickname(memberInfo.getNickname());
+        memberDTO.setBirth(memberInfo.getBirth());
+        memberDTO.setEmail(memberInfo.getEmail());
+        memberDTO.setGender(memberInfo.getGender());
+        memberDTO.setRegion1(memberInfo.getRegion1());
+        memberDTO.setRegion2(memberInfo.getRegion2());
+        memberDTO.setMbti(memberInfo.getMbti());
+        memberDTO.setIntroduce(memberInfo.getIntroduce());
+        memberDTO.setFace(memberInfo.getFace());
+
+        return memberDTO;
+    }
+
+    /* 카카오 로그인 회원 조회 서비스 */
+    public MemberDTO KakaoMemberInfo(Long id_num) {
+        log.warn("★★★★★★★★★카카오 회원 조회 서비스★★★★★★★★★");
+        log.warn("카카오 아이디_num(id_num) : " + id_num);
+        MemberInfo memberInfo = memberRepository.findByIdNum(id_num);
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setIdNum(memberInfo.getIdNum());
         memberDTO.setName(memberInfo.getName());
         memberDTO.setId(memberInfo.getId());
         memberDTO.setPwd(memberInfo.getPwd());
@@ -214,7 +244,7 @@ public class MemberService {
         log.warn("조회할 생년월일(birth) : " + birth);
         MemberInfo memberInfo = memberRepository.findByIdAndEmailAndBirth(id, email, birth);
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setId_num(memberInfo.getId_num());
+        memberDTO.setIdNum(memberInfo.getIdNum());
         memberDTO.setName(memberInfo.getName());
         memberDTO.setId(memberInfo.getId());
         memberDTO.setPwd(memberInfo.getPwd());

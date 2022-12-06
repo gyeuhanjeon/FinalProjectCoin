@@ -1,10 +1,12 @@
 package com.ISOUR.controller;
 
+import com.ISOUR.Service.KakaoLoginService;
 import com.ISOUR.dto.MemberDTO;
 import com.ISOUR.Service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,8 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
+    @Autowired
+    private KakaoLoginService kakaoLoginService;
 
     /* 아이디 중복확인(회원가입 여부 확인) */
     @PostMapping("/IsMemberCheck")
@@ -71,6 +75,8 @@ public class MemberController {
         log.warn("★★★★★★★★★회원가입 Controller★★★★★★★★★");
         log.warn("항목 : 이름, 아이디, 비밀번호, 닉네임, 이메일, 생년월일, 성별, 시도, 시구군, 자기소개");
 
+        Long kakaoId = Long.valueOf(signUpData.get("kakaoId"));
+        String kakaoEmail = signUpData.get("kakaoEmail");
         String getName = signUpData.get("name");
         String getId = signUpData.get("id");
         String getPwd = signUpData.get("pwd");
@@ -92,13 +98,23 @@ public class MemberController {
         boolean isSave = memberService.agreeTerms(getId, getCheck_term1, getCheck_term2);
         if (isSave) log.warn("Terms 테이블 DB 저장 : " + isSave);
 
-        if (isTrue && isSave) {
+        // 카카오톡 정보가 있으면 저장
+        boolean isKakaoSignup = false;
+        if ( kakaoId > 0 ) {
+            log.warn("***** 카카오톡 저장 왔니????");
+            Long id_num = memberService.findMemberId(getId);
+            isKakaoSignup = kakaoLoginService.kakaoSignup(kakaoEmail, kakaoId, id_num);
+        }
+
+        if (isTrue && isSave || isTrue && isSave && isKakaoSignup) {
             log.warn(">> " + isTrue + " : 회원가입 성공 ");
             log.warn(">> " + isSave + " : 약관 동의 저장 성공 ");
+            log.warn(">> " + isKakaoSignup + " : 카카오 저장 성공 ");
             return new ResponseEntity<>(true, HttpStatus.OK);
         } else {
             log.warn(">> " + isTrue + " : 회원가입 실패 ");
             log.warn(">> " + isSave + " : 약관 동의 저장 실패 ");
+            log.warn(">> " + isKakaoSignup + " : 카카오 저장 실패 ");
             return new ResponseEntity<>(false, HttpStatus.OK);
         }
     }
@@ -223,6 +239,14 @@ public class MemberController {
     public ResponseEntity<MemberDTO> memberInfo(@RequestParam String id) {
         log.warn("★★★★★★★★★개별 회원 조회 Controller★★★★★★★★★");
         MemberDTO memberDTO = memberService.getMemberInfo(id);
+        return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+    }
+
+    /* 카카오 회원 조회 */
+    @PostMapping("/MyPage")
+    public ResponseEntity<MemberDTO> KakaomemberInfo(@RequestParam Long id_num) {
+        log.warn("★★★★★★★★★카카오 회원 조회 Controller★★★★★★★★★");
+        MemberDTO memberDTO = memberService.KakaoMemberInfo(id_num);
         return new ResponseEntity<>(memberDTO, HttpStatus.OK);
     }
 

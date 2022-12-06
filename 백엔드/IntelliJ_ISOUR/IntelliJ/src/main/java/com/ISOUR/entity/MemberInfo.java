@@ -12,7 +12,8 @@ import javax.persistence.*;
 public class MemberInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_num;
+    @Column(name="id_num")
+    private Long idNum;
     @Column(unique = true)
     private String id;
 //    @Column(insertable=false, updatable=false)

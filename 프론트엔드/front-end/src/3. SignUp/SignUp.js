@@ -25,9 +25,6 @@ const Msg = styled.div`
 `;
 
 
-
-
-
 function SignUp() {
 
   const cookies = new Cookies();
@@ -37,6 +34,8 @@ function SignUp() {
   const [check_term1, setCheck_term1] = useState("");
   const [check_term2, setCheck_term2] = useState("");
   const [emailConfirm, setEmailConfirm] = useState(false);
+
+  
 
   const Terms = () => {
 
@@ -167,12 +166,24 @@ function SignUp() {
   const [region2, setRegion2] = useState("");
   const [keySido, setKeySido] = useState("");
 
+    //  **** 카카오 정보 가져오기 ****
+  // const kakaoData = window.localStorage.getItem("data");
+  const kakaoId = window.sessionStorage.getItem("kakaoId");
+  const kakaoNickname = window.sessionStorage.getItem("kakaoNickname");
+  const kakaoEmail = window.sessionStorage.getItem("kakaoEmail");
+
   /* 
   최초 통신(useEffect) */
   useEffect(() => {
     console.log("현재 mode : " + mode);
     console.log("필수 약관 : " + check_term1);
     console.log("선택 약관 : " + check_term2);
+    console.log("카카오 아이디 : ", kakaoId );
+    console.log("카카오 닉네임 : ", kakaoNickname );
+    console.log("카카오 이메일 : ", kakaoEmail );
+    setNickname(kakaoNickname);
+    setEmail(kakaoEmail);
+    setIsEmail(true);
   }, [mode]);
 
   // 유효성 검사
@@ -537,6 +548,8 @@ function SignUp() {
     e.preventDefault();
 
     console.log("\n\n회원가입 버튼 눌렀어요.");
+    console.log("kakaoid : " + kakaoId);
+    console.log("kakaoemail : " + kakaoEmail);
     console.log("isName : " + isName);
     console.log("isId : " + isId);
     console.log("isId_check : " + isIdcheck);
@@ -553,7 +566,7 @@ function SignUp() {
     console.log("introduce 값 : " + introduce);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const memberReg = await TeamAPI.memberReg(name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
+      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
 
       console.log("name : " + name);
       console.log("id : " + id);

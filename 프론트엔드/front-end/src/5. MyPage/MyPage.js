@@ -18,7 +18,10 @@ const MyPage = () => {
   const cookies = new Cookies();
   // ▼ 로그인 안 되어 있으면 로그인 페이지로
   const localId = cookies.get('rememberId');
+  const session_id = window.sessionStorage.getItem("id");
   console.log(localId);
+  const localIdNum = window.sessionStorage.getItem("id_num");
+  const localNickname = window.sessionStorage.getItem("nickname");
 
 
   // const localId = window.localStorage.getItem("userId");
@@ -64,9 +67,9 @@ const MyPage = () => {
 
     const memberData = async () => {
       console.log("\n>> 회원 정보 조회(useEffect)");
-      console.log("localId : "+ localId);
+      console.log("localId : "+ session_id);
       try {
-        const response = await TeamAPI.memberInfo(localId); // 회원 정보 조회
+        const response = await TeamAPI.memberInfo(session_id); // 회원 정보 조회
         if(response.status == 200) {
           console.log("통신 성공(200)");
           const member = response.data;

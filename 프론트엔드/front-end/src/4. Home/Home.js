@@ -3,9 +3,17 @@ import TeamAPI from '../0. API/TeamAPI';
 import Cookies from 'universal-cookie';
 
 const Home = () => {
+    // if(localId === undefined) window.location.replace("/login");
+    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
   const cookies = new Cookies();
 
   const localId = cookies.get('rememberId');
+  const id = window.sessionStorage.getItem("id");
+  const localId_num = window.sessionStorage.getItem("id_num");
+  const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
+  const kakaoNickname = window.sessionStorage.getItem("kakaoNickname");
+  const kakaoId = window.sessionStorage.getItem("kakaoId");
+  const kakaoEmail = window.sessionStorage.getItem("kakaoEmail");
 
   const [nickName, setNickName] = useState('');
 
@@ -22,19 +30,29 @@ const Home = () => {
     
 }
 useEffect(() => {
-  if(localId === undefined) window.location.replace("/login");
-    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
         
   const memberData = async () => {
-    console.log("\n\n현재 localStorage 에 저장된 ID : " + localId);
+    console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
+    console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
+    console.log("\n\n현재 sessionStorage 에 저장된 카카오 Id_num : " + kakaoId_num);
 
-    console.log(typeof(localId));
-    let id = localId;
+    console.log(typeof(kakaoId_num));
     try {
-      const response = await TeamAPI.memberInfo(id); // 원래는 전체 회원 조회용
-      setNickName(response.data.nickname)
-      window.localStorage.setItem("id_num",response.data.id_num);
-      console.log(response.data)
+
+      if (kakaoId !== null) {
+        const res = await TeamAPI.kakaomember(kakaoId_num);
+        window.sessionStorage.setItem("id", res.data.id);
+        window.sessionStorage.setItem("id_num", res.data.id_num);
+        window.sessionStorage.setItem("nickname", res.data.nickname);
+        setNickName(res.data.nickname)
+      } else {
+        const response = await TeamAPI.memberInfo(id); // 원래는 전체 회원 조회용
+        setNickName(response.data.nickname)
+        window.sessionStorage.setItem("id",response.data.id);
+        window.sessionStorage.setItem("id_num",response.data.id_num);
+        window.sessionStorage.setItem("nickname",response.data.nickname);
+        console.log(response.data)
+      }
     } catch (e) {
       console.log(e);
     }
