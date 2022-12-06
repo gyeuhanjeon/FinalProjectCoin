@@ -4,11 +4,10 @@ import TeamAPI from '../0. API/TeamAPI';
 import hangjungdong from '../other/hangjungdong';
 import '../3. SignUp/SignUp.css';
 import EmailModal from './EmailModal';
-import Cookies from 'universal-cookie';
-import { auth, db } from "../firebase";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
+import { auth, db } from "../firebase";
+import Cookies from 'universal-cookie';
 
 // 정규식 - 이름, 아이디, 비밀번호
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
@@ -32,8 +31,6 @@ const Msg = styled.div`
 function SignUp() {
 
   const cookies = new Cookies();
-  const localId = cookies.get('rememberId') ;  
-  if (localId !== undefined) window.location.replace("/home");
 
   const [mode, setMode] = useState("agree");
   const [checkedItems, setCheckedItems] = useState([]);
@@ -241,40 +238,7 @@ function SignUp() {
     loading: false,
   });
 
-  const { Nname, Nid, Nemail, password, error, loading } = data;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log(data);
-    setData({ ...data, error: null, loading: true });
-    if (!name || !email || !password) {
-      setData({ ...data, error: "All fields are required" });
-    }
-    try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      // console.log(result.user);
-      await setDoc(doc(db, "users", result.user.uid), {
-        uid: result.user.uid,
-        name,
-        email,
-        createdAt: Timestamp.fromDate(new Date()),
-        isOnline: true,
-      });
-      setData({
-        name: "",
-        email: "",
-        password: "",
-        error: null,
-        loading: false,
-      });
-          } catch (err) {
-      setData({ ...data, error: err.message, loading: false });
-    }
-  };
 
 
 
@@ -461,9 +425,9 @@ function SignUp() {
   구글 로그인 -> 회원 가입시 */
   useEffect(() => {
     if(cookies.get('rememberEmail')!==null){
-      setIsEmail(true);
-    }
     setEmail(cookies.get('rememberEmail'));
+    setIsEmail(true);
+    }
     console.log('email 저장 무엇? ' + email);
   }, []);
 
@@ -489,7 +453,7 @@ function SignUp() {
     e.preventDefault();
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailDuplicateCheck(email);
+      const emailResult = await TeamAPI.emailDuplicateCheck(cookies.get('rememberEmail'));
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.data === false) {
@@ -617,8 +581,15 @@ function SignUp() {
     console.log("isRegion2 : " + isRegion2);
     console.log("introduce 값 : " + introduce);
 
+    const result = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      pwd
+    );
+    // console.log(result.user);
+
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
+      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, cookies.get('rememberEmail'), birth, gender, region1, region2, introduce, check_term1, check_term2);
 
       console.log("name : " + name);
       console.log("id : " + id);
@@ -636,6 +607,23 @@ function SignUp() {
       alert("회원가입 성공! 콘솔창 보세요");
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       window.location.replace("/login");
+
+      setDoc(doc(db, "users", result.user.uid), {
+        uid: result.user.uid,
+        name,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+      });
+      setData({
+        name: "",
+        email: "",
+        password: "",
+        error: null,
+        loading: false,
+      });
+
+
     } else {
       console.log("잘못 입력한 값이 있거나 입력되지 않은 값이 있어요.");
       alert('입력된 값을 확인하세요.');
