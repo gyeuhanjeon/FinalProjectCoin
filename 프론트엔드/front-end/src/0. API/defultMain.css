@@ -1,0 +1,7 @@
+.Container {
+    box-sizing: border-box;
+    width: 1180px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: "Jalnan";
+}

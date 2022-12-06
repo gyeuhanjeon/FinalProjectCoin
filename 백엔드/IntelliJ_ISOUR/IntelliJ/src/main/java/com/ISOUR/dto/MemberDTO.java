@@ -3,9 +3,12 @@ package com.ISOUR.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+
 @Getter
 @Setter
 public class MemberDTO {
+    @Column(name="id_num")
     private Long idNum;
     private String id;
     private String pwd;
