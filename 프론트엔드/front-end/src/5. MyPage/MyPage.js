@@ -4,6 +4,7 @@ import hangjungdong from '../other/hangjungdong';
 import face from '../images/기본 프로필.png'
 import { ChangePwdModal } from '../99. Modal/ChangePwdModal';
 import { UnregisterModal } from '../99. Modal/UnregisterModal';
+import '../5. MyPage/MyPage.css';
 
 // 파이어베이스 설치 ☞ yarn add firebase
 import { storage } from '../firebase'
@@ -57,7 +58,7 @@ const MyPage = () => {
   최초 통신(useEffect) */
   useEffect(() => {
     const localId = cookies.get('rememberId');
-    if(localId === undefined) window.location.replace("/login");
+     if(localId === undefined) window.location.replace("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로 
 
 
@@ -427,55 +428,74 @@ const MyPage = () => {
   
   return(
     <>
+    <div className='Mypage-Container'>
+      <div className='Mypage-box'>
       <ChangePwdModal open={changePwdModalOpen} close={closeChangePwdModal} getPwd={getPwd} onSavePwd={onSavePwd}></ChangePwdModal>
       <UnregisterModal open={unregisterModalOpen} close={closeUnregisterModal} id={id} getInputPwd={getInputPwd} onDeleteMember={onDeleteMember}></UnregisterModal>
       <h1>마이페이지</h1>
       <h6>프로필 사진 미리보기 가능</h6>
+      <div className='MyPage-img'>
       {url != null 
       ? <img src={url} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
       : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
-      <div>
+      </div>
+      <div className='MyPage-box2'>
+      <div className="MyPage-img-file">
       <input type="file" accept="image/*" onChange={onChangeFace}/>
-      <button onClick={onSaveFace}>저장</button>
+      <button className='MyPage-img-button' onClick={onSaveFace}>저장</button>
       <button onClick={onDeleteFace}>삭제</button>
       </div>
 
       <div className="Form-item">
+      <div className="Form-Name">
         <span>이름</span>
-        <input type="text" value ={name} disabled/>
+        </div>
+        <input className='Form-input1' type="text" value ={name} disabled/>
       </div>
       <div className="Form-item">
+      <div className="Form-Name">
         <span>아이디</span>
-        <input type="text" value ={id} disabled/>
+        </div>
+        <input className='Form-input2' type="text" value ={id} disabled/>
       </div>
       <div className="Form-item">
+      <div className="Form-Name">
         <span>생년월일</span>
-        <input type="text" value ={birth} disabled/>
+        </div>
+        <input className='Form-input3' type="text" value ={birth} disabled/>
       </div>
       <div className="Form-item">
+      <div className="Form-Name">
         <span>성별</span>
-        <input type="text" value ={gender} disabled/>
+        </div>
+        <input className='Form-input4' type="text" value ={gender} disabled/>
       </div>
       <div className="Form-item">
+      <div className="Form-Name">
         <span>MBTI</span>
+        </div>
         { mbti ? <input type="text" value ={mbti} />
-          : <button onClick={onClickTestStart}>검사하기</button>}
+          : <button className='Mypage-examine' onClick={onClickTestStart}>검사하기</button>}
       </div>
 
       {/* 비밀번호 */}
       <div className="Form-item">
+      <div className="Form-Name">
         <span>비밀번호</span>
-        <input type="password" value ={pwd} />
-        <button onClick={openChangePwdModal}>수정</button>
+        </div>
+        <input className='Form-input5' type="password" value ={pwd} />
+        <button className="MyPage-PW-Btn" onClick={openChangePwdModal}>수정</button>
       </div>
 
       {/* 닉네임 */}
       <div className="Form-item">
+      <div className="Form-Name">
         <span>닉네임</span>
+        </div>
         {!isChangeNickname ?
         <>
-          <input type="text" value ={nickname} />
-          <button onClick={e => setIsChangeNickname(true)}>수정</button>
+          <input className='Form-input6' type="text" value ={nickname} />
+          <button className="MyPage-NN-Btn" onClick={e => setIsChangeNickname(true)}>수정</button>
         </>
         :
         <>
@@ -488,10 +508,12 @@ const MyPage = () => {
 
       {/* 자기소개 */}
       <div className="Form-item">
+      <div className="Form-Name">
         <span>자기소개</span>
+        </div>
         {!isChangeIntroduce ?
         <>
-          <input type="text" value ={introduce} />
+          <input className='Form-input7' type="text" value ={introduce} />
           <button onClick={e => setIsChangeIntroduce(true)}>수정</button>
         </>
         :
@@ -504,10 +526,12 @@ const MyPage = () => {
 
       {/* 이메일 */}
       <div className="Form-item">
+      <div className="Form-Name">
         <span>이메일</span>
+        </div>
         {!isChangeEmail ?
         <>
-          <input type="mail" value ={email} />
+          <input className='Form-input8' type="mail" value ={email} />
           <button onClick={e => setIsChangeEmail(true)}>수정</button>
         </>
         :
@@ -522,7 +546,9 @@ const MyPage = () => {
       <>
       {isChangeAddress ?
       <div className="Form-item">
+        <div className="Form-Name">
         <span>주소</span>
+        </div>
         <select className='Select-Sido' onChange={onChangeRegion1}>
           <option disabled selected>시도선택</option>
           {sido.map((e) => (
@@ -548,15 +574,22 @@ const MyPage = () => {
       </div>
       : 
       <div className="Form-item">
+        <div className="Form-Name">
         <span>주소</span>
-        <input type="text" value ={region1} />
-        <input type="text" value ={region2} />
-        <button onClick={e => setIsChangeAddress(true)}>수정</button>
+        </div>
+        <input className='Form-input9' type="text" value ={region1} />
+        <br/>
+        <input className='Form-input10' type="text" value ={region2} />
+        <button className='Mypage-addr-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
       </div>
       }
+      
       </>
 
-      <button onClick={openUnregisterModal}>탈퇴하기</button>
+      <button className='Mypage-leave-btn' onClick={openUnregisterModal}>탈퇴하기</button>
+      </div>
+      </div>
+      </div>
     </>
   );
   

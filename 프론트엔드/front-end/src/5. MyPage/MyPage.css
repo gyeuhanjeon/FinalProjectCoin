@@ -1,0 +1,128 @@
+.Mypage-Container {
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    max-width: 1180px;
+    font-family: "Jalnan";
+    background-color: white;
+    justify-content:center;
+}
+
+.Mypage-box {
+    border: 1px solid;
+    height: 700px;
+    width: 100%;
+    padding-top: 20px;
+    margin: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    border-radius: 20px;
+    background-color: rgb(250, 244, 160);
+}
+
+.MyPage-img {
+    margin: 50px;
+}
+
+.MyPage-img-file {
+    padding-bottom: 40px;
+}
+
+.Form-item {
+padding: 20px;
+padding-top: 0px;
+}
+
+.Form-input1 {
+    width: 200px;
+    margin-right: 35px;
+}
+
+.Form-input2 {
+    width: 200px;
+    margin-right: 52px;
+}
+
+.Form-input3 {
+    width: 200px;
+    margin-right: 68px;
+}
+
+.Form-input4 {
+    width: 200px;
+    margin-right: 37px;
+}
+
+.Form-input5 {
+    width: 200px;
+    margin-right: 22px;
+}
+
+.Form-input6 {
+    width: 200px;
+    margin-right: 6px;
+}
+
+.Form-input7 {
+    width: 200px;
+    margin-right: 22px;
+}
+
+.Form-input8 {
+    width: 200px;
+    margin-right: 5px;
+}
+
+.Form-input9 {
+    width: 200px;
+    margin-right: 38px;
+}
+
+.Form-input10 {
+    width: 200px;
+    margin-left: 43px;
+    margin-top: 20px;
+}
+
+
+.MyPage-box2 {
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.Form-Name {
+    float: left;
+}
+
+.Mypage-examine {
+    width: 200px;
+    margin-right: 48px;
+    border-radius: 10px;
+}
+
+.MyPage-img-button {
+    margin-right: 10px;
+}
+
+.MyPage-PW-Btn {
+ 
+}
+
+.MyPage-NN-Btn {
+
+}
+
+.Mypage-addr-btn {
+
+}
+
+.Mypage-leave-btn {
+    width: 200px;
+    font-size: 30px;
+    border-radius: 10px;
+    margin-right: 7px;
+}
