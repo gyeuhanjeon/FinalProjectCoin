@@ -611,12 +611,14 @@ function SignUp() {
       setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
+        nickname,
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
       });
       setData({
         name: "",
+        nickname:"",
         email: "",
         password: "",
         error: null,
