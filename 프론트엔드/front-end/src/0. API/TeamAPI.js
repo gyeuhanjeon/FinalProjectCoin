@@ -187,10 +187,10 @@ const TeamAPI = {
   },
 
   // 매칭회원 불러오기
-  MatchingMember2: async function (id, local_id_num, pageNum) {
+  MatchingMember2: async function (id, localId_num, pageNum) {
     const regCmd = {
       id: id,
-      local_id_num: local_id_num,
+      localId_num: localId_num,
       pageNum: pageNum
     }
     return await axios.post(TEAM_DOMAIN + "Matching", regCmd, HEADER);

@@ -9,6 +9,7 @@ const Home = () => {
 
   const localId = cookies.get('rememberId');
   const id = window.sessionStorage.getItem("id");
+  const localId_num = window.sessionStorage.getItem("id_num");
   const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
   const kakaoNickname = window.sessionStorage.getItem("kakaoNickname");
   const kakaoId = window.sessionStorage.getItem("kakaoId");
@@ -31,8 +32,9 @@ const Home = () => {
 useEffect(() => {
         
   const memberData = async () => {
-    console.log("\n\n현재 localStorage 에 저장된 ID : " + id);
-    console.log("\n\n현재 localStorage 에 저장된 카카오 Id_num : " + kakaoId_num);
+    console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
+    console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
+    console.log("\n\n현재 sessionStorage 에 저장된 카카오 Id_num : " + kakaoId_num);
 
     console.log(typeof(kakaoId_num));
     try {

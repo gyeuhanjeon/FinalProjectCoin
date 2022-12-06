@@ -13,8 +13,8 @@ const Matching = () => {
   const cookies = new Cookies();
   // ▼ 로그인 안 되어 있으면 로그인 페이지로
   const localId = cookies.get('rememberId');
- 
-  const local_id_num = window.localStorage.getItem("id_num");
+  const id = window.sessionStorage.getItem("id");
+  const localId_num = window.sessionStorage.getItem("id_num");
 
   const [url, setUrl] = useState(null);
   const [myId, setMyId] = useState('');
@@ -69,9 +69,11 @@ const Matching = () => {
       console.log(">>>>>>>>>>>>>>");
       console.log(typeof(id));
       console.log(id);
+      console.log(localId_num);
+      console.log(pageNum);
 
       try {
-        const Mat = await TeamAPI.MatchingMember2(id, local_id_num, pageNum);
+        const Mat = await TeamAPI.MatchingMember2(id, localId_num, pageNum);
         console.log("****************");
         setMat_MemberInfo(Mat.data);
         
