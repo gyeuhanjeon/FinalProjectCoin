@@ -22,7 +22,7 @@ const regexEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-z
 function SignUp() {
 
   const cookies = new Cookies();
-
+  const localId = cookies.get('rememberId');
   const [mode, setMode] = useState("agree");
   const [checkedItems, setCheckedItems] = useState([]);
   const [check_term1, setCheck_term1] = useState("");
@@ -223,6 +223,8 @@ function SignUp() {
   const [data, setData] = useState({
     name: "",
     id:"",
+    nickname:"",
+    friend:false,
     email: "",
     password: "",
     error: null,
@@ -599,10 +601,11 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       window.location.replace("/login");
 
-      setDoc(doc(db, "users", result.user.uid), {
+      setDoc(doc(db, "users", id), {
         uid: result.user.uid,
         name,
         id,
+        friend:false,
         nickname,
         email,
         createdAt: Timestamp.fromDate(new Date()),
@@ -612,6 +615,7 @@ function SignUp() {
         name: "",
         id:"",
         nickname:"",
+        friend:false,
         email: "",
         password: "",
         error: null,
