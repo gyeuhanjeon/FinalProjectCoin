@@ -1,3 +1,7 @@
+.middle-Container {
+    display: flex;
+}
+
 .Matching-Container {
     width: 1000px;
     display: grid;
