@@ -4,6 +4,7 @@ import TeamAPI, { TEAM_DOMAIN } from '../0. API/TeamAPI';
 import styled from 'styled-components';
 import { MatchingPostModal } from '../99. Modal/MatchingPostModal';
 import SmsIcon from '@mui/icons-material/Sms';
+import { IconButton } from '@mui/material';
 import { db } from "../firebase";
 import {
   collection,
@@ -26,9 +27,8 @@ import '../0. API/defultMain.css'
 import firestore from '../firebase';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import NavigateNextIcon from '@mui/icons-material/ArrowBackIosNew';
-import { IconButton } from "@material-ui/core";
 import './Matching.css';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Matching = () => {
@@ -82,6 +82,8 @@ const Matching = () => {
   // }
 
   // 매칭 회원 정보 조회
+
+  const nav = useNavigate();
   useEffect(() => {
     if(localId === undefined) window.location.replace("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로
@@ -154,6 +156,7 @@ const Matching = () => {
       friend:true
     })
 
+    nav("/ChatHome")
 
     
   };

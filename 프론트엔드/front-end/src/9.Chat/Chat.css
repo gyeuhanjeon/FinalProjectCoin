@@ -208,7 +208,7 @@
     border : 1px solid black;
   }
   .selected_user {
-    background: var(--color-6);
+    background: wheat;
   }
   .truncate {
     font-size: 14px;
