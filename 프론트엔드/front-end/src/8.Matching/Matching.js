@@ -123,40 +123,33 @@ const Matching = () => {
   
   }, [pageNum]);
   
-  const user1 = localId;
-  
-  
-  console.log("user1 :",user1)
-  const onClickChat = async(user) => {
-    user.preventDefault();
-    const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
-    setMat_MemberInfo(Mat.data);
-    const my = Mat.data[0];
-    setMyInfo(my);
-    setMyId(my.user_id);
-    console.log("1", Mat.data);
-    console.log("2", my.user_id);
-    const st =  Mat.data[0].mat_id;
-    alert("친구추가완료")
-    setFriend(user)
-    const user2 = st;
-    
-  
- 
-    await addDoc(collection(db, "friends",localId,"check"), {
-      friend: user2
-    });
-    console.log("로컬아이디는?",localId)
- 
-    const friendRef = doc(db, "users", localId);
+ // 채팅하기 onClick
+ const user1 = localId;
+ console.log("user1 :",user1)
+ const onClickChat = async (user) => {
+  //  user.preventDefault();
+   console.log("친구 아이디", user);
+   console.log("내 아이디", myId);
 
-    await updateDoc(friendRef, {
-      friend:true
-    })
+   const chatList = await TeamAPI.chatAddMember(myId, user);
 
+   if(chatList.data) {
+     setFriend(user);
+     alert("친구추가완료");
+   } 
+   
+  const user2 = friend;
+
+  await addDoc(collection(db, "friends",localId,"check"), {
+    friend: user2
+  });
+  console.log("로컬아이디는?",localId)
+  const friendRef = doc(db, "users", localId);
+
+  await updateDoc(friendRef, {
+    friend:true
+  })
     nav("/ChatHome")
-
-    
   };
 
   /* 쪽지 기능 구현 */
@@ -246,7 +239,7 @@ const Matching = () => {
                 <FavoriteIcon className='Like-icon' style = {{fontSize: 'xx-large', backgroundColor: 'unset'}} />
               </IconButton>
               <IconButton>
-                <SmsIcon className='Chat-icon' style = {{fontSize: 'xx-large'}} onClick={onClickChat}/>
+                <SmsIcon className='Chat-icon' style = {{fontSize: 'xx-large'}} onClick={()=>onClickChat(mat.mat_id)}/>
               </IconButton>
               <IconButton>
                 <EmailIcon className='Post-icon' style = {{fontSize: 'xx-large'}} onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
