@@ -242,7 +242,7 @@ const Recommend = styled.div`
   margin: 0 auto;
 `;
 const RecommendByOne = styled.div`
-  &>img{
+  &>a>img{
     width:200px;
   }
   &>p{
@@ -363,6 +363,21 @@ const Container = styled.div`
 
 const Sentence1 = styled.div`
   font-size: 35px;
+  span:nth-of-type(1){
+    color:red;
+  }
+  span:nth-of-type(2){
+    color:orange;
+  }
+  span:nth-of-type(3){
+    color:yellowgreen;
+  }
+  span:nth-of-type(4){
+    color:#CC33FF;
+  }
+  span:nth-of-type(5){
+    color:#0000FF;
+  }
 `
 const Sentence2 = styled.div`
   font-size: 25px;
@@ -388,7 +403,7 @@ const Mbtiword = styled.p`
     color:yellowgreen;
   }
   span:nth-of-type(4){
-    color:skyblue;
+    color:#CC33FF;
   }
 `
 
@@ -438,7 +453,7 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istj"  target='_blank'>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istj" target='_blank'>
                 <img src={현실주의자}></img>
               </a>
               <p>{"ISTJ"}</p>
@@ -493,7 +508,9 @@ const Quiz = (props) => {
                 <Character>{"#개방적 #조화로운 삶"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={장인}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istp">
+                  <img src={장인}></img>
+                </a>
                 <p>{'ISTP'}</p>
                 <Character>{"#장인 #색다름 추구"}</Character>
               </RecommendByOne>
@@ -528,7 +545,9 @@ const Quiz = (props) => {
                 <Character>{"#개방적 #조화로운 삶"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={장인}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istp">
+                  <img src={장인}></img>
+                </a>
                 <p>{'ISTP'}</p>
                 <Character>{"#장인 #색다름 추구"}</Character>
               </RecommendByOne>
@@ -612,7 +631,9 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={장인}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istp">
+                <img src={장인}></img>
+              </a>
               <p>{"ISTP"}</p>
               <Character>{"#장인 #색다름 추구"}</Character>
             </MyMbti>
@@ -1801,7 +1822,12 @@ const MBTI = () => {
       {states.mode === 'start'
         ?
         <StartContainer>
-          <Sentence1>당신은 이 검사가 끝나고 MBTI ISOUR의 검사가 너무 정확해<br /> "조금 소름이 돋을 정도예요"<br /> 라고 말할것입니다.</Sentence1>
+          <Sentence1>당신은 이 검사가 끝나고
+            <span> m</span>
+            <span>b</span>
+            <span>t</span>
+            <span>i</span>
+            <br /><span>ISOUR</span> 의 검사가 너무 정확해<br /> "조금 소름이 돋을 정도예요"<br /> 라고 말할것입니다.</Sentence1>
           <p />
           <Sentence2>여러분의 특성을 파악하고 그 특성을 통한<br /> <span>인생 최고의 친구</span>를 찾으세요!</Sentence2>
 
