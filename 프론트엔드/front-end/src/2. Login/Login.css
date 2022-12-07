@@ -37,7 +37,7 @@
   }
   
   .Login-PW {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   .Login-findId {
@@ -61,7 +61,7 @@
     }
 
   .Login-footer {
-    margin-top: 90px;
+    margin-top: 40px;
     font-size: 20px;
   }
 
@@ -71,8 +71,25 @@
     margin-bottom: 50px;
   }
 
-  .Login-PW  {
+
+  .Auto-Login {
+    margin-right: 195px;
     margin-bottom: 50px;
+  }
+
+  .Auto-Login-input {
+    margin-right: 10px;
+  }
+
+  .social-Login {
+    display: flex;
+    justify-items: center;
+    margin: 0 auto;
+  }
+
+  .kakao-img {
+    height: 50px;
+    
   }
 
 
