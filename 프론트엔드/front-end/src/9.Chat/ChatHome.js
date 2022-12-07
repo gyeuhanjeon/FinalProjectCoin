@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../firebase";
+
 import "./Chat.css";
 import {
   collection,
@@ -32,6 +33,7 @@ const ChatHome = () => {
   const id = localId;
   
   const user1 = id;
+
 
   useEffect(() => {
     const usersRef = collection(db, "users");
