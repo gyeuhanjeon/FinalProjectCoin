@@ -144,9 +144,7 @@ const Matching = () => {
   
  
     await addDoc(collection(db, "friends",localId,"check"), {
-      friend: true,
-      member: user2,
-      createAt: Timestamp.fromDate(new Date())
+      friend: user2
     });
     console.log("로컬아이디는?",localId)
  
