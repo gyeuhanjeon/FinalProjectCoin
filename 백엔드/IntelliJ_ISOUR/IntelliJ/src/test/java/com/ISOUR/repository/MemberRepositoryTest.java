@@ -54,8 +54,8 @@ class MemberRepositoryTest {
             MemberInfo memberInfo = new MemberInfo();
             memberInfo.setName("test" + (32 + i));
             memberInfo.setNickname("testNic" + (32 + i));
-            memberInfo.setId("test" + (32 + i));
-            memberInfo.setPwd("test" + (32 + i));
+            memberInfo.setId("test" + (32 +i));
+            memberInfo.setPwd("test" + ( 32 +i));
             memberInfo.setMbti(MBTI[i]);
             memberInfo.setIntroduce("Im test" + (32 + i) + "입니다.");
             memberRepository.save(memberInfo);

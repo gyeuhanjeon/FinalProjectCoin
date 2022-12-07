@@ -232,6 +232,8 @@ function SignUp() {
   const [data, setData] = useState({
     name: "",
     id:"",
+    nickname:"",
+    friend:false,
     email: "",
     password: "",
     error: null,
@@ -608,11 +610,12 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       window.location.replace("/login");
 
-      setDoc(doc(db, "users", result.user.uid), {
+      setDoc(doc(db, "users", id), {
         uid: result.user.uid,
         name,
         id,
         nickname,
+        friend : false,
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
@@ -621,6 +624,7 @@ function SignUp() {
         name: "",
         id:"",
         nickname:"",
+        friend:false,
         email: "",
         password: "",
         error: null,

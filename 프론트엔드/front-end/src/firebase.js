@@ -66,7 +66,7 @@ const firestore = firebase.firestore();
 
 // 필요한 곳에서 사용할 수 있도록 내보내기
 // 다른 곳에서 불러올때 firestore로 불러와야 함!!
-export { firestore };
+export default { firestore };
 
 firebase.initializeApp(firebaseConfig);
 // getAnalytics(app);

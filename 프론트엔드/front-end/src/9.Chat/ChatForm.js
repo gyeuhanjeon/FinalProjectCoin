@@ -1,8 +1,9 @@
 import React from "react";
+import "./Chat.css";
 
 const ChatForm = ({ handleSubmit, text, setText, setImg }) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="message_form" onSubmit={handleSubmit}>
                   <label htmlFor="img">
         {/* <Attachment /> */}
       </label>

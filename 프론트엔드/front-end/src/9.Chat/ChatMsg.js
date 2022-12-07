@@ -1,7 +1,23 @@
 import React, { useRef, useEffect } from "react";
 import Moment from "react-moment";
+import "./Chat.css";
+import { formatRelative } from 'date-fns';
 
-const ChatMsg = ({ msg, user1 }) => {
+const formatDate = date => {
+  let formattedDate = '';
+  if (date) {
+    // Convert the date in words relative to the current date
+    formattedDate = formatRelative(date, new Date());
+    // Uppercase the first letter
+    formattedDate =
+      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  }
+  return formattedDate;
+};
+
+
+
+const ChatMsg = ({ msg, user1,  createdAt=null }) => {
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -18,7 +34,11 @@ const ChatMsg = ({ msg, user1 }) => {
         {msg.text}
         <br />
         <small>
-          <Moment fromNow>{msg.createdAt.toDate()}</Moment>
+        {createdAt?.seconds ? (
+          <div>
+              {formatDate(new Date(createdAt.seconds * 1000))}
+              </div>
+          ) : null}
         </small>
       </p>
     </div>

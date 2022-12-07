@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
 import TeamAPI from '../0. API/TeamAPI';
 import Cookies from 'universal-cookie';
+import { db } from "../firebase";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc
+} from "firebase/firestore";
 
 const Home = () => {
     
@@ -13,8 +27,10 @@ const Home = () => {
   const kakaoNickname = window.sessionStorage.getItem("kakaoNickname");
   const kakaoId = window.sessionStorage.getItem("kakaoId");
   const kakaoEmail = window.sessionStorage.getItem("kakaoEmail");
+  const [friend, setFriend] = useState("");
 
   const [nickName, setNickName] = useState('');
+
 
   const chatTest = async(name) => {
     console.log(name);
@@ -41,6 +57,14 @@ useEffect(() => {
     try {
         const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
         setNickName(response.data.nickname)
+        const localId_num = response.data.idNum;
+
+
+        // setCookie('rememberEmail', email);
+        cookies.set('rememberId_num', localId_num, {
+          path: '/',
+          expires: 0
+        })
         console.log(response.data)
       
     } catch (e) {

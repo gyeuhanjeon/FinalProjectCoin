@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../firebase";
+import "./Chat.css";
 import {
   collection,
   query,
@@ -119,8 +120,8 @@ const ChatHome = () => {
   
 
   return (
-    <div>
-      <div>
+    <div className="home_container">
+      <div className="users_container">
         {users.map((user) => (
           <User
             key={user.id}
@@ -130,12 +131,12 @@ const ChatHome = () => {
           />
         ))}
       </div>
-      <div>
+      <div className="messages_container">
         {chat ? (
           <>
             <div>
             </div>
-            <div>
+            <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
                     <ChatMsg key={i} msg={msg} user1={user1}/>
@@ -150,7 +151,7 @@ const ChatHome = () => {
             />
           </>
         ): (
-        <h3>대화하고싶은 상대의 이름을 클릭하세요</h3>
+        <h3 className="no_conv">대화하고싶은 상대의 이름을 클릭하세요</h3>
         )}
       </div>
     </div>

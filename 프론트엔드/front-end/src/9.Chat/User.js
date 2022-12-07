@@ -6,6 +6,7 @@ import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import Cookies from 'universal-cookie';
 import TeamAPI from "../0. API/TeamAPI";
+import "./Chat.css";
 
 const User = ({ user1, user, selectUser, chat }) => {
   const cookies = new Cookies();
@@ -15,7 +16,8 @@ const User = ({ user1, user, selectUser, chat }) => {
   const localId = cookies.get('rememberId');
   const [url, setUrl] = useState(null);
   
-
+  
+  
   const onSaveFace = async() => {
     const imageRef = ref(storage, localId);
 
@@ -55,10 +57,21 @@ const User = ({ user1, user, selectUser, chat }) => {
 
   useEffect(() => {
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    const ls = doc(db, "friends", localId)
+    if(ls === true){
+    
     let unsub = onSnapshot(doc(db, "lastMsg", id), (doc) => {
       setData(doc.data());
     });
+    
     return () => unsub();
+    } else {
+      return(
+        <div>
+          <p>친구가 없어요</p>
+        </div>
+      )
+    }
   }, []);
 
 
@@ -73,7 +86,7 @@ const User = ({ user1, user, selectUser, chat }) => {
       >
         <div className="user_info">
           <div className="user_detail">
-            {/* <img src={user.nickName} alt="nickName" className="nickName" /> */}
+            <img src={user.avatar || `https://firebasestorage.googleapis.com/v0/b/isour-c9756.appspot.com/o/${user.id}?alt=media&token=` } alt="avatar" className="avatar" />
             <h4>{user.nickname}</h4>
             {data?.from !== user1 && data?.unread && (
               <small className="unread">New</small>
@@ -91,17 +104,6 @@ const User = ({ user1, user, selectUser, chat }) => {
         )}
       </div>
       
-      <div
-        onClick={() => selectUser(user)}
-        className={`sm_container ${chat.nickname === user.nickname && "selected_user"}`}
-      >
-        <img
-        
-          src={`https://firebasestorage.googleapis.com/v0/b/isour-c9756.appspot.com/o/${user.id}?alt=media&token=` }
-          alt="avatar"
-          className="avatar sm_screen"
-        />
-      </div>
     </>
   );
 };
