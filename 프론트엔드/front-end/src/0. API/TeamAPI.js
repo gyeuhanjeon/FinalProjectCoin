@@ -245,6 +245,15 @@ const TeamAPI = {
     return await axios.post(TEAM_DOMAIN + "login/kakao", regCmd, HEADER);
   },
 
+  // 채팅 친구 추가
+  chatAddMember: async function (MyId, chatMemberId) {
+    const regCmd = {
+      MyId: MyId,
+      chatMemberId: chatMemberId
+    }
+    return await axios.post(TEAM_DOMAIN + "chat/addMember", regCmd, HEADER);
+  },
+
 }
 
 export default TeamAPI;

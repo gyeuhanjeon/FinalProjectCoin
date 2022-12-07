@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 @Table(name = "Chat_List")
 public class ChatList {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="chatList_num")
+    private Long chatListNum;
     private String userId;
-    private String chatId;
+    private String chatMemberId;
     private LocalDateTime firstChatTime;
 }

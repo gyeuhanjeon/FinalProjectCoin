@@ -1,9 +1,12 @@
 package com.ISOUR.service;
 
 import com.ISOUR.dto.GChatDTO;
+import com.ISOUR.entity.ChatList;
 import com.ISOUR.entity.GChat;
+import com.ISOUR.repository.ChatListRepository;
 import com.ISOUR.repository.GChatRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +21,8 @@ public class GChatService {
     public GChatService(GChatRepository GChatRepository) {
         this.GChatRepository = GChatRepository;
     }
+    @Autowired
+    private ChatListRepository chatListRepository;
 
     public boolean sendPost(String content) {
         log.warn("★★★★★★★★★채팅 보내기 서비스★★★★★★★★★");
@@ -46,5 +51,22 @@ public class GChatService {
             GChatDTOS.add(GChatDTO);
         }
         return GChatDTOS;
+    }
+
+    // 채팅 친구 추가
+    public Boolean chatAddMember(String userId, String chatMemberId) {
+        log.warn("★★★★★★★★★ 채팅 친구 추가 서비스★★★★★★★★★");
+        log.warn("내 아이디 : " + userId);
+        log.warn("친구 아이디 : " + chatMemberId);
+
+        ChatList chatList = new ChatList();
+        chatList.setUserId(userId);
+        chatList.setChatMemberId(chatMemberId);
+        chatList.setFirstChatTime(LocalDateTime.now().withNano(0));
+
+        ChatList result = chatListRepository.save(chatList);
+        log.warn(result.toString());
+
+        return true;
     }
 }
