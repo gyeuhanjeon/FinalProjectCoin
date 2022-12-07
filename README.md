@@ -1,6 +1,14 @@
 # Final_ISOUR
 ISOUR Final Project
 
+22.12.07(수)
+
+♥ 전규한
+
+- mbti 검사 페이지 css
+- mbti 결과페이지 이미지에 설명 링크 걸어둠.
+
+
 22.12.05(월)
 
 우혜정 
