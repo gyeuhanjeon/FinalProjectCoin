@@ -17,17 +17,59 @@ import 모험가 from '../images/모험가.png';
 import 사업가 from '../images/사업가.png';
 import 연예인 from '../images/연예인.png';
 import Cookies from 'universal-cookie';
-
-
+import { VscArrowRight } from "react-icons/vsc";
+import { IoPeople, IoPersonAdd } from "react-icons/io5";
+import { MdPsychology, MdQuiz } from "react-icons/md";
 
 //스타일 컴포넌트
+
+const Startbtn = styled.button`
+  background: black;
+  color: white;
+  padding: 1rem;
+  width: 500px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 25px;
+  background-color: orangered;
+  border-color: red;
+  transition: all .2s ea  se-in-out;
+  font-weight: 900;  
+
+  &:hover{
+  background-color: firebrick;
+  border-color: firebrick;
+  cursor: pointer;
+  opacity: 0.95;
+  transition-duration: .5s;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 5); ;
+  .arrow{
+    transform: translateX(10px);
+    transition-duration: .5s;
+  }
+  }
+  &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
+
+  .arrow{
+    position: relative;
+    bottom: 4px;
+  }
+  
+  
+`
 
 const Word1 = styled.div`
   position: relative;
   font-size: 25px;
   width:800px;
   height: 20px;
-  top:230px;
+  top:400px;
+  left:160px;
   color:skyblue;
 
 `;
@@ -36,7 +78,8 @@ const Word2 = styled.div`
   font-size: 25px;
   width:800px;
   height: 20px;
-  top:230px;
+  top:400px;
+  right:162px;
   color:orangered;
 
 `;
@@ -46,6 +89,8 @@ const NumContainer = styled.div`
   text-align: center;
 `;
 const Num = styled.span`
+  position: relative;
+  top:200px;
   font-size: 0.8em;
   border-radius: 30px;
   background: #fef5d4;
@@ -58,13 +103,17 @@ const Num = styled.span`
 const OXcontainer = styled.div`
     display: flex;
     margin : 0 auto;    
-    width: 1080px;
+    width: 1180px;
     position: relative;
     left: 0;
     z-index: 1;
     bottom:500px;
-    
 `;
+const QuizContainer = styled.div`
+   display: flex;
+`
+
+
 const O3 = styled.div`
     display: flex;  
     color: skyblue;
@@ -73,12 +122,16 @@ const O3 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 300px;
+    font-size: 200px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const X3 = styled.div`
     display: flex;  
@@ -88,12 +141,16 @@ const X3 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 300px;
+    font-size: 200px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const O2 = styled.div`
     display: flex;  
@@ -103,12 +160,18 @@ const O2 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 180px;
+    font-size: 130px;
+    position: relative;
+    left:17px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const X2 = styled.div`
     display: flex;  
@@ -118,12 +181,18 @@ const X2 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 180px;
+    font-size: 130px;
+    position: relative;
+    right:17px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const O1 = styled.div`
     display: flex;  
@@ -133,12 +202,18 @@ const O1 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 110px;
+    font-size: 80px;
+    position: relative;
+    left:10px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const X1 = styled.div`
     display: flex;  
@@ -148,12 +223,18 @@ const X1 = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 110px;
+    font-size: 80px;
+    position: relative;
+    right:10px;
     cursor: pointer;
     :hover {
       transition-duration: .5s;
       text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
     }
+    &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
 `;
 const Recommend = styled.div`
   display: flex;
@@ -165,14 +246,14 @@ const RecommendByOne = styled.div`
     width:200px;
   }
   &>p{
-    font-size: 17px;
+    font-size: 20px;
     text-align: center;
   }
   margin: 0 auto;
 `;
 const ResultContainer = styled.div`
-  width :1080px;
-  margin : 0 auto;
+  width :1180px;
+  margin : 100 auto 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -182,22 +263,139 @@ const ResultContainer = styled.div`
 const MyMbti = styled.div`
   width:320px;
   margin:0 380px;
-  &>p{
-    font-size: 30px;
-    text-align: center;
-  }
+  font-size: 30px;
+  text-align: center;
+
 `
 const StyledButton = styled.button`
-  width:400px;
-  margin: 50px 340px 0px 340px;
+    background: black;
+  color: white;
+  padding: 1rem;
+  width: 500px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 25px;
+  background-color: skyblue;
+  border-color: skyblue;
+  transition: all .2s ea  se-in-out;
+  font-weight: 900;  
+  position: relative;
+  left :300px;
+
+  &:hover{
+  background-color: firebrick;
+  border-color: firebrick;
+  cursor: pointer;
+  opacity: 0.95;
+  transition-duration: .5s;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 5); ;
+  .arrow{
+    transform: translateX(10px);
+    transition-duration: .5s;
+  }
+  }
+  &:active{
+    transition-duration: .5s;
+    transform: translateY(5px);
+  }
+  
+  .arrow{
+    position: relative;
+    bottom: 4px;
+  }
+  
+  
 `
 const RecommendWord = styled.div`
   color: orangered;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 40px;
   position: relative;
   text-align:center;
 `
+
+const Character = styled.p`
+  color: red;
+  font-weight: 900;
+  font-size: 25px;
+  position: relative;
+  text-align:center;
+`
+const StartContainer = styled.div`
+  text-align: center;
+  max-width:600px;
+  
+  min-height: 800px;
+  max-height:800px;
+  border: 2px greenyellow solid;
+  position: relative;
+  top:100px;
+  &>.mbti-person1{
+    position: relative;
+    bottom: 50px;
+  }
+  &>.mbti-person2{
+    position: relative;
+    bottom: 50px;
+  }
+  &>.mbti-quiz{
+    position: relative;
+    bottom: 20px;
+  }
+  &>.mbti-brain{
+    position: relative;
+    bottom: 20px;
+  }
+
+`
+const Container = styled.div`
+    box-sizing: border-box;
+    width: 1180px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: "Jalnan";
+    justify-content: center;
+    display: flex;
+    align-items: center;
+`
+
+const Sentence1 = styled.div`
+  font-size: 35px;
+`
+const Sentence2 = styled.div`
+  font-size: 25px;
+  margin-bottom: 40px;
+  span{
+    color: red;
+  }
+`
+
+const Mbtiword = styled.p`
+  font-size: 40px;
+  position: relative;
+  right:50px;
+  top:10px;
+
+  span:nth-of-type(1){
+    color:red;
+  }
+  span:nth-of-type(2){
+    color:orange;
+  }
+  span:nth-of-type(3){
+    color:yellowgreen;
+  }
+  span:nth-of-type(4){
+    color:skyblue;
+  }
+`
+
+const DetailWord = styled.p`
+    text-align: center;
+`
+
 
 //퀴즈 컴포넌트
 const Quiz = (props) => {
@@ -231,7 +429,7 @@ const Quiz = (props) => {
     answer: ["E", "S", "T", "J"]
   };
 
-  const RecommendWord2="내 유형과 잘맞는 단짝 유형"
+  const RecommendWord2 = "내 유형과 잘맞는 단짝 유형"
 
   // 결과 페이지
   if (count === props.questionList.length) {
@@ -240,20 +438,27 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={현실주의자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istj"  target='_blank'>
+                <img src={현실주의자}></img>
+              </a>
               <p>{"ISTJ"}</p>
+              <Character>{"#진실한 삶 #책임감 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={연예인}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfp" target='_blank'>
+                  <img src={연예인}></img>
+                </a>
                 <p>{'ESFP'}</p>
+                <Character>{"#열정적 #즐거움 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -263,28 +468,39 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={경영자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-estj" target='_blank'>
+                <img src={경영자}></img>
+              </a>
               <p>{"ESTJ"}</p>
+              <Character>{"#높은 책임감 #지도력"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={논리술사}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intp" target='_blank'>
+                  <img src={논리술사}></img>
+                </a>
                 <p>{'INTP'}</p>
+                <Character>{"#생각많음 #아이디어 뿜뿜"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={모험가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
+                  <img src={모험가}></img>
+                </a>|
                 <p>{'ISFP'}</p>
+                <Character>{"#개방적 #조화로운 삶"}</Character>
               </RecommendByOne>
               <RecommendByOne>
                 <img src={장인}></img>
                 <p>{'ISTP'}</p>
+                <Character>{"#장인 #색다름 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -294,24 +510,32 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={집정관}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfj" target='_blank'>
+                <img src={집정관}></img>
+              </a>
               <p>{"ESFJ"}</p>
+              <Character>{"#책임감 #오랜관계 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={모험가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
+                  <img src={모험가}></img>
+                </a>|
                 <p>{'ISFP'}</p>
+                <Character>{"#개방적 #조화로운 삶"}</Character>
               </RecommendByOne>
               <RecommendByOne>
                 <img src={장인}></img>
                 <p>{'ISTP'}</p>
+                <Character>{"#장인 #색다름 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -321,24 +545,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={수호자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfj" target='_blank'>
+                <img src={수호자}></img>
+              </a>
               <p>{"ISFJ"}</p>
+              <Character>{"#충실한 성격 #소통 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={연예인}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfp" target='_blank'>
+                  <img src={연예인}></img>
+                </a>
                 <p>{'ESFP'}</p>
+                <Character>{"#열정적 #즐거움 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={사업가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-estp" target='_blank'>
+                  <img src={사업가}></img>
+                </a>
                 <p>{'ESTP'}</p>
+                <Character>{"#높은 관찰력 #실천 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -348,20 +582,27 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={사업가}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-estp" target='_blank'>
+                <img src={사업가}></img>
+              </a>
               <p>{"ESTP"}</p>
+              <Character>{"#높은 관찰력 #실천 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={수호자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfj" target='_blank'>
+                  <img src={수호자}></img>
+                </a>
                 <p>{'ISFJ'}</p>
+                <Character>{"#충실한 성격 #소통 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -373,22 +614,30 @@ const Quiz = (props) => {
             <MyMbti>
               <img src={장인}></img>
               <p>{"ISTP"}</p>
+              <Character>{"#장인 #색다름 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={집정관}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfj" target='_blank'>
+                  <img src={집정관}></img>
+                </a>
                 <p>{'ESFJ'}</p>
+                <Character>{"#책임감 #오랜관계 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={경영자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-estj" target='_blank'>
+                  <img src={경영자}></img>
+                </a>
                 <p>{'ESTJ'}</p>
+                <Character>{"#높은 책임감 #지도력"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -398,24 +647,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={연예인}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfp" target='_blank'>
+                <img src={연예인}></img>
+              </a>
               <p>{"ESFP"}</p>
+              <Character>{"#열정적 #즐거움 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={수호자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfj" target='_blank'>
+                  <img src={수호자}></img>
+                </a>
                 <p>{'ISFJ'}</p>
+                <Character>{"#충실한 성격 #소통 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={현실주의자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istj" target='_blank'>
+                  <img src={현실주의자}></img>
+                </a>
                 <p>{'ISTJ'}</p>
+                <Character>{"#진실한 삶 #책임감 추구"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -425,24 +684,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={모험가}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
+                <img src={모험가}></img>
+              </a>|
               <p>{"ISFP"}</p>
+              <Character>{"#개방적 #조화로운 삶"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={집정관}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-esfj" target='_blank'>
+                  <img src={집정관}></img>
+                </a>
                 <p>{'ESFJ'}</p>
+                <Character>{"#책임감 #오랜관계 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={경영자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-estj" target='_blank'>
+                  <img src={경영자}></img>
+                </a>
                 <p>{'ESTJ'}</p>
+                <Character>{"#높은 책임감 #지도력"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -452,24 +721,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={변론가}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entp" target='_blank'>
+                <img src={변론가}></img>
+              </a>
               <p>{"ENTP"}</p>
+              <Character>{"#규칙파괴자 #풍부한 지식"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={옹호자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infj" target='_blank'>
+                  <img src={옹호자}></img>
+                </a>
                 <p>{'INFJ'}</p>
+                <Character>{"#목적 중시 #소통 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={논리술사}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intj" target='_blank'>
+                  <img src={논리술사}></img>
+                </a>|
                 <p>{'INTJ'}</p>
+                <Character>{"#개척자정신 #지적갈망"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -479,20 +758,27 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={논리술사}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intp" target='_blank'>
+                <img src={논리술사}></img>
+              </a>
               <p>{"INTP"}</p>
+              <Character>{"#생각많음 #아이디어 뿜뿜"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={통솔자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entj" target='_blank'>
+                  <img src={통솔자}></img>
+                </a>
                 <p>{'ENTJ'}</p>
+                <Character>{"#목표 갈망 #감정 부족"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -502,24 +788,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={통솔자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entj" target='_blank'>
+                <img src={통솔자}></img>
+              </a>
               <p>{"ENTJ"}</p>
+              <Character>{"#목표 갈망 #감정 부족"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={옹호자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infj" target='_blank'>
+                  <img src={옹호자}></img>
+                </a>
                 <p>{'INFJ'}</p>
+                <Character>{"#목적 중시 #소통 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={논리술사}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intp" target='_blank'>
+                  <img src={논리술사}></img>
+                </a>
                 <p>{'INTP'}</p>
+                <Character>{"#생각많음 #아이디어 뿜뿜"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -529,24 +825,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={논리술사}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intj" target='_blank'>
+                <img src={논리술사}></img>
+              </a>|
               <p>{"INTJ"}</p>
+              <Character>{"#개척자정신 #지적갈망"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={활동가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-enfp" target='_blank'>
+                  <img src={활동가}></img>
+                </a>
                 <p>{'ENFP'}</p>
+                <Character>{"#사교적 #즐거움 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={변론가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entp" target='_blank'>
+                  <img src={변론가}></img>
+                </a>
                 <p>{'ENTP'}</p>
+                <Character>{"#규칙파괴자 #풍부한 지식"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -556,24 +862,35 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={선도자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-enfj" target='_blank'>
+                <img src={선도자}></img>
+              </a>
               <p>{"ENFJ"}</p>
+              <Character>{"#깊은 배려 #신념 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={중재자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infp" target='_blank'>
+                  <img src={중재자} />
+                </a>
                 <p>{'INFP'}</p>
+                <Character>{"#공감능력 #솔직함 추구"}</Character>
+
               </RecommendByOne>
               <RecommendByOne>
-                <img src={모험가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
+                  <img src={모험가}></img>
+                </a>|
                 <p>{'ISFP'}</p>
+                <Character>{"#개방적 #조화로운 삶"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -583,24 +900,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={옹호자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infj" target='_blank'>
+                <img src={옹호자}></img>
+              </a>
               <p>{"INFJ"}</p>
+              <Character>{"#목적 중시 #소통 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={활동가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-enfp" target='_blank'>
+                  <img src={활동가}></img>
+                </a>
                 <p>{'ENFP'}</p>
+                <Character>{"#사교적 #즐거움 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={변론가}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entp" target='_blank'>
+                  <img src={변론가}></img>
+                </a>
                 <p>{'ENTP'}</p>
+                <Character>{"#규칙파괴자 #풍부한 지식"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -610,24 +937,34 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={활동가}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-enfp" target='_blank'>
+                <img src={활동가}></img>
+              </a>
               <p>{"ENFP"}</p>
+              <Character>{"#사교적 #즐거움 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={옹호자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infj" target='_blank'>
+                  <img src={옹호자}></img>
+                </a>
                 <p>{'INFJ'}</p>
+                <Character>{"#목적 중시 #소통 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={논리술사}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intj" target='_blank'>
+                  <img src={논리술사}></img>
+                </a>|
                 <p>{'INTJ'}</p>
+                <Character>{"#개척자정신 #지적갈망"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
           </div>
         </ResultContainer>
@@ -637,25 +974,36 @@ const Quiz = (props) => {
         <ResultContainer>
           <div>
             <MyMbti>
-              <img src={중재자}></img>
+              <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infp" target='_blank'>
+                <img src={중재자} />
+              </a>
               <p>{"INFP"}</p>
+              <Character>{"#공감능력 #솔직함 추구"}</Character>
             </MyMbti>
             <RecommendWord>
               {RecommendWord2}
             </RecommendWord>
             <Recommend>
               <RecommendByOne>
-                <img src={선도자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-enfj" target='_blank'>
+                  <img src={선도자}></img>
+                </a>
                 <p>{'ENFJ'}</p>
+                <Character>{"#깊은 배려 #신념 추구"}</Character>
               </RecommendByOne>
               <RecommendByOne>
-                <img src={통솔자}></img>
+                <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-entj" target='_blank'>
+                  <img src={통솔자}></img>
+                </a>
                 <p>{'ENTJ'}</p>
+                <Character>{"#목표 갈망 #감정 부족"}</Character>
               </RecommendByOne>
             </Recommend>
             <StyledButton>
               단짝 친구 찾으러 가기
+              <VscArrowRight className="arrow" size={35} />
             </StyledButton>
+            <DetailWord>해당 mbti에 대한 더 자세한 정보는 이미지를 클릭해주세요.</DetailWord>
           </div>
         </ResultContainer>
       );
@@ -1317,7 +1665,7 @@ const Quiz = (props) => {
 
   //문제 및 선택지 출력
   return (
-    <div>
+    <QuizContainer>
       {props.questionList.map((e, idx) => {
         if (count === idx && idx < 5) {
           return (
@@ -1398,14 +1746,16 @@ const Quiz = (props) => {
         }
       })}
 
-    </div>
+    </QuizContainer>
   );
 }
+
+
 
 const MBTI = () => {
 
   const cookies = new Cookies();
-  const localId = cookies.get('rememberId')  ;
+  const localId = cookies.get('rememberId');
   if (localId === undefined) window.location.replace("/login");
 
   const currentId = window.localStorage.getItem("userId");
@@ -1445,16 +1795,29 @@ const MBTI = () => {
   }
 
   return (
-    <div>
+    <Container>
 
       {/* mode 가 main 일 때 */}
       {states.mode === 'start'
         ?
-        <div>
-          {/* <img className='mbti-btn-img' src={mbti}></img> */}
+        <StartContainer>
+          <Sentence1>당신은 이 검사가 끝나고 MBTI ISOUR의 검사가 너무 정확해<br /> "조금 소름이 돋을 정도예요"<br /> 라고 말할것입니다.</Sentence1>
+          <p />
+          <Sentence2>여러분의 특성을 파악하고 그 특성을 통한<br /> <span>인생 최고의 친구</span>를 찾으세요!</Sentence2>
 
-          <button className='btn-exam-start' onClick={() => { changeMode('quiz') }}>검 사 시 작</button>
-        </div>
+          <Startbtn onClick={() => { changeMode('quiz') }}>검 사 시 작 <VscArrowRight className="arrow" size={35} /></Startbtn>
+          <Mbtiword>
+            <span>m</span>
+            <span>b</span>
+            <span>t</span>
+            <span>i</span>
+          </Mbtiword>
+          <MdQuiz size={100} className='mbti-quiz' /><MdPsychology size={100} className='mbti-brain' />
+          <p></p>
+          <IoPeople className='mbti-person1' size={250} /><IoPersonAdd className='mbti-person2' size={170} />
+
+        </StartContainer>
+
         : null
       }
 
@@ -1464,7 +1827,7 @@ const MBTI = () => {
         : null
       }
 
-    </div>
+    </Container>
   )
 }
 
