@@ -190,8 +190,10 @@ function Login() {
         </div>
 
         <form>
+          <div className='Auto-Login'>
+          <input className='Auto-Login-input' type="checkbox" id='checkbox' onClick={onClickAutologin}></input>
           <label for='checkbox'>자동로그인</label>
-          <input type="checkbox" id='checkbox' onClick={onClickAutologin}></input>
+          </div>
         </form>
 
         <motion.div
@@ -211,16 +213,17 @@ function Login() {
         </div>
 
         {/* 소셜로그인 */}
-        <div>
+        <div className='social-Login'>
+        <div className='Login-kakao'>
           <a href={kakao_Auth_Url}>
-            <img src={kakao} />
+            <img className='kakao-img' src={kakao} />
           </a>
         </div>
 
-        <div>
+        <div className='Login-Google'>
           <GoogleButton onClick={signInWithGoogle} />
         </div>
-
+        </div>
       </div>
     </div>
   );

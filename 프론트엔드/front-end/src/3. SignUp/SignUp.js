@@ -17,15 +17,6 @@ const regexEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-z
 // const regexPw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
 
 
-const Msg = styled.div`
-  color: orangered;
-  font-size: calc(1rem * .8);
-  display: flex;
-  justify-content: flex-end;
-  height: 1.5rem;
-  margin-right: 20px;
-  align-items: center; // 세로 기준으로 가운데 정렬
-`;
 
 
 function SignUp() {
@@ -121,7 +112,7 @@ function SignUp() {
                 onChange={(e) => handleAllCheck(e.target.checked)}
                 checked={termsList.length === checkedItems.length ? true : false} />
               <label htmlFor="checkbox-check_all">모두 동의합니다.</label>
-            </div>
+            </div>m
             {termsList?.map(ball => (
               <div>
                 <div className='checkbox-check-single'>
@@ -232,8 +223,6 @@ function SignUp() {
   const [data, setData] = useState({
     name: "",
     id:"",
-    nickname:"",
-    friend:false,
     email: "",
     password: "",
     error: null,
@@ -610,12 +599,11 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       window.location.replace("/login");
 
-      setDoc(doc(db, "users", id), {
+      setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
         id,
         nickname,
-        friend : false,
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
@@ -624,7 +612,6 @@ function SignUp() {
         name: "",
         id:"",
         nickname:"",
-        friend:false,
         email: "",
         password: "",
         error: null,
@@ -646,12 +633,11 @@ function SignUp() {
 
       <div className="SignUp-Container">
         <div className="SignUp-Main-Box">
-
+          <div className='SignUp-Main-Box2'>
           <div className="SignUp-header">
             <p className='SigUp-header-font'>Sign Up</p>
             <p>회원정보를 입력해주세요</p>
           </div>
-
           <form action="" className="SignUp-card-form">
 
             {/* 이메일 인증 모달창 */}
@@ -661,21 +647,26 @@ function SignUp() {
               {/* <span style={{display: 'inline-block', width: 150}}>이름</span> */}
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-1" type="text" placeholder="이름" value={name} onChange={onChangeName} required />
-              <Msg>
+              <div className='MSG'>
+
                 {showReqName && reqName}
-              </Msg>
+
+              </div>
             </div>
 
             {/* 아이디 */}
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-2" type="text" placeholder="아이디" value={id} onChange={onChangeId} required />
-              <button onClick={onClickIdCheck} className='Input-ID-check' required> 중복확인 </button>
-              <Msg>
+              <button className='ID-btn' onClick={onClickIdCheck} required><span>중복확인 </span></button>
+              <div className='MSG'>
+
                 {showReqId && reqId}
                 {showGuideId && guideId}
                 {showAcceptId && acceptId}
-              </Msg>
+
+              </div>
+             
             </div>
 
 
@@ -683,20 +674,22 @@ function SignUp() {
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-3" type="password" placeholder="비밀번호" value={pwd} onChange={onChangePassword} />
-              <Msg>
+              <div className='MSG'>
                 {showGuidePwd && guidePwd}
                 {showAcceptPwd && acceptPwd}
-              </Msg>
+              </div>
             </div>
 
             {/* 비밀번호 확인 */}
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-4" type="password" placeholder="비밀번호 확인" value={pwdcheck} onChange={onChangePassword_check} disabled={!regexPw.test(pwd)} />
-              <Msg>
+              <div className='MSG'>
+              
                 {showErrorPwdcheck && errorPwdcheck}
                 {showAcceptPwdcheck && acceptPwdcheck}
-              </Msg>
+            
+              </div>
             </div>
 
             {/* 닉네임 */}
@@ -704,10 +697,14 @@ function SignUp() {
               {/* <span style={{display: 'inline-block', width: 150}}>이름</span> */}
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-5" type="text" placeholder="닉네임(한글 2~20자)" value={nickname} onChange={onChangeNickname} required />
-              <button onClick={onClickNicknameCheck} required> 중복확인 </button>
-              <Msg>
+              
+
+              <button className='ID-btn' onClick={onClickNicknameCheck} required> 중복확인 </button>
+              <div className='MSG'>
+
                 {showReqNickname && reqNickname}
-              </Msg>
+
+              </div>
             </div>
 
             {/* 자기소개 */}
@@ -721,36 +718,44 @@ function SignUp() {
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
               <input className="Input-border-7" type="text" placeholder="이메일" value={email} onChange={OnChangeEmail} disabled={emailDoubleCheck ? true : false} />
-              {isEmail && <button onClick={onClickEmailCheck} > 이메일 중복확인 </button>}
-              {emailDoubleCheck && <button onClick={onClickEmailAdress}> 이메일인증</button>}
-              <Msg>
+              {isEmail && <button className='ID-btn' onClick={onClickEmailCheck} > 중복확인 </button>}
+{emailDoubleCheck && <button className='ID-btn' onClick={onClickEmailAdress}> 이메일인증</button>}
+              <div className='MSG'>
                 {showReqEmail && reqEmail}
                 {emailConfirm && confirmEmail}
-              </Msg>
+              </div>
+             
+              
             </div>
 
             {/* 생년월일 */}
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
-              <input type="date" value={birth} onChange={onChangeBirth} />
-              <span className='Span-Age'>만 {age}세</span>
-              <Msg>생년월일을 선택하세요</Msg>
+              <input className='date' type="date" value={birth} onChange={onChangeBirth} />
+              <div className='MSG'>
+              생년월일을 선택하세요
+              </div>
+              <p className='Span-Age'>만 {age}세</p>   
             </div>
 
             {/* 성별 */}
             <div className="Form-item">
               <div className='Form-item-Gender'>
                 <span className="Form-item-icon material-symbols-rounded"></span>
+            
                 <label className='Label-gender'>
-                  <input type="radio" name="gender" value="남자" onChange={onChangeRadio} />
+                  <div className='Man'>
+                  <input className='input' type="checkbox" name="gender" value="남자" onChange={onChangeRadio}/>
                   <span>남자</span>
+                  </div>
                 </label>
                 <label className='Label-gender'>
-                  <input type="radio" name="gender" value="여자" onChange={onChangeRadio} />
+                <div className='Woman'>
+                  <input className='input' type="radio" name="gender" value="여자" onChange={onChangeRadio} />
                   <span>여자</span>
+                  </div>
                 </label>
               </div>
-              <Msg></Msg>
             </div>
 
             {/* 주소 */}
@@ -778,13 +783,16 @@ function SignUp() {
                     ))}
                 </select>
               </div>
-              <Msg>주소를 선택하세요</Msg>
+              <div className='MSG'>
+              주소를 선택하세요
+              </div>
             </div>
 
             {/* 회원가입 */}
-            <button type="submit" className='Button-Submit' onClick={onClickButton}>회원가입</button>
+            <button className="SignUp-btn" type="submit"onClick={onClickButton}>회원가입</button>
 
           </form>
+          </div>
         </div>
 
       </div>
