@@ -8,6 +8,9 @@ ISOUR Final Project
 - mbti 검사 페이지 css
 - mbti 결과페이지 이미지에 설명 링크 걸어둠.
 
+♥ 조혜경
+- 쪽지함 css
+- 쪽지함 페이지네이션
 
 22.12.05(월)
 
