@@ -10,7 +10,7 @@ import Postbox from './7. PostBOX/Postbox';
 import FindInfo from './2. Login/FindInfo';
 import GChat from './9.Chat/GChat';
 import ChatHome from './9.Chat/ChatHome';
-import Matching from './8.Matching/Matching_원본';
+import Matching from './8.Matching/Matching';
 import MyPage from './5. MyPage/MyPage';
 import Navber from './Navber/Nav';
 // import Test from './test/test';

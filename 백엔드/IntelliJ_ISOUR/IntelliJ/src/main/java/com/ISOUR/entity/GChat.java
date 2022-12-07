@@ -14,5 +14,4 @@ public class GChat {
     private Long chatNum;
     private String content;
     private LocalDateTime chatTime;
-
 }

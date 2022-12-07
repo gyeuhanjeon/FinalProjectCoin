@@ -15,6 +15,7 @@ import java.util.Map;
 @Slf4j
 public class GChattingController {
     private GChatService GChatService;
+
     public GChattingController(GChatService GChatService) {
         this.GChatService = GChatService;
     }
@@ -24,7 +25,6 @@ public class GChattingController {
             String getContent = chatData.get("content");
 
             log.info(getContent);
-
 
             boolean isTrue = GChatService.sendPost(getContent);
             if(isTrue) {
