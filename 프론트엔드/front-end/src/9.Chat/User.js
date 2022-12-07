@@ -68,13 +68,13 @@ const User = ({ user1, user, selectUser, chat }) => {
   return (
     <>
       <div
-        className={`user_wrapper ${chat.name === user.nickName && "selected_user"}`}
+        className={`user_wrapper ${chat.name === user.nickname && "selected_user"}`}
         onClick={() => selectUser(user)}
       >
         <div className="user_info">
           <div className="user_detail">
             {/* <img src={user.nickName} alt="nickName" className="nickName" /> */}
-            <h4>{user.nickName}</h4>
+            <h4>{user.nickname}</h4>
             {data?.from !== user1 && data?.unread && (
               <small className="unread">New</small>
             )}
@@ -93,7 +93,7 @@ const User = ({ user1, user, selectUser, chat }) => {
       
       <div
         onClick={() => selectUser(user)}
-        className={`sm_container ${chat.nickName === user.nickName && "selected_user"}`}
+        className={`sm_container ${chat.nickname === user.nickname && "selected_user"}`}
       >
         <img
         

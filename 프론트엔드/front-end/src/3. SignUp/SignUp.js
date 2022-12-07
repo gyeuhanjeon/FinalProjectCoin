@@ -611,6 +611,7 @@ function SignUp() {
       setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
+        id,
         nickname,
         email,
         createdAt: Timestamp.fromDate(new Date()),
@@ -618,6 +619,7 @@ function SignUp() {
       });
       setData({
         name: "",
+        id:"",
         nickname:"",
         email: "",
         password: "",
