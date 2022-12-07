@@ -200,11 +200,12 @@
     text-align: right;
   }
   .me {
-    background: var(--color-3);
-    color: white;
+    background: beige;
+    color: black;
   }
   .friend {
-    background: var(--color-6);
+    background: white;
+    border : 1px solid black;
   }
   .selected_user {
     background: var(--color-6);
