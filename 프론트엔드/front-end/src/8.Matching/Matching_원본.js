@@ -24,6 +24,12 @@ import face from '../images/기본 프로필.png'
 import Cookies from 'universal-cookie';
 import '../0. API/defultMain.css'
 import firestore from '../firebase';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import NavigateNextIcon from '@mui/icons-material/ArrowBackIosNew';
+import { IconButton } from "@material-ui/core";
+import './Matching.css';
+
+
 
 const Matching = () => {
   const cookies = new Cookies();
@@ -84,8 +90,8 @@ const Matching = () => {
       console.log("\n>> 매칭 결과 조회(useEffect)");
       // const id = localId;
       console.log(">>>>>>>>>>>>>>");
-      console.log(typeof(id));
-      console.log(id);
+      console.log(typeof(localId));
+      console.log(localId);
       console.log(localId_num);
       console.log(pageNum);
 
@@ -197,86 +203,67 @@ const Matching = () => {
 
   return (
     <div className='Container'>
+      <div className='Matching-Container' >
         <MatchingPostModal open={modalOn} close={closeModal} receiver={receiverNickname} getInputContent={getInputContent} onSendPost={onSendPost}/>
-        <div className='Matching-Container'>
+        
+        <div className='User-Box'>
+          <div className='User-profile'>
+            {myFace != null 
+             ? <img src={myFace} alt="프로필 이미지"/>
+             : <img src={face} alt="프로필 이미지"/> }
+          </div>
+          <div className="User-item">
+            <input type="text" value={myNickname} />
+            <input type="text" value={myMbti} />
+          </div>
+          <div className="User-item">
+              <input className='User-Introduce' type="text" value={myIntroduce} />
+          </div>
+        </div>
 
-        {/* MyProfile-Container 의 시작 */}
-          <div className='MyProfile-Container' style={{height: "400px", background: "grey"}}>
-
-          {myFace != null 
-            ? <img src={myFace} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
-            : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
-            
-            <div className="Form-item">
-              <span>닉네임</span>
-              <input type="text" value={myNickname} />
-            </div>
-            <div className="Form-item">
-              <span>MBTI</span>
-              <input type="text" value={myMbti} />
-            </div>
-            <div className="Form-item">
-              <span>자기소개</span>
-              <input type="text" value={myIntroduce} />
-            </div>
-          </div> 
-        {/* MyProfile-Container 의 끝 */}
-
-    {/* Matching-Container 의 시작 */}
         { mat_memberInfo.map((mat) => (
-        <div className='Matching-Container' style={{height: "300px", background: "grey"}} key={mat.id}>
-          {mat.mat_face != null 
-          ? <img src={mat.mat_face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
-          : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
-          <div className="Form-item">
-            <span>닉네임</span>
-            <input type="text" value={mat.mat_nick} />
-          </div>
-          <div className="Form-item">
-            <span>MBTI</span>
-            <input type="text" value={mat.mat_mbti} />
-          </div>
-          <div className="Form-item">
-            <span>자기소개</span>
-            <input type="text" value={mat.mat_introduce} />
-          </div>
-          <div>
-            <FavoriteIcon onClick={()=>alert("좋아요")}/>
-            <br/>
-           <br/>
-            <SmsIcon onClick={onClickChat}/>
-           <br/>
-           <br/>
-            <EmailIcon onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
-          </div>
-                
+        <div>
+          <div className='Mat-Box' key={mat.id}>
+            <div className='Mat-profile'>
+              {mat.mat_face != null 
+              ? <img src={mat.mat_face} alt="프로필 이미지" />
+              : <img src={face} alt="프로필 이미지"/> }
+            </div>
+            <div className="Mat-item">
+              <input type="text" value={mat.mat_nick} />
+              <input type="text" value={mat.mat_mbti} />
+              <input className='Mat-Introduce' type="text" value={mat.mat_introduce} />
+            </div>
           {/* { like_num === 0 ?
               <img src={Click} onClick={Click_like} value={mat.mat_id_num} style={{width: 30}}/>
               : <img src={unClick} onClick={UnClick_like} value={mat.mat_id_num} style={{width: 25}} />   
           } */}
+          </div> 
+          <div className='Mat-icon'>
+            {/* <ButtonGroup  style={{float:'left', backgroundColor: 'unset'}}> */}
+              <IconButton>
+                <FavoriteIcon className='Like-icon' style = {{fontSize: 'xx-large', backgroundColor: 'unset'}} />
+              </IconButton>
+              <IconButton>
+                <SmsIcon className='Chat-icon' style = {{fontSize: 'xx-large'}} onClick={onClickChat}/>
+              </IconButton>
+              <IconButton>
+                <EmailIcon className='Post-icon' style = {{fontSize: 'xx-large'}} onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
+              </IconButton>
+            {/* </ButtonGroup> */}
+          </div>
+        </div>
+          ))}
 
-        
-        </div> 
-        ))}
-    {/* Matching-Container 의 끝 */}   
-    
+        <IconButton className='prevbtn' style={{backgroundColor: 'unset'}} onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>
+          <ArrowBackIosNewIcon  style = {{fontSize: 'xx-large'}} />   
+        </IconButton>
+        <IconButton className='nextbtn' style={{backgroundColor: 'unset'}} onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>
+          <NavigateNextIcon style = {{transform: 'rotate(180deg)',  fontSize: 'xx-large'}} />
+        </IconButton>           
+      </div>
     </div>
-      
-
-      <button onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>이전</button>   
-      <button onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>다음</button>   
-            
-    </div>     
-    )
+  )
 }
 
 export default Matching;
-
-// 임시 스타일 적용 중(가운데 정렬)
-const StyleMat = styled.div`
-  width: 1180;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;

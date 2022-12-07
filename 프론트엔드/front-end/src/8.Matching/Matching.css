@@ -1,148 +1,152 @@
-.card {
-	height: 400px;
-	width: 350px;
+.Matching-Container {
+    width: 1000px;
+    display: grid;
+    justify-items: center;
+    margin: 100px auto;
+    background-color: rgba(238, 238, 238, 0.096);
+    padding: 50px;
+    border-radius: 55px;
+    box-shadow: 0 4px 8px 0 rgba(202, 202, 202, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+input {
+    width: 100px;
+    height: 30px;
+    border: 0px;
+    text-align: center;
+    font-size: 1.2rem;
+    padding-left: 10px ;
+    background-color: transparent;
+    color: white;
+}
+
+/* .Mat-item > input:first-child {
+    border-right: 1px solid;
+} */
+
+/* p {
+    margin-bottom: 5px;
+    line-height: 25px;
+    width: 200px;
+    padding-left: 10px;
+    font-weight: bolder;
+} */
+
+/* 
+    내 정보
+*/
+.User-Box {
+	height: 300px;
+	width: 300px;
+    margin-bottom: 100px;
 	border-radius: 15px;
-	display: inline-block;
-	margin-top: 30px;
-	margin-left: 30px;
-	margin-bottom: 30px;
-	position: relative;
+    box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 1/2;
+    background-color: rgba(59, 59, 59, 0.822);
+}
+
+.User-profile > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 70%;
+    overflow: hidden;
+    object-fit: cover;
+    margin: 15px auto;
+}  
+
+.User-item {
+    margin: 5px;
+    padding: 5px;
+}
+
+
+.User-Introduce {
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    padding-left: 10px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+/* 
+    매칭 회원 
+*/
+.Mat-Box {
+	height: 300px;
+	width: 300px;
+	border-radius: 15px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-row: 2/3;
+    background-color: rgba(59, 59, 59, 0.822);
+    position: relative;
 }
 
-
-.card-header {
-	-webkit-transition: 0.5s; /*사파리 & 크롬*/
-    -moz-transition: 0.5s;  /*파이어폭스*/
-    -ms-transition: 0.5s;	/*인터넷 익스플로러*/
-    -o-transition: 0.5s;  /*오페라*/
-    transition: 0.5s;
-	width: 100%;
-	height: 270px;
-	border-radius: 15px 15px 0 0;
-	background-image: url("images/korea.jpeg");
-	background-size: 100% 280px;
-	background-repeat: no-repeat;	
-}
-
-
-.card:hover .card-header  {
-	opacity: 0.8;
-	height: 100px;
-}
-
-
-
-.card-header-is_closed{
-    background-color: #EF5A31 ;
-    color: #FFF ;
-    font-weight: bold ;
-    text-align: center ;
-    float: right;
-    margin: 15px 15px 0 0;
-    border-radius: 50%;
-    font-weight: bold;
-    padding: 10px 10px;
-    line-height: 20px;
-}
-
-
-
-h1 {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-
-
-.card-body {
-
-}
-
-
-
-.card-body-header{
-	line-height: 25px;
-	margin: 10px 20px 0px 20px;
-}
-
-
-
-.card-body-description  {
-    opacity: 0;
-    color: #757B82;
-    line-height: 25px;
-    -webkit-transition: .2s ease-in-out; /*사파리&크롬*/
-    -moz-transition: .2s ease-in-out; /*파이어폭스*/
-    -ms-transition: .2s ease-in-out; /*익스플로러*/
-    -o-transition: .2s ease-in-out; /*오페라*/
-    transition : .2s ease-in-out;
+.Mat-profile > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 70%;
     overflow: hidden;
-	height: 180px;
-	margin: 5px 20px;
+    object-fit: cover;
+    margin: 15px auto;
+}
+
+.Mat-item {
+    margin: 5px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Mat-icon {
+    position: relative;
+    left: 35px;
+    bottom: 25px;
+    width: 230px;
+    justify-content: space-around;
+    display: flex;
+    background-color: orange;
+    border-radius: 25px;
+    z-index: 3;
+}
+
+.prevbtn {
+    margin-left: auto;
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+.nextbtn {
+    grid-row: 2/3;
+    grid-column: 4/5;
+    rotate: 180;
 }
 
 
-
-.card:hover .card-body-description {
-    opacity: 1;
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -ms-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition : .5s ease-in-out;
-    overflow: scroll;
+.Mat-Introduce {
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    padding-left: 10px;
+    font-size: 1.4rem;
+    font-weight: 400;
 }
 
-
-
-.card-body-hashtag {
-	color: #2478FF;
-	font-style: italic;
-}
-
-
-
-.card-body-footer {
-  	position: absolute; 
-  	margin-top: 15px;
-  	margin-bottom: 6px;
-    bottom: 0; 
-    width: 314px;
-    font-size: 14px;
-    color: #9FA5A8;
-    padding: 0 15px;
-}
-
-
-
-.icon {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 2px;
-
-}
-
-
-
-.icon-view_count {
-    width: 25px;
-    height: 17px;
-	background: url("images/eye.jpg") no-repeat;
-}
-
-
-
-.icon-comments_count {
-	margin-left: 5px;
-	width: 25px;
-    height: 17px;
-	background: url("images/comment.jpg") no-repeat;	
-}
-
-
-
-.reg_date {
-	float: right;
-}
+/* .MuiIconButton-root {
+    background-color: unset;
+    display: flex;
+    float: left;
+} */
