@@ -9,7 +9,7 @@ const GChat = () => {
 
 
 
-    const [nickName, setNickName] = useState('');
+    const [nickname, setNickname] = useState('');
     const [content, setContent] = useState('');
     const [chatInfo,setChatinfo] = useState([]);
     const [isText, setIsText] = useState('');
