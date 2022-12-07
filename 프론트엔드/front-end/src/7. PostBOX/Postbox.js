@@ -1,18 +1,30 @@
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TeamAPI from '../0. API/TeamAPI';
 import PostModal from '../99. Modal/PostModal';
 import yong from '../images/아이셔용.png';
 import Cookies from 'universal-cookie';
-
+import Moment from "react-moment";
+import Pagination from "./Pagination";
+import './Postbox.css'
+import '../font/Jalnan.ttf';
 
 const Postbox = () => {
 
   const cookies = new Cookies();
+  const localId = cookies.get('rememberId');
+  const location = useNavigate();
 
   /* 변수(useState) 선언 */
   const [loading, setLoading] = useState(false);
   const [postList, setPostList] = useState([]);
+
+  
+  const [limit, setLimit] = useState(10); // 페이지당 게시물 수
+  const [page, setPage] = useState(1); // 현재 페이지 번호
+  const offset = (page - 1) * limit; // 각 페이지별 첫 게시물의 위치 계산
+
   // ▼ 체크된 쪽지를 담을 배열
   const [checkedPosts, setCheckedPosts] = useState([]);
   const [postSender, setPostSender] = useState("");
@@ -22,9 +34,8 @@ const Postbox = () => {
   /* 
   최초 통신(useEffect) */
   useEffect(() => {
-    const localId = cookies.get('rememberId');
 
-    if(localId === undefined) window.location.replace("/login");
+    if(localId === undefined) location("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로 
 
     const postData = async () => {
@@ -37,7 +48,6 @@ const Postbox = () => {
           setPostList(response.data);
           // console.log("보낸 사람[0] : " + response.data[0].postSender);
           // console.log("내용[0] : " + response.data[0].content);
-          // console.log("시간[0] : " + response.data[0].postTime);
         }
       } catch (e) {
         console.log(e);
@@ -127,47 +137,73 @@ const Postbox = () => {
   }
 
   return (
-    <>
+    <div className='Container'>
       <PostModal modalName={postSender} modalContent={content} show={postModalOn} onHide={() => setPostModalOn(false)} />
-      <div className='Post-Container'>
-        <div>Post Box</div>
-        <button onClick={onClickDelete}>삭제</button>
+      <div className='Postbox-Container'>
 
-        <table className='tableContainer'>
-          {/* thead 의 시작 */}
-          <thead>
-            <tr>
-              <th>
-                <input type='checkbox'
-                  // ▼ checked 는 true 또는 false
-                  onChange={(e) => handleAllCheck(e.target.checked)}
-                  // ▼ 전체 쪽지 수와 체크된 쪽지의 수가 다르면 false(전체 선택 해제)
-                  checked={checkedPosts.length === postList.length ? true : false} />
-              </th>
-              <th>보낸 사람(NAME)</th>
-              <th>내용(CONTENT)</th>
-              <th>시간(DATETIME)</th>
-            </tr>
-          </thead>
-          {/* tbody 의 시작 */}
-          <tbody>
-            {postList?.map(post => (
-              <tr key={post.postTime}>
-                <td>
+        {/* header 영역 */}
+        <div className='Postbox-header'>
+          <h1>{localId} 님의 쪽지함</h1>
+        </div>
+
+        <button className='delete' onClick={onClickDelete}>삭제</button>
+
+        {/* main 영역 */}
+        <div className='Postbox-main'>
+          <table className='Postbox-table'>
+            {/* thead 의 시작 */}
+            <thead>
+              <tr>
+                <th>
                   <input type='checkbox'
-                    onChange={(e) => handleSingleCheck(e.target.checked, post.postNum)}
-                    // ▼ checkedPosts 에 해당 쪽지의 postNum 이 있으면 true, 아니면 false
-                    checked={checkedPosts.includes(post.postNum) ? true : false} />
-                </td>
-                <td>{post.postSender}</td>
-                <td onClick={() => onClickPost(post.postSender, post.content)}>{post.content}</td>
-                <td>{post.postTime}</td>
+                    // ▼ checked 는 true 또는 false
+                    onChange={(e) => handleAllCheck(e.target.checked)}
+                    // ▼ 전체 쪽지 수와 체크된 쪽지의 수가 다르면 false(전체 선택 해제)
+                    checked={checkedPosts.length === postList.length ? true : false} />
+                </th>
+                <th>보낸 사람</th>
+                <th>내용</th>
+                <th>시간</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            {/* tbody 의 시작 */}
+            <tbody>
+              {postList.slice(offset, offset + limit).map(post => (
+                <tr key={post.postTime}>
+                  <td className='Postbox-table-tbody-td-checkbox'>
+                    <input type='checkbox'
+                      onChange={(e) => handleSingleCheck(e.target.checked, post.postNum)}
+                      // ▼ checkedPosts 에 해당 쪽지의 postNum 이 있으면 true, 아니면 false
+                      checked={checkedPosts.includes(post.postNum) ? true : false} />
+                  </td>
+                  <td className='Postbox-table-tbody-td-postSender'>{post.postSender}</td>
+                  <td className='Postbox-table-tbody-td-content'
+                    onClick={() => onClickPost(post.postSender, post.content)}>
+                    <div className='Postbox-table-tbody-td-content-div'>
+                      {post.content}
+                    </div>
+                  </td>
+                  <td className='Postbox-table-tbody-td-postTime'>
+                    <Moment format='YY-MM-DD HH:mm'>{post.postTime}</Moment>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* footer 영역 */}
+        <div className='Postbox-footer'>
+          <Pagination
+            total={postList.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 export default Postbox;

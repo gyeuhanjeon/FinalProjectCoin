@@ -1,0 +1,191 @@
+.Postbox-Container {
+  width: 800px;
+  height: 700px;
+  /* background: rgba(0, 0, 128, .2); */
+  align-items: center;
+  margin: 150px auto;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  /* box-shadow: 0 12px 12px rgba(32,32,32,.8); */
+  /* font-family: 'Poppins', sans-serif; */
+  /* border: 1px solid grey; */
+  /* top: 50%; */
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  header 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-header {
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.Postbox-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.Postbox-Container .delete {
+  margin-bottom: 1rem;
+
+  border: none;
+  outline: none;
+  background: black;
+  color: white;
+  padding: .2rem;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  width: 50px;
+  transition: background .5s;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  main 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-main {
+  height: 400px;
+  margin-bottom: 4rem;
+}
+
+
+.Postbox-table {
+  /* width: 100%; */
+  text-align: center;
+  box-shadow: 12px 12px 12px rgba(32,32,32,.5);
+  /* height: 500px; */
+  /* background-color: gray; */
+  /* border-collapse: collapse; */
+  /* border-radius: 12px 12px 0 0; */
+  /* overflow: hidden; */
+  /* border-spacing: 0; */
+}
+
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  main 영역 - thead
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-table thead tr  {
+  background-color: navy;
+  color: white;
+}
+.Postbox-table thead tr th {
+  padding: .5rem;
+  border: 1px solid skyblue;
+}
+
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  main 영역 - tbody
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-table tbody td {
+  /* padding: 위아래 좌우 */
+  padding: 5px 12px; 
+  
+  border: 1px solid skyblue;
+  background-color: white;
+}
+
+.Postbox-table-tbody-td-checkbox {
+  width: 34px;
+}
+.Postbox-table-tbody-td-postSender {
+  width: 146px;
+}
+.Postbox-table-tbody-td-content {
+  width: 375px;
+}
+.Postbox-table-tbody-td-content-div {
+  width: 370px;
+  text-align: left;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Postbox-table-tbody-td-postTime {
+  width: 178px;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  footer 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-footer {
+  height: 60px;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px auto;
+}
+
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  페이지네이션
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Postbox-Pagination {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: navy;
+  border-radius: 50px;
+  color: white;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 45px;
+  padding: 8px;
+}
+
+.Postbox-Pagination .move {
+  border-radius: 50%;
+}
+.Postbox-Pagination .before:hover {
+  border-radius: 25px 5px 5px 25px;
+}
+.Postbox-Pagination .next:hover {
+  border-radius: 5px 25px 25px 5px;
+}
+
+.Postbox-Pagination .before:hover,
+.Postbox-Pagination .next:hover,
+.Postbox-Pagination li:hover {
+  background: #fff;
+  color: navy;
+}
+
+
+
+
+.Postbox-Pagination li {
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  display: flex;
+  border-radius: 50%;
+  color: white;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 15px;
+}
+
+
+
