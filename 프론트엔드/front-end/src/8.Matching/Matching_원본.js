@@ -4,18 +4,33 @@ import TeamAPI, { TEAM_DOMAIN } from '../0. API/TeamAPI';
 import styled from 'styled-components';
 import { MatchingPostModal } from '../99. Modal/MatchingPostModal';
 import SmsIcon from '@mui/icons-material/Sms';
+import { db } from "../firebase";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc
+} from "firebase/firestore";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmailIcon from '@mui/icons-material/Email';
 import face from '../images/기본 프로필.png'
 import Cookies from 'universal-cookie';
 import '../0. API/defultMain.css'
+import firestore from '../firebase';
 
 const Matching = () => {
   const cookies = new Cookies();
   // ▼ 로그인 안 되어 있으면 로그인 페이지로
   const localId = cookies.get('rememberId');
   const id = window.sessionStorage.getItem("id");
-  const localId_num = window.sessionStorage.getItem("id_num");
+  const localId_num = cookies.get('rememberId_num');
 
   const [url, setUrl] = useState(null);
   const [myId, setMyId] = useState('');
@@ -25,6 +40,7 @@ const Matching = () => {
   const [myMbti, setMyMbti] = useState('');
   const [myIntroduce, setMyIntroduce] = useState('');
   const [myInfo, setMyInfo] = useState('');
+  const [friend, setFriend] = useState("");
 
   const [mat_memberInfo, setMat_MemberInfo] = useState([]);
   const [pageNum, setPageNum] = useState(1);
@@ -77,10 +93,10 @@ const Matching = () => {
         const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
         console.log("****************");
         setMat_MemberInfo(Mat.data);
-        
+        console.log("!",Mat.data)
         const my = Mat.data[0];
         setMyInfo(my);
-        setId_num(my.user_id_num);
+        setId_num(my.localId_num);
         setMyId(my.user_id);
         setMyFace(my.user_face);
         setMyNickname(my.user_nick);
@@ -96,10 +112,44 @@ const Matching = () => {
       }
     };
   memberData();
+  
   }, [pageNum]);
+  
+  const user1 = localId;
+  
+  
+  console.log("user1 :",user1)
+  const onClickChat = async(user) => {
+    user.preventDefault();
+    const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
+    setMat_MemberInfo(Mat.data);
+    const my = Mat.data[0];
+    setMyInfo(my);
+    setMyId(my.user_id);
+    console.log("1", Mat.data);
+    console.log("2", my.user_id);
+    const st =  Mat.data[0].mat_id;
+    alert("친구추가완료")
+    setFriend(user)
+    const user2 = st;
+    
+  
+ 
+    await addDoc(collection(db, "friends",localId,"check"), {
+      friend: true,
+      member: user2,
+      createAt: Timestamp.fromDate(new Date())
+    });
+    console.log("로컬아이디는?",localId)
+ 
+    const friendRef = doc(db, "users", localId);
 
-  const onClickChat = () => {
-    alert("채팅하실라우?");
+    await updateDoc(friendRef, {
+      friend:true
+    })
+
+
+    
   };
 
   /* 쪽지 기능 구현 */
@@ -192,7 +242,11 @@ const Matching = () => {
           </div>
           <div>
             <FavoriteIcon onClick={()=>alert("좋아요")}/>
+            <br/>
+           <br/>
             <SmsIcon onClick={onClickChat}/>
+           <br/>
+           <br/>
             <EmailIcon onClick={()=>onClickPostIcon(mat.mat_id, mat.mat_nick)}/>
           </div>
                 
@@ -200,13 +254,14 @@ const Matching = () => {
               <img src={Click} onClick={Click_like} value={mat.mat_id_num} style={{width: 30}}/>
               : <img src={unClick} onClick={UnClick_like} value={mat.mat_id_num} style={{width: 25}} />   
           } */}
+
+        
         </div> 
         ))}
     {/* Matching-Container 의 끝 */}   
     
     </div>
-        
-
+      
 
       <button onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>이전</button>   
       <button onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>다음</button>   
