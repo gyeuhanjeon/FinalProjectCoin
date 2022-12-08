@@ -68,12 +68,18 @@ export default function KakaoToken() {
                                     expires: 0
                                 }
                                 );
-
+                                
                             } else if (res.data.CODE === "999") {   // 999: 카카오톡 인증 실패
                                 alert('카카오 가입부터 하세요......')
 
                             } else if (res.data !== null) {   // 카카오톡 인증 완료 (회원가입 이동)
                                 window.location.replace("/signup");
+                                cookies.set('rememberEmail', res.data.kakaoEmail, {
+                                    path: '/',
+                                    expires: 0
+                                }
+                                );
+                                
                             }
 
                         } catch (e) {

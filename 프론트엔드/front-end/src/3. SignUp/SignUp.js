@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import TeamAPI from '../0. API/TeamAPI';
 import hangjungdong from '../other/hangjungdong';
@@ -177,10 +177,11 @@ function SignUp() {
     console.log("선택 약관 : " + check_term2);
     console.log("카카오 아이디 : ", kakaoId);
     console.log("카카오 닉네임 : ", kakaoNickname);
-    console.log("카카오 이메일 : ", kakaoEmail);
+    console.log("카카오 이메일 : ", cookies.get('rememberEmail'));
     setNickname(kakaoNickname);
-    setEmail(kakaoEmail);
+    setEmail(cookies.get('rememberEmail'));
     setIsEmail(true);
+    
   }, [mode]);
 
   // 유효성 검사
@@ -420,7 +421,7 @@ function SignUp() {
   /*
   구글 로그인 -> 회원 가입시 */
   useEffect(() => {
-    if (cookies.get('rememberEmail') !== null) {
+    if (cookies.get('rememberEmail') !== undefined) {
       setEmail(cookies.get('rememberEmail'));
       setEmail(cookies.get('rememberEmail'));
       setIsEmail(true);
@@ -429,12 +430,15 @@ function SignUp() {
   }, []);
 
 
+
+
   /*이메일 변경*/
   const OnChangeEmail = e => {
 
+
     let temp_email = e.target.value;
     setEmail(temp_email);
-
+    setEmail(e.target.value);
     if (temp_email === '' || !regexEmail.test(temp_email)) {
       setIsEmail(false);
       setShowReqEmail(true); // 이메일을 정확히 입력하세요.
@@ -446,8 +450,9 @@ function SignUp() {
 
 
   /*이메일 중복확인*/
-  const onClickEmailCheck = async (e) => {
+  const OnClickEmailCheck = async (e) => {
     e.preventDefault();
+
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
       const emailResult = await TeamAPI.emailDuplicateCheck(e.target.value);
@@ -727,7 +732,7 @@ function SignUp() {
               <div className="Form-item">
                 <span className="Form-item-icon material-symbols-rounded"></span>
                 <input className="Input-border-7" type="text" placeholder="이메일" value={email} onChange={OnChangeEmail} disabled={emailDoubleCheck ? true : false} />
-                {isEmail && <button className='ID-btn' onClick={onClickEmailCheck} > 중복확인 </button>}
+                {isEmail && <button className='ID-btn' onClick={OnClickEmailCheck} > 중복확인 </button>}
                 {emailDoubleCheck && <button className='ID-btn' onClick={onClickEmailAdress}> 이메일인증</button>}
                 <div className='MSG'>
                   {showReqEmail && reqEmail}
