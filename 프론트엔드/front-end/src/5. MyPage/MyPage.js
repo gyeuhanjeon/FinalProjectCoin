@@ -61,7 +61,7 @@ const MyPage = () => {
   최초 통신(useEffect) */
   useEffect(() => {
     const localId = cookies.get('rememberId');
-     if(localId === undefined) window.location.replace("/login");
+    //  if(localId === undefined) window.location.replace("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로 
 
 
@@ -439,14 +439,18 @@ const MyPage = () => {
       <h6>프로필 사진 미리보기 가능</h6>
       <div className='MyPage-img'>
       {url != null 
-      ? <img src={url} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
-      : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
+      ? <img src={url} alt="프로필 이미지" style={{width: "150px", height: "150px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+      : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px",border:"1px solid", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
       </div>
       <div className='MyPage-box2'>
       <div className="MyPage-img-file">
+        <div className='MyPage-input-file'>
       <input type="file" accept="image/*" onChange={onChangeFace}/>
-      <button className='MyPage-img-button' onClick={onSaveFace}>저장</button>
-      <button onClick={onDeleteFace}>삭제</button>
+      </div>
+      <div className='MyPage-img-btn'>
+      <button className='MyPage-img-select' onClick={onSaveFace}>저장</button>
+      <button className='MyPage-img-delect' onClick={onDeleteFace}>삭제</button>
+      </div>
       </div>
 
       <div className="Form-item">
@@ -487,7 +491,7 @@ const MyPage = () => {
         <span>비밀번호</span>
         </div>
         <input className='Form-input5' type="password" value ={pwd} />
-        <button className="MyPage-PW-Btn" onClick={openChangePwdModal}>수정</button>
+        <button className="MyPage-Modify-Btn" onClick={openChangePwdModal}>수정</button>
       </div>
 
       {/* 닉네임 */}
@@ -498,13 +502,15 @@ const MyPage = () => {
         {!isChangeNickname ?
         <>
           <input className='Form-input6' type="text" value ={nickname} />
-          <button className="MyPage-NN-Btn" onClick={e => setIsChangeNickname(true)}>수정</button>
+          <button className="MyPage-Modify-Btn" onClick={e => setIsChangeNickname(true)}>수정</button>
         </>
         :
         <>
-          <input type="text" onChange={onChangeNickname}/>
-          <button onClick={onClickNicknameCheck}>중복확인</button>
-          <button onClick={onSaveNickname}>저장</button>
+          <input className='Form-input6-2' type="text" onChange={onChangeNickname}/>
+          <div className='input6-btn'>
+          <button className='input6-btn-select' onClick={onClickNicknameCheck}>중복확인</button>
+          <button className='input6-btn-keep' onClick={onSaveNickname}>저장</button>
+          </div>
         </>
         }
       </div>
@@ -517,12 +523,12 @@ const MyPage = () => {
         {!isChangeIntroduce ?
         <>
           <input className='Form-input7' type="text" value ={introduce} />
-          <button onClick={e => setIsChangeIntroduce(true)}>수정</button>
+          <button className="MyPage-Modify-Btn" onClick={e => setIsChangeIntroduce(true)}>수정</button>
         </>
         :
         <>
-          <input type="text" onChange={onChangeIntroduce}/>
-          <button onClick={onSaveIntroduce}>저장</button>
+          <input className='Form-input7-2' type="text" onChange={onChangeIntroduce}/>
+          <button className='input7-btn-keep' onClick={onSaveIntroduce}>저장</button>
         </>
         }
       </div>
@@ -535,12 +541,12 @@ const MyPage = () => {
         {!isChangeEmail ?
         <>
           <input className='Form-input8' type="mail" value ={email} />
-          <button onClick={e => setIsChangeEmail(true)}>수정</button>
+          <button className="MyPage-Modify-Btn" onClick={e => setIsChangeEmail(true)}>수정</button>
         </>
         :
         <>
-          <input type="mail" onChange={onChangeEmail}/>
-          <button onClick={onSaveEmail}>저장</button>
+          <input className='Form-input8-2' type="mail" onChange={onChangeEmail}/>
+          <button className='input8-btn-keep' onClick={onSaveEmail}>저장</button>
         </>
         }
       </div>
@@ -583,7 +589,7 @@ const MyPage = () => {
         <input className='Form-input9' type="text" value ={region1} />
         <br/>
         <input className='Form-input10' type="text" value ={region2} />
-        <button className='Mypage-addr-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
+        <button className='input10-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
       </div>
       }
       

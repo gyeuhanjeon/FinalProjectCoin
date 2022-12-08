@@ -11,21 +11,25 @@
     justify-content:center;
 }
 
+
 .Mypage-box {
     border: 1px solid;
     height: 700px;
     width: 100%;
     padding-top: 20px;
+    padding:0px 288.5px;
     margin: 200px;
     margin-left: auto;
     margin-right: auto;
     overflow-y: auto;
     border-radius: 20px;
     background-color: rgb(250, 244, 160);
+    min-width: 1150px;
 }
 
 .MyPage-img {
     margin: 50px;
+    
 }
 
 .MyPage-img-file {
@@ -38,61 +42,139 @@ padding-top: 0px;
 }
 
 .Form-input1 {
+    border-radius: 20px;
     width: 200px;
     margin-right: 35px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input2 {
+    border-radius: 20px;
     width: 200px;
     margin-right: 52px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input3 {
+    border-radius: 20px;
     width: 200px;
     margin-right: 68px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input4 {
+    border-radius: 20px;
     width: 200px;
     margin-right: 37px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input5 {
+    margin-left: 50px;
+    border-radius: 20px;
     width: 200px;
     margin-right: 22px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input6 {
+    border-radius: 20px;
     width: 200px;
-    margin-right: 6px;
+    margin-right: 20px;
+    margin-left: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Form-input6-2 {
+    border-radius: 20px;
+    width: 200px;
+    margin-right: 55px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input6-btn {
+margin-top: 20px;
+margin-right: 10px;
+}
+
+.input6-btn-select {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.input6-btn-keep {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
 }
 
 .Form-input7 {
+    margin-left: 50px;
+    border-radius: 20px;
     width: 200px;
     margin-right: 22px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Form-input7-2 {
+    border-radius: 20px;
+    width: 200px;
+    margin-right: 25px;
+    margin-left: 45px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input7-btn-keep {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
 }
 
 .Form-input8 {
+    margin-left: 60px;
+    border-radius: 20px;
     width: 200px;
-    margin-right: 5px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Form-input8-2 {
+    border-radius: 20px;
+    width: 200px;
+    margin-right: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input8-btn-keep {
+     width: 100px;
+    height: 35px;
+    border-radius: 20px;
 }
 
 .Form-input9 {
+    border-radius: 20px;
     width: 200px;
-    margin-right: 38px;
+    margin-right: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input10 {
+    border-radius: 20px;
     width: 200px;
-    margin-left: 43px;
+    margin-left:110px;
     margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input10-btn {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: 20px;
 }
 
 
-.MyPage-box2 {
-    padding: 20px;
-    padding-top: 0px;
-}
 
 .Form-Name {
     float: left;
@@ -104,20 +186,26 @@ padding-top: 0px;
     border-radius: 10px;
 }
 
-.MyPage-img-button {
+.MyPage-img-select {
     margin-right: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
 }
 
-.MyPage-PW-Btn {
- 
+.MyPage-img-delect {
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
 }
 
-.MyPage-NN-Btn {
-
+.MyPage-img-btn {
+    margin-top: 20px;
 }
 
-.Mypage-addr-btn {
-
+.MyPage-Modify-Btn {
+    width: 100px;
+    border-radius: 20px;
 }
 
 .Mypage-leave-btn {
@@ -125,4 +213,9 @@ padding-top: 0px;
     font-size: 30px;
     border-radius: 10px;
     margin-right: 7px;
+}
+
+.MyPage-input-file {
+    display:flex;
+    margin-left: 140px
 }
