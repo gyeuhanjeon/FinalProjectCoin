@@ -20,15 +20,13 @@
     margin: 200px;
     margin-left: auto;
     margin-right: auto;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 20px;
     min-width: 635px;
     background-color: bisque;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.sc-bcXHqe glZSRM {
-    margin: 100px;
-}
 
 .SignUp-Main-Box2 {
 }
@@ -50,7 +48,7 @@
     height: 50px;
     width: 380px;
     padding-left: 20px;
-    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-2 {
@@ -59,6 +57,7 @@
     height: 50px;
     width: 380px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-3{
@@ -66,6 +65,7 @@
     height: 50px;
     width: 380px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-4 {
@@ -73,6 +73,7 @@
     height: 50px;
     width: 380px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-5 {
@@ -81,6 +82,7 @@
     height: 50px;
     width: 380px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-6 {
@@ -89,14 +91,17 @@
     width: 380px;
     padding-left: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-7 {
+    display: flex;
+    margin: 0px auto;
     border-radius: 20px;
-    margin-left: 100px;
     height: 50px;
     width: 380px;
     padding-left: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Input-border-Id {
@@ -127,6 +132,7 @@
     height: 50px;
     text-align: center;
     border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .MSG {
@@ -162,19 +168,23 @@
 
 
 .Select-Sido {
-    width: 200px;
+    width: 190px;
     height: 50px;
     border-radius: 20px;
 }
 
 .Select-SiGuGun {
-    width: 200px;
+    width: 190px;
     height: 50px;
     border-radius: 20px;
 }
 
 .SignUp-btn {
-    border:none;
+    width: 380px;
+    height: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*tarms*/

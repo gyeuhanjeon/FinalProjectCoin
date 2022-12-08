@@ -8,6 +8,11 @@ import { setDoc, doc, Timestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import Cookies from 'universal-cookie';
+import { motion } from "framer-motion";
+
+const BOX = styled(motion.div)`
+whileHover={{ scale: 1.2}}
+`
 
 // 정규식 - 이름, 아이디, 비밀번호
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
@@ -661,7 +666,7 @@ function SignUp() {
             {/* 아이디 */}
             <div className="Form-item">
               <span className="Form-item-icon material-symbols-rounded"></span>
-              <input className="Input-border-2" type="text" placeholder="아이디" value={id} onChange={onChangeId} required />
+              <input className="Input-border-2"  type="text" placeholder="아이디" value={id} onChange={onChangeId} required />
               <button className='ID-btn' onClick={onClickIdCheck} required><span>중복확인 </span></button>
               <div className='MSG'>
 
@@ -700,8 +705,9 @@ function SignUp() {
             <div className="Form-item">
               {/* <span style={{display: 'inline-block', width: 150}}>이름</span> */}
               <span className="Form-item-icon material-symbols-rounded"></span>
+
               <input className="Input-border-5" type="text" placeholder="닉네임(한글 2~20자)" value={nickname} onChange={onChangeNickname} required />
-              
+
 
               <button className='ID-btn' onClick={onClickNicknameCheck} required> 중복확인 </button>
               <div className='MSG'>
@@ -755,7 +761,7 @@ function SignUp() {
                 </label>
                 <label className='Label-gender'>
                 <div className='Woman'>
-                  <input className='input' type="radio" name="gender" value="여자" onChange={onChangeRadio} />
+                  <input className='input' type="checkbox" name="gender" value="여자" onChange={onChangeRadio} />
                   <span>여자</span>
                   </div>
                 </label>
@@ -793,7 +799,8 @@ function SignUp() {
             </div>
 
             {/* 회원가입 */}
-            <button className="SignUp-btn" type="submit"onClick={onClickButton}>회원가입</button>
+            
+            <button className="SignUp-btn" type="submit"onClick={onClickButton}><span>회원가입</span></button>
 
           </form>
           </div>
