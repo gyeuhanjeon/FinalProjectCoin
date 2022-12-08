@@ -401,7 +401,7 @@ const StartContainer = styled.div`
   max-height:800px;
   border: 2px greenyellow solid;
   position: relative;
-  top:100px;
+  
   &>.mbti-person1{
     position: relative;
     bottom: 50px;
@@ -433,7 +433,7 @@ const Container = styled.div`
 `
 
 const Sentence1 = styled.div`
-  font-size: 35px;
+  font-size: 33px;
   span:nth-of-type(1){
     color:red;
   }
@@ -624,7 +624,7 @@ const Quiz = (props) => {
               <RecommendByOne>
                 <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
                   <img src={모험가}></img>
-                </a>|
+                </a>
                 <p>{'ISFP'}</p>
                 <Character>{"#조화로운 삶"}</Character>
                 <Character>{"#개방적"}</Character>
