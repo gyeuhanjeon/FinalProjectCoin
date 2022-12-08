@@ -30,6 +30,7 @@ const Postbox = () => {
   const [postSender, setPostSender] = useState("");
   const [content, setContent] = useState("");
   const [postModalOn, setPostModalOn] = useState(false);
+  const [goPagination, setGoPagination] = useState(false);
 
   /* 
   최초 통신(useEffect) */
@@ -54,6 +55,7 @@ const Postbox = () => {
       }
 
       setLoading(false);
+      setGoPagination(true);
     };
     postData();
   }, []);
@@ -195,12 +197,14 @@ const Postbox = () => {
 
         {/* footer 영역 */}
         <div className='Postbox-footer'>
+        {goPagination ?
           <Pagination
             total={postList.length}
             limit={limit}
             page={page}
             setPage={setPage}
           />
+        : null}
         </div>
       </div>
     </div>

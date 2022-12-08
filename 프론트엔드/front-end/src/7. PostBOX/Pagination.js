@@ -7,7 +7,10 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 페이지 번호 버튼에 클릭 이벤트가 발생하면 prop으로 넘어온 setPage() 함수를 호출하여 부모인 <Posts/> 컴포넌트의 page 상태가 변경되도록 합니다. 그러면 <Posts/> 컴포넌트는 새로운 페이지 번호에 해당하는 게시물 범위를 계산하여 다시 화면을 렌터링할 것입니다.
 */
 
-function Pagination_({ total, limit, page, setPage }) {
+function Pagination(props) {
+  const { total, limit, page, setPage } = props;
+  console.log("\n>> Pagination 방문");
+
   const totalPages = Math.ceil(total / limit); // 총 페이지 수 >> 13 나누기 10 => 2
   console.log("numPages : " + totalPages);
 
@@ -88,7 +91,7 @@ function Pagination_({ total, limit, page, setPage }) {
 
 
 
-export default Pagination_;
+export default Pagination;
 // arr.fill() : 배열에다가 채운다. 채울 값을, n 번 인덱스부터, n길이까지
 // arr.map() : x => x*2
 // Math.ceil() 함수는 주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자를 integer 로 반환합니다.
