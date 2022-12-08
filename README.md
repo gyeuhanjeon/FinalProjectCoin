@@ -3,6 +3,9 @@ ISOUR Final Project
 
 22.12.08 (목)
 
+♥ 이동균
+1 mypage css 수정
+
 ♥ 전규한
 
 - mbti 검사 페이지 css 피드백 반영 수정
