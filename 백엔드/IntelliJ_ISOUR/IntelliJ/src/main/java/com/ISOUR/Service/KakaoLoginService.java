@@ -1,8 +1,6 @@
 package com.ISOUR.service;
 
-import com.ISOUR.dto.MemberDTO;
 import com.ISOUR.entity.KakaoLogin;
-import com.ISOUR.dto.KakaoDTO;
 import com.ISOUR.entity.MemberInfo;
 import com.ISOUR.repository.KakaoRepository;
 import com.ISOUR.repository.MemberRepository;
@@ -109,7 +107,6 @@ public class KakaoLoginService {
             JSONObject obj = (JSONObject) parser.parse(res);
             JSONObject kakao_account = (JSONObject) obj.get("kakao_account");
             JSONObject properties = (JSONObject) obj.get("properties");
-
 
             String id = obj.get("id").toString();
             String nickname = properties.get("nickname").toString();

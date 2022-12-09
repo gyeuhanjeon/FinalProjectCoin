@@ -35,7 +35,6 @@ const Matching = () => {
   const cookies = new Cookies();
   // ▼ 로그인 안 되어 있으면 로그인 페이지로
   const localId = cookies.get('rememberId');
-  const id = window.sessionStorage.getItem("id");
   const localId_num = cookies.get('rememberId_num');
   const navigate = useNavigate();
 
@@ -51,9 +50,6 @@ const Matching = () => {
 
   const [mat_memberInfo, setMat_MemberInfo] = useState([]);
   const [pageNum, setPageNum] = useState(1);
-
-
-
   // const [like_user_num, setLike_user_num] = useState('');
   // const [like_num, setLike_num] = useState(0);
   // const [mat_id_num, setMat_id_num] = useState('');
@@ -82,8 +78,32 @@ const Matching = () => {
   //     console.log("UnClick_like : " + like_user_num);
   // }
 
-  // 매칭 회원 정보 조회
+  // 내 정보 조회 
+  useEffect(() => {
+    const userData = async () => {
+      console.log("\n>> 내정보 조회(useEffect)");
+      console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
 
+      try {
+        const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
+        console.log(response.data);
+        setMyInfo(response.data);
+        setId_num(response.data.idNum);
+        setMyId(response.data.id);
+        setMyFace(response.data.face);
+        setMyNickname(response.data.nickname);
+        setMyMbti(response.data.mbti);
+        setMyIntroduce(response.data.introduce);
+
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    userData();
+  }, []);
+
+
+  // 매칭 회원 정보 조회
   const nav = useNavigate();
   useEffect(() => {
     if(localId === undefined) navigate("/login");
@@ -103,15 +123,6 @@ const Matching = () => {
         console.log("****************");
         setMat_MemberInfo(Mat.data);
         console.log("!",Mat.data)
-        const my = Mat.data[0];
-        setMyInfo(my);
-        setId_num(my.user_id_num);
-        setMyId(my.user_id);
-        setMyFace(my.user_face);
-        setMyNickname(my.user_nick);
-        setMyMbti(my.user_mbti);
-        setMyIntroduce(my.user_introduce);
-
         console.log("1", Mat.data);
         console.log("2", Mat.data[0].user_nick);
         console.log("3", Mat.data[0].mat_id_num);
