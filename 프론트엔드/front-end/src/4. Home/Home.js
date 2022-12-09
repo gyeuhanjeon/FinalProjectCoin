@@ -17,6 +17,8 @@ import {
 } from "firebase/firestore";
 import moment from 'moment';
 import './Home.css';
+import { useNavigate  } from "react-router-dom";
+
 
 const Home = () => {
     
@@ -32,7 +34,7 @@ const Home = () => {
   const [friend, setFriend] = useState("");
   const [ registrationDate, setRegistrationDate ] = useState('');
   const [nickName, setNickName] = useState('');
-
+  const navigate = useNavigate();
 
   const chatTest = async(name) => {
     console.log(name);
@@ -40,7 +42,7 @@ const Home = () => {
         const res = await TeamAPI.chatRoomOpen("테스트 채팅방");
         console.log(res.data);
         window.localStorage.setItem("chatRoomId", res.data);
-        window.location.replace("/Socket");
+        navigate("/Socket");
     } catch {
         console.log("error");
     }

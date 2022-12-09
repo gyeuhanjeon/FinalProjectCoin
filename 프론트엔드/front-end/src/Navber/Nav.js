@@ -12,7 +12,7 @@ function Navber() {
         <nav className='App-Nav'>
              <Navbar bg="light" expand="lg">
             <Container>
-              <Navbar.Brand className='home-button' href="/">MBTISOUR</Navbar.Brand>
+              <Navbar.Brand className='home-button' href="/home">MBTISOUR</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">

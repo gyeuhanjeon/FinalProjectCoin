@@ -10,6 +10,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 import kakao from '../images/kakao_login_small (1).png';
 import { REST_API_KEY, REDIRECT_URI } from '../0. API/kakaoAPI';
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
@@ -21,7 +22,9 @@ function Login() {
   const cookies = new Cookies();
   const localId = cookies.get('rememberId');
 
-  if (localId !== undefined) window.location.replace("/home");
+  const navigate = useNavigate();
+
+  if (localId !== undefined) navigate("/home");
 
   const EnterPress = (e) => {
     if (e.key === 'Enter') {
@@ -74,11 +77,11 @@ function Login() {
         }
         );
         console.log(cookies.rememberId);
-        window.location.replace("/home");
+        navigate("/home");
 
       } else {
         alert('일치하는 이메일이 없습니다. 회원가입 페이지로 이동합니다.')
-        window.location.replace("/signup");
+        navigate("/signup");
       }
     } catch {
       console.log(e)
@@ -89,7 +92,9 @@ function Login() {
   const kakao_Auth_Url = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const handlerLogin = () => {
-    window.location.href = kakao_Auth_Url;
+  //   window.location.href = kakao_Auth_Url;
+    navigate(kakao_Auth_Url);
+
   }
 
   const [id, setId] = useState("");
@@ -161,7 +166,7 @@ function Login() {
           );
 
         }
-        window.location.replace("/home");
+        navigate("/home");
       } else {
         alert("아이디 또는 비밀번호를 확인하세요!");
       }

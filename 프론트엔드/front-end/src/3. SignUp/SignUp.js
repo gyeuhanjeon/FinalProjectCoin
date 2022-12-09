@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import Cookies from 'universal-cookie';
 import { motion } from "framer-motion";
-
+import { useNavigate  } from "react-router-dom";
 
 
 // 정규식 - 이름, 아이디, 비밀번호
@@ -224,6 +224,11 @@ function SignUp() {
   const [showErrorPwdcheck, setShowErrorPwdcheck] = useState(false);
   const [showAcceptPwdcheck, setShowAcceptPwdcheck] = useState(false);
 
+  const navigate = useNavigate();
+
+  
+
+
   const [data, setData] = useState({
     name: "",
     id: "",
@@ -363,6 +368,7 @@ function SignUp() {
         } else {
           console.log("사용 가능한 닉네임 입니다.");
           alert("사용 가능한 닉네임 입니다.");
+          setIsNickname(true);
         }
       } catch (e) {
         console.log(e);
@@ -427,7 +433,7 @@ function SignUp() {
       setIsEmail(true);
     }
     console.log('email 저장 무엇? ' + email);
-  }, []);
+  }, [mode]);
 
 
 
@@ -455,7 +461,7 @@ function SignUp() {
 
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
-      const emailResult = await TeamAPI.emailDuplicateCheck(e.target.value);
+      const emailResult = await TeamAPI.emailDuplicateCheck(email);
       console.log("emailResult.data : " + emailResult.data);
       console.log("emailResult.status : " + emailResult.status);
       if (emailResult.data === false) {
@@ -583,12 +589,12 @@ function SignUp() {
     console.log("isRegion2 : " + isRegion2);
     console.log("introduce 값 : " + introduce);
 
-    const result = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      pwd
-    );
-    // console.log(result.user);
+    // const result = await createUserWithEmailAndPassword(
+    //   auth,
+    //   email,
+    //   pwd
+    // );
+    // // console.log(result.user);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
       const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
@@ -608,28 +614,28 @@ function SignUp() {
       console.log("선택 약관 : " + check_term2);
       alert("회원가입 성공! 콘솔창 보세요");
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
-      window.location.replace("/login");
+      navigate("/login");
 
-      setDoc(doc(db, "users", id), {
-        uid: result.user.uid,
-        name,
-        id,
-        friend: false,
-        nickname,
-        email,
-        createdAt: Timestamp.fromDate(new Date()),
-        isOnline: true,
-      });
-      setData({
-        name: "",
-        id: "",
-        nickname: "",
-        friend: false,
-        email: "",
-        password: "",
-        error: null,
-        loading: false,
-      });
+      // setDoc(doc(db, "users", id), {
+      //   uid: result.user.uid,
+      //   name,
+      //   id,
+      //   friend: false,
+      //   nickname,
+      //   email,
+      //   createdAt: Timestamp.fromDate(new Date()),
+      //   isOnline: true,
+      // });
+      // setData({
+      //   name: "",
+      //   id: "",
+      //   nickname: "",
+      //   friend: false,
+      //   email: "",
+      //   password: "",
+      //   error: null,
+      //   loading: false,
+      // });
 
 
     } else {

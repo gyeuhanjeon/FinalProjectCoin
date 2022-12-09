@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import TeamAPI from '../0. API/TeamAPI';
 import Cookies from 'universal-cookie';
-
+import { useNavigate  } from "react-router-dom";
 
 export default function KakaoToken() {
     const kakao_Auth_Url = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
@@ -12,6 +12,7 @@ export default function KakaoToken() {
     const [kakaoData, setKakaoData] = useState([]);
     const [kakao_id, setKakao_id] = useState('');
     const cookies = new Cookies();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -45,10 +46,13 @@ export default function KakaoToken() {
 
                             setKakaoData(res.data);
                             setKakao_id(res.data.id);
+                            window.sessionStorage.setItem('kakaoNickname', res.data.kakaoNickname);
+                            window.sessionStorage.setItem('kakaoEmail', res.data.kakaoEmail);
+                            window.sessionStorage.setItem('kakaoId', res.data.kakaoId);
+
 
                             // <KakaoId id={res.data.id} />;
 
-                            // window.localStorage.setItem("k_id", k_id);
                             console.log("res.data.email : " + res.data.kakaoEmail);
                             console.log("res.data.access_Token : " + res.data.access_Token);
                             console.log("res.data.id : " + res.data.kakaoId);
@@ -62,18 +66,20 @@ export default function KakaoToken() {
 
 
                             if (res.status === 201) {    // 201: 카카오톡 인증 완료 (로그인 성공)
-                                window.location.replace("/Home");
+                                // window.location.replace("/Home");
                                 cookies.set('rememberId', res.data.id, {
                                     path: '/',
                                     expires: 0
                                 }
                                 );
+                                navigate('/home');
                                 
                             } else if (res.data.CODE === "999") {   // 999: 카카오톡 인증 실패
                                 alert('카카오 가입부터 하세요......')
 
                             } else if (res.data !== null) {   // 카카오톡 인증 완료 (회원가입 이동)
-                                window.location.replace("/signup");
+                                // window.location.replace("/signup");
+                                navigate('/signup');
                                 cookies.set('rememberEmail', res.data.kakaoEmail, {
                                     path: '/',
                                     expires: 0

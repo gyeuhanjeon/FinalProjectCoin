@@ -4,6 +4,7 @@ import TeamAPI from '../0. API/TeamAPI';
 import FindInfoModal from './FindInfoModal';
 import EmailModal from './EmailModal';
 import ChangePwdModal from '../99. Modal/ChangePwdModal';
+import { useNavigate  } from "react-router-dom";
 
 const Find_Container = styled.div`
     width:500px;
@@ -62,6 +63,7 @@ const Input = styled.input`
 
 
 const FindInfo = () => {
+    const navigate = useNavigate();
 
     const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
     const regexId = /^\w{5,20}$/;
@@ -138,7 +140,8 @@ const FindInfo = () => {
                 console.log("통신 성공(200)");
                 console.log("\n>> 비밀번호 수정 완료");
                 alert("비밀번호 수정 완료!!");
-                window.location.replace('/login');
+                // window.location.replace('/login');
+                navigate('/login');
             }
         } catch (e) { console.log(e); }
 
