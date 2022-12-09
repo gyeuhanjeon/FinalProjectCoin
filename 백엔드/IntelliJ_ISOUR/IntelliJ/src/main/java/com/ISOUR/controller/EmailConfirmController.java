@@ -14,6 +14,9 @@ import com.ISOUR.service.EmailService;
 
 import java.util.Map;
 
+import static com.ISOUR.service.EmailServiceImpl.createKey;
+import static com.ISOUR.service.EmailServiceImpl.ePw;
+
 @Slf4j
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -22,9 +25,11 @@ public class EmailConfirmController {
     @Autowired
     EmailService service;
     private MemberService memberService;
+
     public EmailConfirmController(MemberService memberService) {
         this.memberService = memberService;
     }
+
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @PostMapping("/mail")
@@ -41,9 +46,10 @@ public class EmailConfirmController {
         Integer result=0;
         String getEmailCode = emailCode.get("code");
         System.out.println("code : "+getEmailCode);
-        System.out.println("code match : "+ EmailServiceImpl.ePw.equals(getEmailCode));
-        if(EmailServiceImpl.ePw.equals(getEmailCode)) {
+        System.out.println("code match : "+ ePw.equals(getEmailCode));
+        if(ePw.equals(getEmailCode)) {
             result =1;
+            ePw=createKey();
         }
         return result;
     }

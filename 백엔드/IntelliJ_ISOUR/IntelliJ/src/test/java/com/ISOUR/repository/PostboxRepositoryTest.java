@@ -19,8 +19,8 @@ class PostboxRepositoryTest {
     @DisplayName("쪽지 보내기 테스트")
     public void sendPostTest() {
         LocalDateTime currentTime = LocalDateTime.now();
-        String id = "test49";
-        String receiverId = "test50";
+        String id = "test51";
+        String receiverId = "kongdole22";
         for(int i = 1; i <= 11; i++) {
             Postbox postbox = new Postbox();
             postbox.setPostSender(id);

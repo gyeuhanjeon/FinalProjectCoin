@@ -9,8 +9,8 @@ function Logout() {
     cookies.remove('rememberId');
     cookies.remove('rememberEmail');
     
-    window.sessionStorage.setItem("kakaoId_num", '');
     window.sessionStorage.setItem("id", '');
+    window.sessionStorage.setItem("kakaoId_num", '');
     window.sessionStorage.setItem("nickname", '');
     window.sessionStorage.setItem("kakaoNickname", '');
     window.sessionStorage.setItem("kakaoEmail",'');

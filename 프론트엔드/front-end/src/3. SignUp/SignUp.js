@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import Cookies from 'universal-cookie';
 import { motion } from "framer-motion";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 // 정규식 - 이름, 아이디, 비밀번호
@@ -181,7 +181,7 @@ function SignUp() {
     setNickname(kakaoNickname);
     setEmail(cookies.get('rememberEmail'));
     setIsEmail(true);
-    
+
   }, [mode]);
 
   // 유효성 검사
@@ -226,7 +226,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  
+
 
 
   const [data, setData] = useState({
@@ -585,15 +585,15 @@ function SignUp() {
     console.log("isRegion2 : " + isRegion2);
     console.log("introduce 값 : " + introduce);
 
-    
+
     // console.log(result.user);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        pwd
-      );
+      // const result = await createUserWithEmailAndPassword(
+      //   auth,
+      //   email,
+      //   pwd
+      // );
 
       const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
 
@@ -614,24 +614,30 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       navigate("/login");
 
-      setDoc(doc(db, "users", id), {
-        uid: result.user.uid,
-        name,
-        email,
-        createdAt: Timestamp.fromDate(new Date()),
-        isOnline: true,
-        id,
-        nickname,
-        friends: [],
-      });
-      setData({
-        name: "",
-        email: "",
-        loading: false,
-        id: "",
-        nickname: "",
-        friends: [],
-      });
+      // setDoc(doc(db, "users", id), {
+      //   uid: result.user.uid,
+      //   name,
+      //   email,
+      //   createdAt: Timestamp.fromDate(new Date()),
+      //   isOnline: true,
+      //   id,
+      //   nickname,
+      //   friends: [],
+      // });
+      // setData({
+      //   name: "",
+      //   email: "",
+      //   loading: false,
+      //   id: "",
+      //   nickname: "",
+      //   friends: [],
+      // });
+      window.sessionStorage.setItem("kakaoId_num", '');
+      window.sessionStorage.setItem("nickname", '');
+      window.sessionStorage.setItem("kakaoNickname", '');
+      window.sessionStorage.setItem("kakaoEmail", '');
+      cookies.remove('rememberEmail');
+
 
 
     } else {

@@ -16,10 +16,13 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     JavaMailSender emailSender;
+    public static String ePw = createKey();
 
-    public static final String ePw = createKey();
+
+//    public static String ePw = createKey();
 
     private MimeMessage createMessage(String to)throws Exception{
+
         System.out.println("보내는 대상 : "+ to);
         System.out.println("인증 번호 : "+ePw);
         MimeMessage  message = emailSender.createMimeMessage();
@@ -75,7 +78,7 @@ public class EmailServiceImpl implements EmailService {
     }
     @Override
     public String sendSimpleMessage(String to)throws Exception {
-        // TODO Auto-generated method stub
+//         TODO Auto-generated method stub
         MimeMessage message = createMessage(to);
         try{//예외처리
             emailSender.send(message);
