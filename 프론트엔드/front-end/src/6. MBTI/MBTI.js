@@ -67,13 +67,11 @@ const Startbtn = styled.button`
 
 const ObuttonContainer = styled.div`
   width:800px;
-  height: 800px;
   position: relative;
   align-items: center;
   display: flex;
   justify-content:center;
-  bottom:300px;
-
+  bottom:350px;
 `
 
 const Word1 = styled.span`
@@ -123,6 +121,7 @@ const OXcontainer = styled.div`
     justify-content:center;
     margin : 0 auto;    
     width: 1180px;
+    height: 900px;
     position: relative;
     left: 0;
     z-index: 1;
@@ -133,7 +132,7 @@ const QuizContainer = styled.div`
   display: flex;
   justify-content:center;
   position: relative;
-
+  
   p{
     position: relative;
     top:450px;
