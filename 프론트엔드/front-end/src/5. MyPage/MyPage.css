@@ -29,15 +29,51 @@
 
 .MyPage-img {
     margin: 50px;
-    
 }
+
+
+.btn-upload {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77,77,77);
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-upload:hover {
+    background: rgb(11, 255, 105);
+    color: #fff;
+  }
+
+  #file {
+    display: none;
+  }
 
 .MyPage-img-file {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
+.MyPage-input {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77,77,77);
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
 .Form-item {
-padding: 20px;
+padding: 40px;
 padding-top: 0px;
 }
 
@@ -103,10 +139,26 @@ margin-right: 10px;
     border-radius: 20px;
 }
 
+.input6-btn-select:hover {
+    background: rgb(11, 255, 105);
+}
+
+.input6-btn-keep:hover {
+    background: rgb(11, 255, 105);
+}
+
 .input6-btn-keep {
     width: 100px;
     height: 35px;
     border-radius: 20px;
+}
+
+.MyPage-MBTI {
+    margin-left: 50px;
+    border-radius: 20px;
+    width: 200px;
+    margin-right: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Form-input7 {
@@ -131,6 +183,10 @@ margin-right: 10px;
     border-radius: 20px;
 }
 
+.input7-btn-keep:hover {
+    background: rgb(11, 255, 105);
+}
+
 .Form-input8 {
     margin-left: 60px;
     border-radius: 20px;
@@ -142,7 +198,8 @@ margin-right: 10px;
 .Form-input8-2 {
     border-radius: 20px;
     width: 200px;
-    margin-right: 10px;
+    margin-right: 30px;
+    margin-left: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -150,6 +207,10 @@ margin-right: 10px;
      width: 100px;
     height: 35px;
     border-radius: 20px;
+}
+
+.input8-btn-keep:hover {
+    background: rgb(11, 255, 105);
 }
 
 .Form-input9 {
@@ -174,10 +235,19 @@ margin-right: 10px;
     margin-left: 20px;
 }
 
+.input10-btn:hover {
+    background: rgb(11, 255, 105);
+}
+
+.MyPage-img-btn {
+    margin-bottom: 40px;
+}
+
 
 
 .Form-Name {
     float: left;
+    font-size: 20px;
 }
 
 .Mypage-examine {
@@ -189,18 +259,23 @@ margin-right: 10px;
 .MyPage-img-select {
     margin-right: 10px;
     border-radius: 10px;
-    width: 100px;
-    height: 50px;
+    width: 50px;
+    height: 30px;
+}
+
+.MyPage-img-select:hover {
+    background: rgb(11, 255, 105);
 }
 
 .MyPage-img-delect {
+    margin-right: 10px;
     border-radius: 10px;
-    width: 100px;
-    height: 50px;
+    width: 50px;
+    height: 30px;
 }
 
-.MyPage-img-btn {
-    margin-top: 20px;
+.MyPage-img-delect:hover {
+    background: rgb(11, 255, 105);
 }
 
 .MyPage-Modify-Btn {
@@ -208,9 +283,13 @@ margin-right: 10px;
     border-radius: 20px;
 }
 
+.MyPage-Modify-Btn:hover {
+    background: rgb(11, 255, 105);
+}
+
 .Mypage-leave-btn {
     width: 200px;
-    font-size: 30px;
+
     border-radius: 10px;
     margin-right: 7px;
 }
@@ -218,4 +297,8 @@ margin-right: 10px;
 .MyPage-input-file {
     display:flex;
     margin-left: 140px
+}
+
+.Mypage-leave-btn:hover {
+    background: rgb(11, 255, 105);
 }

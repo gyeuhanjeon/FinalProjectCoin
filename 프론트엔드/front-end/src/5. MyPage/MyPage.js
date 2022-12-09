@@ -11,7 +11,6 @@ import { storage } from '../firebase'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 //쿠키
 import Cookies from 'universal-cookie';
-import { useNavigate  } from "react-router-dom";
 
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
 
@@ -23,7 +22,6 @@ const MyPage = () => {
   console.log(localId);
   const localIdNum = window.sessionStorage.getItem("id_num");
   const localNickname = window.sessionStorage.getItem("nickname");
-  const navigate = useNavigate();
 
 
   // const localId = window.localStorage.getItem("userId");
@@ -63,6 +61,9 @@ const MyPage = () => {
   최초 통신(useEffect) */
   useEffect(() => {
     const localId = cookies.get('rememberId');
+    //  if(localId === undefined) window.location.replace("/login");
+    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
+
 
     const memberData = async () => {
       console.log("\n>> 회원 정보 조회(useEffect)");
@@ -385,7 +386,7 @@ const MyPage = () => {
   const onClickTestStart = () => {
     console.log("\n>> 검사하기 버튼 눌렀어요.");
     // alert("콘솔 확인하세요.")
-    navigate("/MBTI");
+    window.location.replace("/MBTI");
   }
 
   /* 탈퇴하기 */
@@ -415,7 +416,7 @@ const MyPage = () => {
           window.localStorage.setItem("isLogin", "FALSE");
           closeUnregisterModal();
           alert("회원 탈퇴 성공");
-          navigate("/");
+          window.location.replace("/");
         } else {
           alert("비밀번호를 확인하세요.");
         }
@@ -443,14 +444,17 @@ const MyPage = () => {
       </div>
       <div className='MyPage-box2'>
       <div className="MyPage-img-file">
-        <div className='MyPage-input-file'>
-      <input type="file" accept="image/*" onChange={onChangeFace}/>
+      <label for='file'>
+        <div class="btn-upload">사진 첨부</div>
+      </label>
+      <input type="file"  name="file" id="file" accept="image/*" onChange={onChangeFace}/>
+
       </div>
       <div className='MyPage-img-btn'>
       <button className='MyPage-img-select' onClick={onSaveFace}>저장</button>
       <button className='MyPage-img-delect' onClick={onDeleteFace}>삭제</button>
       </div>
-      </div>
+      
 
       <div className="Form-item">
       <div className="Form-Name">
@@ -480,7 +484,7 @@ const MyPage = () => {
       <div className="Form-Name">
         <span>MBTI</span>
         </div>
-        { mbti ? <input type="text" value ={mbti} />
+        { mbti ? <input className='MyPage-MBTI' type="text" value ={mbti} />
           : <button className='Mypage-examine' onClick={onClickTestStart}>검사하기</button>}
       </div>
 
@@ -593,7 +597,6 @@ const MyPage = () => {
       }
       
       </>
-
       <button className='Mypage-leave-btn' onClick={openUnregisterModal}>탈퇴하기</button>
       </div>
       </div>
