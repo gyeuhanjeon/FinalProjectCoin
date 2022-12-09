@@ -26,18 +26,14 @@ public class MatDTO {
 
     // MySql 버전
     private BigInteger user_id_num;
-    private String user_id;
-    private String user_face;
-    private String user_nick;
     private String user_mbti;
-    private String user_introduce;
     private BigInteger mat_id_num;
-    private String mat_id;
-    private String mat_nick;
     private String mat_face;
+    private String mat_nick;
     private String mat_mbti;
     private String mat_introduce;
     private Integer order_mbti;
     private BigInteger r_NUM;
+    private BigInteger cnt;
 
 }

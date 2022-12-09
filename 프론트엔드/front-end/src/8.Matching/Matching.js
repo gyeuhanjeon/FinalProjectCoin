@@ -50,6 +50,8 @@ const Matching = () => {
 
   const [mat_memberInfo, setMat_MemberInfo] = useState([]);
   const [pageNum, setPageNum] = useState(1);
+  const [rnum, setRnum] = useState();
+
   // const [like_user_num, setLike_user_num] = useState('');
   // const [like_num, setLike_num] = useState(0);
   // const [mat_id_num, setMat_id_num] = useState('');
@@ -85,7 +87,7 @@ const Matching = () => {
       console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
 
       try {
-        const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
+        const response = await TeamAPI.memberInfo(localId); 
         console.log(response.data);
         setMyInfo(response.data);
         setId_num(response.data.idNum);
@@ -122,17 +124,22 @@ const Matching = () => {
         const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
         console.log("****************");
         setMat_MemberInfo(Mat.data);
-        console.log("!",Mat.data)
+        // 마지막 페이지 찾기
+        const Rnum = Number(Mat.data[0].r_NUM);
+        console.log(typeof(Rnum));
+        // console.log(Rnum);
+        // console.log(Math.ceil(Rnum / 2));
+        setRnum(Math.ceil(Rnum / 2));
         console.log("1", Mat.data);
-        console.log("2", Mat.data[0].user_nick);
-        console.log("3", Mat.data[0].mat_id_num);
-        console.log("--4", Mat.data[0].mat_face);
+        console.log("matIdNum : ", Mat.data[0].mat_id_num);
+        console.log("matFace : ", Mat.data[0].mat_face);
+        console.log("matNick : ", Mat.data[0].mat_nick);
+        console.log("r_NUM : ", Rnum);
       } catch (e) {
         console.log(e);
       }
     };
   memberData();
-  
   }, [pageNum]);
   
  // 채팅하기 onClick
@@ -277,7 +284,7 @@ const Matching = () => {
           <IconButton className='prevbtn' style={{backgroundColor: 'unset'}} onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>
             <ArrowBackIosNewIcon  style = {{fontSize: 'xx-large'}} />   
           </IconButton>
-          <IconButton className='nextbtn' style={{backgroundColor: 'unset'}} onClick={onChangeNext} disabled={(pageNum === 2) ? true : false }>
+          <IconButton className='nextbtn' style={{backgroundColor: 'unset'}} onClick={onChangeNext} disabled={(pageNum === rnum) ? true : false }>
             <NavigateNextIcon style = {{transform: 'rotate(180deg)',  fontSize: 'xx-large'}} />
           </IconButton>           
         </div>

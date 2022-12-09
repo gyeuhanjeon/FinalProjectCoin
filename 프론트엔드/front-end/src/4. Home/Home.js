@@ -93,9 +93,6 @@ const Home = () => {
         </a> */}
         <div className="Dino">
           <iframe className="DinoAddr" src="https://chromedino.com/" type="text/css" frameborder="0" scrolling="no" width="100%" height="100%" loading="lazy"></iframe>
-
-          {/* <object data="https://g.co/kgs/yY85xp" type="text/html" width="1000" height="600" /> */}
-
         </div>
         <div className="DinoStartMessage">
           <p>게임을 시작하려면 spacebar를 누르세요</p>

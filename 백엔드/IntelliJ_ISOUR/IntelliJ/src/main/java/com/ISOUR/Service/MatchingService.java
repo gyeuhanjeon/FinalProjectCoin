@@ -68,33 +68,29 @@ public class MatchingService {
         log.warn("★★★★★★★★ 페이지넘버 : " + num);
         log.warn("★★★★★★★★ 아이디넘 : " + id_num);
         
-        String sql2 = "SELECT PG2.*\n" +
-                "FROM ( SELECT PG1.*, @ROWNUM \\:= @ROWNUM + 1 as R_NUM\n" +
-                "       FROM (SELECT\n" +
-                "\t          \t\tim.ID_NUM AS user_id_num,\n" +
-                "\t          \t\tim.ID AS user_id,\n" +
-                "\t          \t\tim.FACE AS user_face,\n" +
-                "\t                im.NICKNAME AS user_nick,\n" +
-                "\t                im.MBTI AS user_mbti,\n" +
-                "\t                im.INTRODUCE AS user_introduce,\n" +
-                "\t                im2.ID_NUM AS mat_id_num,\n" +
-                "\t                im2.ID AS mat_id,\n" +
-                "\t                im2.NICKNAME AS mat_nick,\n" +
-                "\t                im2.FACE AS mat_face,\n" +
-                "\t                im2.MBTI AS mat_mbti,\n" +
-                "\t                im2.INTRODUCE AS mat_introduce,\n" +
-                "\t                m.ORDER_MBTI AS order_mbti\n" +
+        String sql2 = "SELECT PG2.*  \n" +
+                "FROM ( SELECT PG1.*, @ROWNUM \\:= @ROWNUM + 1 as rNUM\n" +
+                "       FROM (select im.ID_NUM AS userIdNum,\n" +
+                "       \t\t\t\t   im.MBTI AS userMbti, \n" +
+                "\t                im2.ID_NUM AS matIdNum,\n" +
+                "\t                im2.FACE AS matFace,\n" +
+                "\t                im2.NICKNAME AS matNick,\n" +
+                "\t                im2.MBTI AS matMbti,\n" +
+                "\t                im2.INTRODUCE AS matIntroduce,\n" +
+                "\t                m.ORDER_MBTI AS orderMbti\n" +
+                "\t                , COUNT(*) OVER (PARTITION BY im.ID_NUM) as cnt\n" +
                 "                FROM I_MEMBER im\n" +
                 "\t                INNER JOIN MBTI m\n" +
                 "\t                ON im.MBTI = m.USER_MBTI\n" +
                 "\t                INNER JOIN I_MEMBER im2\n" +
                 "\t                ON im2.MBTI = m.MAT_MBTI\n" +
                 "                WHERE im.ID = ? \n" +
-                "                \tand m.ORDER_MBTI <= 1 \n" +
+                "                \tand M.ORDER_MBTI <= 1 \n" +
+                "                \tand not im.ID_NUM = im2.ID_NUM\n" +
                 "                ORDER BY rand(?)) PG1\n" +
                 "        WHERE (@rownum \\:= 0) = 0 <= /*count*/2 * /*startNum*/?) PG2\n" +
-                "WHERE R_NUM > /*count*/2 * (/*startNum*/? - 1)                     \n" +
-                "limit /*count*/2";
+                "WHERE rNUM > /*count*/2 * (/*startNum*/? - 1)\n" +
+                "limit /*count*/2;";
 
         JpaResultMapper result2 = new JpaResultMapper();
         Query query2 = em.createNativeQuery(sql2)
