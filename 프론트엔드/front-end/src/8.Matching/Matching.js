@@ -17,7 +17,7 @@ import {
   setDoc,
   doc,
   getDoc,
-  updateDoc
+  updateDoc, arrayUnion
 } from "firebase/firestore";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmailIcon from '@mui/icons-material/Email';
@@ -131,25 +131,37 @@ const Matching = () => {
    console.log("친구 아이디", user);
    console.log("내 아이디", myId);
 
-   const chatList = await TeamAPI.chatAddMember(myId, user);
+   const user2 = user;
+   user2 = "rornfl";
+  //  const chatList = await TeamAPI.chatAddMember(myId, user);
 
-   if(chatList.data) {
-     setFriend(user);
-     alert("친구추가완료");
-   } 
-   
-  const user2 = friend;
+  //  if(chatList.data) {
+  //    setFriend(user);
+  //    alert("친구추가완료");
+  //  } 
+  
+  // const user2 = friend;
+  const sodaRef = doc(db, "users", user1);
+  try {
+    await updateDoc(sodaRef, {
+      friends: arrayUnion(user2)
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  nav("/chathome")
 
-  await addDoc(collection(db, "friends",localId,"check"), {
-    friend: user2
-  });
-  console.log("로컬아이디는?",localId)
-  const friendRef = doc(db, "users", localId);
 
-  await updateDoc(friendRef, {
-    friend:true
-  })
-    nav("/ChatHome")
+  // await addDoc(collection(db, "friends",localId,"check"), {
+  //   friend: user2
+  // });
+  // console.log("로컬아이디는?",localId)
+  // const friendRef = doc(db, "users", localId);
+
+  // await updateDoc(friendRef, {
+  //   friend:true
+  // })
+  //   nav("/ChatHome")
   };
 
   /* 쪽지 기능 구현 */
