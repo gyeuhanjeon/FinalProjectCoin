@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
@@ -10,41 +11,50 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 function Pagination(props) {
   const { total, limit, page, setPage } = props;
   console.log("\n>> Pagination 방문");
-
   console.log("전체 쪽지 수(total) : " + total);
   console.log("한 페이지에 보여줄 쪽지 수(limit) : " + limit); // 고정 10
   console.log("현재 page : " + page); // 고정 1
+  console.log("==============================\n\n");
 
-  let totalPages = 1;
-  let pageCount; // 화면에 보여줄 페이지 수
-  if(total != 0) {
-    totalPages = Math.ceil(total / limit); // 총 페이지 수 >> 13 나누기 10 => 2
-    
+  const pageLimit = 5; // 페이지바에 보여줄 최대 페이지 수
+  const [pageList, setPageList] =  useState([]);
+
+  let offset = (page - 1); // 각 페이지별 첫 게시물의 위치 계산
+  console.log("현재 offset : " + offset);
+
+  let totalPages = 1; // 전체 페이지 수(쪽지가 없어도 보이게 고정값 1)
+  if(total !== 0) { // 쪽지가 있으면 전체 페이지 수 계산
+    totalPages = Math.ceil(total / limit); // 전체 페이지 수 ex) 13 / 10 => 2
   }
-  console.log("totalPages : " + totalPages);
+  console.log("전체 페이지 수(totalPages) : " + totalPages);
 
-  
-  if(totalPages > 5) pageCount = 5;
-  else pageCount = totalPages;
+  /* 
+  최초 통신(useEffect) */
+  useEffect(() => {
+    let temp_pageList = [];
+    for(let i = 0 ; i < totalPages; i++) {
+      temp_pageList.push(i+1);
+    }
+    console.log(temp_pageList);
+    setPageList(temp_pageList);
+  }, []);
 
-  const pageGroup = Math.ceil(page / pageCount); // 페이지 그룹
-
-
-  let lastNum = pageGroup * pageCount // 화면에 보여질 마지막 페이지 번호
-  if (lastNum > total) {
-    lastNum = total
+  let endPage = offset + pageLimit; // 페이지바에 보여줄 마지막 페이지
+  if(endPage > totalPages) {
+    endPage = totalPages;
   }
-  let firstNum = lastNum - (pageCount - 1) // 화면에 보여질 첫번째 페이지 번호
+  let firstPage = endPage - pageLimit;
+  console.log("firstPage : " + firstPage);
+  console.log("endPage : " + endPage);
 
-  const next = lastNum + 1 // 6
-  const before = firstNum - 1 // 0
-
+  /* ( < ) 이전 버튼 */
   const onClickBeforeIcon =() => {
     if(page === 1) return;
     setPage(page - 1);
   }
 
-  const onClickNextIcon =() => {
+  /* ( > ) 다음 버튼 */
+  const onClickNextIcon = () => {
     if(page === totalPages) return;
     setPage(page + 1);
   }
@@ -55,46 +65,24 @@ function Pagination(props) {
         <NavigateBeforeIcon />
       </span>
 
-      <li onClick={() => setPage(firstNum)}
-        aria-current={page === firstNum ? "page" : 1}
-      >
-        {firstNum === 0 ? 1 : firstNum}
-      </li>
-
-      {Array(pageCount-1).fill().map((_, i) => {
-        if(i <= 2) {
-          return (
-            <span className="move">
-              <li
-                key={i+1+firstNum} 
-                onClick={() => {setPage(firstNum+1+i)}}
-                aria-current={page === firstNum+1+i ? "page" : null}>
-                {firstNum+1+i}
-              </li>
-            </span>
-          )
-        } else if(i >= 3) {
-          return (
-            <span className="move">
-              <li
-                key ={i+1}
-                onClick={() => setPage(lastNum)}
-                aria-current={page === lastNum ? "page" : null}>
-                {lastNum}
-              </li>
-            </span>
-          )  
-        }
+      {pageList.slice(firstPage, endPage).map(ball => {
+        return (
+          <span className="move">
+            <li onClick={() => setPage(ball)}
+              aria-current={page === ball ? "page" : null}
+            >
+              {ball}
+            </li>
+          </span>
+        )
       })}
 
-      <span className="move next" onClick={e => onClickNextIcon(e.target)}>
+      <span className="move next" onClick={onClickNextIcon}>
         <NavigateNextIcon />
       </span>
     </div>
   );
 }
-
-
 
 export default Pagination;
 // arr.fill() : 배열에다가 채운다. 채울 값을, n 번 인덱스부터, n길이까지
