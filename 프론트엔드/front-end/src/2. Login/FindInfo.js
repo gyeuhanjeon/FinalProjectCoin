@@ -7,15 +7,15 @@ import ChangePwdModal from '../99. Modal/ChangePwdModal';
 import { useNavigate  } from "react-router-dom";
 
 const Find_Container = styled.div`
-    width:500px;
+    width:600px;
     border: 1px solid black;
     position: relative;
-    margin: 15vh auto;
-    height: 70vh;
+    margin: 20vh auto;
+    height: 400px;
     box-sizing: border-box;
 `
 const Select_Mode = styled.span`
-    width:250px;
+    width:300px;
     border: 1px solid black;
     border-top: none;
     border-right: none;
@@ -31,7 +31,7 @@ const Select_Mode = styled.span`
     }
 `
 const Select_Mode2 = styled.span`
-    width:250px;
+    width:300px;
     border: 1px solid black;
     border-top: none;
     border-right: none;

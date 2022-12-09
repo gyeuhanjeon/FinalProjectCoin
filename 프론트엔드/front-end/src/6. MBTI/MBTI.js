@@ -20,8 +20,8 @@ import Cookies from 'universal-cookie';
 import { VscArrowRight } from "react-icons/vsc";
 import { IoPeople, IoPersonAdd } from "react-icons/io5";
 import { MdPsychology, MdQuiz } from "react-icons/md";
-import { useNavigate  } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import '../0. API/defultMain.css';
 
 //스타일 컴포넌트
 
@@ -35,7 +35,8 @@ const Startbtn = styled.button`
   letter-spacing: 2px;
   font-size: 25px;
   background-color: orangered;
-  border-color: red;
+  border: 0px none;
+  box-shadow: ;
   transition: all .2s ea  se-in-out;
   font-weight: 900;  
   position: relative;
@@ -67,32 +68,34 @@ const Startbtn = styled.button`
 `
 
 const ObuttonContainer = styled.div`
-  width:800px;
+  width:600px;
   position: relative;
   align-items: center;
   display: flex;
   justify-content:center;
   bottom:350px;
-`
+  border-bottom: 1px none;
+  left :100px;
+  box-shadow: 0 4px 4px -4px gray;
+  `
 
 const Word1 = styled.span`
   position: relative;
   font-size: 25px;
   width:100px;
   height: 20px;
-  top:180px;
-  left:110px;
   color:skyblue;
-
+  right: 500px;
+  bottom: 250px;
 `;
 const Word2 = styled.span`
   position: relative;
   font-size: 25px;
   width:100px;
   height: 20px;
-  top:180px;
-  right:110px;
   color:orangered;
+  bottom: 250px;
+  right:100px;
 
 `;
 const NumContainer = styled.div`
@@ -100,13 +103,14 @@ const NumContainer = styled.div`
   font-weight: bold;
   text-align: center;
   position: relative;
-  top:50px;
+  top:170px;
 `;
 const Num = styled.span`
+  color : white;
   position: relative;
   font-size: 0.8em;
   border-radius: 30px;
-  background: #fef5d4;
+  background: #003366;
   border: 0;
   display: inline-block;
   width: 200px;
@@ -126,7 +130,6 @@ const OXcontainer = styled.div`
     position: relative;
     left: 0;
     z-index: 1;
-
 `;
 const QuizContainer = styled.div`
    align-items: center;
@@ -136,119 +139,127 @@ const QuizContainer = styled.div`
   
   p{
     position: relative;
-    top:450px;
+    top:350px;
+    font-size: 30px;
   }
 `
 
 
 const O3 = styled.div`
     
-    width: 130px;
-    height: 130px;
-    border: 10px solid black;
+    width: 110px;
+    height: 110px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: skyblue;
 
     :hover{
       border-color: skyblue;
-      border: 85px groove blue;
+      border: 55px groove blue;
       transition: 1s;
     }
     :active{
-      border: 85px solid blueviolet;
+      border: 55px solid blueviolet;
     }
   
 `;
 const X3 = styled.div`
     
-    width: 130px;
-    height: 130px;
-    border: 10px solid orangered;
+    width: 110px;
+    height: 110px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: orangered;
 
     :hover{
       border-color: orangered;
-      border: 85px groove orangered;
+      border: 55px groove orangered;
       transition: 1s;
     }
     :active{
-      border: 85px solid blueviolet;
+      border: 55px solid blueviolet;
     }
   
 `;
 const O2 = styled.div`
     
-    width: 90px;
-    height: 90px;
-    border: 10px solid black;
+    width: 75px;
+    height: 75px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: skyblue;
-    margin: 0 10px;
+    margin: 0 30px;
+    position: relative;
+    top:19px;
     :hover{
       border-color: skyblue;
-      border: 65px groove blue;
+      border: 37.5px groove blue;
       transition: 1s;
     }
     :active{
-      border: 65px solid blueviolet;
+      border: 37.5px solid blueviolet;
     }
   
 `;
 const X2 = styled.div`
      
-     width: 90px;
-    height: 90px;
-    border: 10px solid orangered;
+     width: 75px;
+    height: 75px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: orangered;
-    margin : 0 10px;
-
+    margin : 0 30px;
+    position: relative;
+    top:19px;
     :hover{
       border-color: orangered;
-      border: 65px groove orangered;
+      border: 37.5px groove orangered;
       transition: 1s;
     }
     :active{
-      border: 65px solid blueviolet;
+      border: 37.5px solid blueviolet;
     }
   
 `;
 const O1 = styled.div`
     
-    width: 50px;
-    height: 50px;
-    border: 10px solid black;
+    width: 40px;
+    height: 40px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: skyblue;
-    margin : 0 5px;
+    margin : 0 10px;
+    position: relative;
+    top:36px;
 
     :hover{
       border-color: skyblue;
-      border: 45px groove blue;
+      border: 20px groove blue;
       transition: 1s;
     }
     :active{
-      border: 45px solid blueviolet;
+      border: 20px solid blueviolet;
     }
   
 `;
 const X1 = styled.div`
      
-    width: 50px;
-    height: 50px;
-    border: 10px solid black;
+    width: 40px;
+    height: 40px;
+    border: 5px solid black;
     border-radius: 70%;
     border-color: orangered;
-    margin: 0 5px;
+    margin: 0 10px;
+    position: relative;
+    top:36px;
 
     :hover{
       border-color: orangered;
-      border: 45px groove orangered;
+      border: 20px groove orangered;
       transition: 1s;
     }
     :active{
-      border: 45px solid blueviolet;
+      border: 20px solid blueviolet;
     }
   
 `;
@@ -395,12 +406,16 @@ const Character = styled.div`
   bottom: 15px;
 `
 const StartContainer = styled.div`
+
   text-align: center;
   max-width:600px;
+  height: 700px;
+  margin:0px auto;
+  top : 100px;
+
   
-  min-height: 800px;
-  max-height:800px;
-  border: 2px greenyellow solid;
+  border: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
   
   &>.mbti-person1{
@@ -427,14 +442,11 @@ const Container = styled.div`
     margin: 0 auto;
     padding: 0;
     background-color: rgba(0,0,0, .04);
-
-    justify-content: center;
-    display: flex;
-    align-items: center;
+    height: 100vh;
 `
 
 const Sentence1 = styled.div`
-  font-size: 33px;
+  font-size: 39px;
   span:nth-of-type(1){
     color:red;
   }
@@ -460,7 +472,7 @@ const Sentence2 = styled.div`
 `
 
 const Mbtiword = styled.p`
-  font-size: 40px;
+  font-size: 30px;
   position: relative;
   right:50px;
   top:10px;
@@ -1822,15 +1834,15 @@ const Quiz = (props) => {
                 <p>{e.question}</p>
                 <OXcontainer>
                   <ObuttonContainer>
-                    <Word1>동의</Word1>
                     <O3 onClick={onClick3Yes1}></O3>
                     <O2 onClick={onClick2Yes1}></O2>
                     <O1 onClick={onClick1Yes1}></O1>
                     <X1 onClick={onClick1No1}></X1>
                     <X2 onClick={onClick2No1}></X2>
                     <X3 onClick={onClick3No1}></X3>
-                    <Word2>비동의</Word2>
                   </ObuttonContainer>
+                  <Word1>동의</Word1>
+                  <Word2>비동의</Word2>
                 </OXcontainer>
               </NumContainer>
             </>
@@ -1843,15 +1855,15 @@ const Quiz = (props) => {
                 <p>{e.question}</p>
                 <OXcontainer>
                   <ObuttonContainer>
-                    <Word1>동의</Word1>
                     <O3 onClick={onClick3Yes2}></O3>
                     <O2 onClick={onClick2Yes2}></O2>
                     <O1 onClick={onClick1Yes2}></O1>
                     <X1 onClick={onClick1No2}></X1>
                     <X2 onClick={onClick2No2}></X2>
                     <X3 onClick={onClick3No2}></X3>
-                    <Word2>비동의</Word2>
                   </ObuttonContainer>
+                  <Word1>동의</Word1>
+                  <Word2>비동의</Word2>
                 </OXcontainer>
               </NumContainer>
             </>
@@ -1865,15 +1877,15 @@ const Quiz = (props) => {
                 <OXcontainer>
                   <ObuttonContainer>
 
-                    <Word1>동의</Word1>
                     <O3 onClick={onClick3Yes3}></O3>
                     <O2 onClick={onClick2Yes3}></O2>
                     <O1 onClick={onClick1Yes3}></O1>
                     <X1 onClick={onClick1No3}></X1>
                     <X2 onClick={onClick2No3}></X2>
                     <X3 onClick={onClick3No3}></X3>
-                    <Word2>비동의</Word2>
                   </ObuttonContainer>
+                  <Word1>동의</Word1>
+                  <Word2>비동의</Word2>
 
                 </OXcontainer>
               </NumContainer>
@@ -1887,15 +1899,15 @@ const Quiz = (props) => {
                 <p>{e.question}</p>
                 <OXcontainer>
                   <ObuttonContainer>
-                    <Word1>동의</Word1>
                     <O3 onClick={onClick3Yes4}></O3>
                     <O2 onClick={onClick2Yes4}></O2>
                     <O1 onClick={onClick1Yes4}></O1>
                     <X1 onClick={onClick1No4}></X1>
                     <X2 onClick={onClick2No4}></X2>
                     <X3 onClick={onClick3No4}></X3>
-                    <Word2>비동의</Word2>
                   </ObuttonContainer>
+                  <Word1>동의</Word1>
+                  <Word2>비동의</Word2>
                 </OXcontainer>
               </NumContainer>
             </>
@@ -1953,44 +1965,43 @@ const MBTI = () => {
   }
 
   return (
-    <Container>
+    <div className='Container'>
+      <Container>
+        {/* mode 가 main 일 때 */}
+        {states.mode === 'start'
+          ?
+          <StartContainer>
+            <Sentence1>당신은 이 검사가 끝나고
+              <span>m</span>
+              <span>b</span>
+              <span>t</span>
+              <span>i</span>
+              <br /><span>ISOUR</span> 의 검사가 너무 정확해<br /> "조금 소름이 돋을 정도예요"<br /> 라고 말할것입니다.</Sentence1>
+            <p />
+            <Sentence2>여러분의 특성을 파악하고 그 특성을 통한<br /> <span>인생 최고의 친구</span>를 찾으세요!</Sentence2>
 
-      {/* mode 가 main 일 때 */}
-      {states.mode === 'start'
-        ?
-        <StartContainer>
-          <Sentence1>당신은 이 검사가 끝나고
-            <span> m</span>
-            <span>b</span>
-            <span>t</span>
-            <span>i</span>
-            <br /><span>ISOUR</span> 의 검사가 너무 정확해<br /> "조금 소름이 돋을 정도예요"<br /> 라고 말할것입니다.</Sentence1>
-          <p />
-          <Sentence2>여러분의 특성을 파악하고 그 특성을 통한<br /> <span>인생 최고의 친구</span>를 찾으세요!</Sentence2>
+            <Startbtn onClick={() => { changeMode('quiz') }}>검 사 시 작 <VscArrowRight className="arrow" size={35} /></Startbtn>
+            <Mbtiword>
+              <span>m</span>
+              <span>b</span>
+              <span>t</span>
+              <span>i</span>
+            </Mbtiword>
+            <MdQuiz size={80} className='mbti-quiz' /><MdPsychology size={80} className='mbti-brain' />
+            <p></p>
+            <IoPeople className='mbti-person1' size={180} /><IoPersonAdd className='mbti-person2' size={120} />
 
-          <Startbtn onClick={() => { changeMode('quiz') }}>검 사 시 작 <VscArrowRight className="arrow" size={35} /></Startbtn>
-          <Mbtiword>
-            <span>m</span>
-            <span>b</span>
-            <span>t</span>
-            <span>i</span>
-          </Mbtiword>
-          <MdQuiz size={100} className='mbti-quiz' /><MdPsychology size={100} className='mbti-brain' />
-          <p></p>
-          <IoPeople className='mbti-person1' size={250} /><IoPersonAdd className='mbti-person2' size={170} />
+          </StartContainer>
 
-        </StartContainer>
-
-        : null
-      }
-
-      {/* mode 가 quiz 일 때 */}
-      {states.mode === 'quiz'
-        ? <Quiz questionList={states.questionList} />
-        : null
-      }
-
-    </Container>
+          : null
+        }
+        {/* mode 가 quiz 일 때 */}
+        {states.mode === 'quiz'
+          ? <Quiz questionList={states.questionList} />
+          : null
+        }
+      </Container>
+    </div>
   )
 }
 
