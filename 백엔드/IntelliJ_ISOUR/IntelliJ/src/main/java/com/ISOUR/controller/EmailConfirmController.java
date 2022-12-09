@@ -49,7 +49,7 @@ public class EmailConfirmController {
         System.out.println("code match : "+ ePw.equals(getEmailCode));
         if(ePw.equals(getEmailCode)) {
             result =1;
-            ePw=createKey();
+//            ePw=createKey();
         }
         return result;
     }
