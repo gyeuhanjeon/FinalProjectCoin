@@ -20,7 +20,8 @@ import Cookies from 'universal-cookie';
 import { VscArrowRight } from "react-icons/vsc";
 import { IoPeople, IoPersonAdd } from "react-icons/io5";
 import { MdPsychology, MdQuiz } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate  } from "react-router-dom";
+
 
 //스타일 컴포넌트
 
@@ -494,7 +495,7 @@ const Quiz = (props) => {
   const cookies = new Cookies();
 
   const localId = cookies.get('rememberId');
-  if (localId === undefined) window.location.replace("/");
+  if (localId === undefined) navigate("/");
 
 
   const [count, setCount] = useState(0);
@@ -1909,10 +1910,11 @@ const Quiz = (props) => {
 
 
 const MBTI = () => {
+  const navigate = useNavigate();
 
   const cookies = new Cookies();
   const localId = cookies.get('rememberId');
-  if (localId === undefined) window.location.replace("/login");
+  if (localId === undefined) navigate("/login");
 
   const currentId = window.localStorage.getItem("userId");
   const currentPw = window.localStorage.getItem("userPw");

@@ -1,8 +1,10 @@
 import Cookies from 'universal-cookie';
+import { useNavigate  } from "react-router-dom";
 
 function Logout() {
 
     const cookies = new Cookies();
+    const navigate = useNavigate();
 
     // 로그아웃 by 조혜경 (수정 필요할 수도 있음)
     const onClickLogout = () => {
@@ -29,7 +31,7 @@ function Logout() {
 
 
         alert("콘솔 확인용");
-        window.location.replace("/");
+        navigate("/");
     }
 
 

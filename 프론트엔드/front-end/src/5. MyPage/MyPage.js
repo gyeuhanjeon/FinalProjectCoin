@@ -11,6 +11,7 @@ import { storage } from '../firebase'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 //쿠키
 import Cookies from 'universal-cookie';
+import { useNavigate  } from "react-router-dom";
 
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
 
@@ -22,6 +23,7 @@ const MyPage = () => {
   console.log(localId);
   const localIdNum = window.sessionStorage.getItem("id_num");
   const localNickname = window.sessionStorage.getItem("nickname");
+  const navigate = useNavigate();
 
 
   // const localId = window.localStorage.getItem("userId");
@@ -61,9 +63,6 @@ const MyPage = () => {
   최초 통신(useEffect) */
   useEffect(() => {
     const localId = cookies.get('rememberId');
-    //  if(localId === undefined) window.location.replace("/login");
-    // ▲ 로그인 안 되어 있으면 로그인 페이지로 
-
 
     const memberData = async () => {
       console.log("\n>> 회원 정보 조회(useEffect)");
@@ -386,7 +385,7 @@ const MyPage = () => {
   const onClickTestStart = () => {
     console.log("\n>> 검사하기 버튼 눌렀어요.");
     // alert("콘솔 확인하세요.")
-    window.location.replace("/MBTI");
+    navigate("/MBTI");
   }
 
   /* 탈퇴하기 */
@@ -416,7 +415,7 @@ const MyPage = () => {
           window.localStorage.setItem("isLogin", "FALSE");
           closeUnregisterModal();
           alert("회원 탈퇴 성공");
-          window.location.replace("/");
+          navigate("/");
         } else {
           alert("비밀번호를 확인하세요.");
         }

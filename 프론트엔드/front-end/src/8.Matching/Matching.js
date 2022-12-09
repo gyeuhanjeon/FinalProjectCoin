@@ -37,6 +37,7 @@ const Matching = () => {
   const localId = cookies.get('rememberId');
   const id = window.sessionStorage.getItem("id");
   const localId_num = cookies.get('rememberId_num');
+  const navigate = useNavigate();
 
   const [url, setUrl] = useState(null);
   const [myId, setMyId] = useState('');
@@ -85,7 +86,7 @@ const Matching = () => {
 
   const nav = useNavigate();
   useEffect(() => {
-    if(localId === undefined) window.location.replace("/login");
+    if(localId === undefined) navigate("/login");
     // ▲ 로그인 안 되어 있으면 로그인 페이지로
 
     const memberData = async () => {

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import TeamAPI from "../0. API/TeamAPI";
 import Cookies from 'universal-cookie';
+import { useNavigate  } from "react-router-dom";
 
 const GChat = () => {
-    // const isLogin = window.localStorage.getItem("isLogin");
-    // if(isLogin === "FALSE") window.location.replace("/login");
-    
 
 
 
@@ -14,6 +12,7 @@ const GChat = () => {
     const [chatInfo,setChatinfo] = useState([]);
     const [isText, setIsText] = useState('');
     const cookies = new Cookies();
+    const navigate = useNavigate();
 
 
     const localId = cookies.get('rememberId')  ;
@@ -59,7 +58,7 @@ const GChat = () => {
         }
     ]
     useEffect(() => {
-        if (localId === undefined) window.location.replace("/login");
+        if (localId === undefined) navigate("/login");
         //로그인 안될시 로그인 화면으로 이동.
 
         const chatData = async () => {
