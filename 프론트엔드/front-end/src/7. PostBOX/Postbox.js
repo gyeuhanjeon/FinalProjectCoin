@@ -24,6 +24,7 @@ const Postbox = () => {
   const [limit, setLimit] = useState(10); // 페이지당 게시물 수
   const [page, setPage] = useState(1); // 현재 페이지 번호
   const offset = (page - 1) * limit; // 각 페이지별 첫 게시물의 위치 계산
+  console.log("offset : " + offset);
 
   // ▼ 체크된 쪽지를 담을 배열
   const [checkedPosts, setCheckedPosts] = useState([]);
@@ -118,6 +119,7 @@ const Postbox = () => {
         if (response.status == 200) {
           console.log("통신 성공(200)");
           alert("선택한 쪽지가 삭제되었습니다.");
+          window.location.reload();
         } else {
           console.log("통신 실패 : " + response.status);
           alert("통신 실패 : " + response.status);
@@ -175,8 +177,9 @@ const Postbox = () => {
               <tr>
                 <td colSpan='4'>쪽지가 없습니다.</td>
               </tr>
+              // slice(2, 4) : 인덱스 2부터 4-1(=3)까지
               : (postList.slice(offset, offset + limit).map(post => (
-                <tr key={post.postTime}>
+                <tr key={post.postNum}>
                   <td className='Postbox-table-tbody-td-checkbox'>
                     <input type='checkbox'
                       onChange={(e) => handleSingleCheck(e.target.checked, post.postNum)}
