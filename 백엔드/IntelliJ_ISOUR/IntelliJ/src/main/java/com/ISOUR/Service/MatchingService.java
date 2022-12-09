@@ -73,6 +73,7 @@ public class MatchingService {
                 "       FROM (select im.ID_NUM AS userIdNum,\n" +
                 "       \t\t\t\t   im.MBTI AS userMbti, \n" +
                 "\t                im2.ID_NUM AS matIdNum,\n" +
+                "\t                im2.ID AS matId,\n" +
                 "\t                im2.FACE AS matFace,\n" +
                 "\t                im2.NICKNAME AS matNick,\n" +
                 "\t                im2.MBTI AS matMbti,\n" +

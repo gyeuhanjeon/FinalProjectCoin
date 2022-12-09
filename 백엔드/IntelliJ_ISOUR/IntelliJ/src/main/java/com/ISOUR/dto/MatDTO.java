@@ -28,6 +28,7 @@ public class MatDTO {
     private BigInteger user_id_num;
     private String user_mbti;
     private BigInteger mat_id_num;
+    private String mat_id;
     private String mat_face;
     private String mat_nick;
     private String mat_mbti;
