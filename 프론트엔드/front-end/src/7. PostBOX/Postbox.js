@@ -58,7 +58,7 @@ const Postbox = () => {
       setGoPagination(true);
     };
     postData();
-  }, [loading]);
+  }, []);
 
   /* 
   쪽지 자세히 보기 */
@@ -147,7 +147,7 @@ const Postbox = () => {
           <h1>{localId} 님의 쪽지함</h1>
         </div>
 
-        <button className='delete' onClick={onClickDelete}>삭제</button>
+        <button className='delete' onClick={onClickDelete} disabled={postList.length === 0}>삭제</button>
 
         {/* main 영역 */}
         <div className='Postbox-main'>
@@ -156,21 +156,26 @@ const Postbox = () => {
             <thead>
               <tr>
                 <th>
-                  <input type='checkbox'
+                  <input type='checkbox' className='Postbox-table checkbox'
                     // ▼ checked 는 true 또는 false
                     onChange={(e) => handleAllCheck(e.target.checked)}
                     // ▼ 전체 쪽지 수와 체크된 쪽지의 수가 다르면 false(전체 선택 해제)
                     checked={checkedPosts.length === postList.length ? true : false} />
                 </th>
-                <th>보낸 사람</th>
-                <th>내용</th>
-                <th>시간</th>
+                <th className='Postbox-table postSender'>보낸 사람</th>
+                <th className='Postbox-table content'>내용</th>
+                <th className='Postbox-table postTime'>시간</th>
               </tr>
             </thead>
 
             {/* tbody 의 시작 */}
             <tbody>
-              {postList.slice(offset, offset + limit).map(post => (
+              {postList.length === 0 
+              ? 
+              <tr>
+                <td colSpan='4'>쪽지가 없습니다.</td>
+              </tr>
+              : (postList.slice(offset, offset + limit).map(post => (
                 <tr key={post.postTime}>
                   <td className='Postbox-table-tbody-td-checkbox'>
                     <input type='checkbox'
@@ -189,7 +194,7 @@ const Postbox = () => {
                     <Moment format='YY-MM-DD HH:mm'>{post.postTime}</Moment>
                   </td>
                 </tr>
-              ))}
+              )))}
             </tbody>
           </table>
         </div>

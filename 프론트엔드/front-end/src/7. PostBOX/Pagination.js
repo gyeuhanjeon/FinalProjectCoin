@@ -11,14 +11,19 @@ function Pagination(props) {
   const { total, limit, page, setPage } = props;
   console.log("\n>> Pagination 방문");
 
-  const totalPages = Math.ceil(total / limit); // 총 페이지 수 >> 13 나누기 10 => 2
-  console.log("numPages : " + totalPages);
-
   console.log("전체 쪽지 수(total) : " + total);
   console.log("한 페이지에 보여줄 쪽지 수(limit) : " + limit); // 고정 10
   console.log("현재 page : " + page); // 고정 1
-  
+
+  let totalPages = 1;
   let pageCount; // 화면에 보여줄 페이지 수
+  if(total != 0) {
+    totalPages = Math.ceil(total / limit); // 총 페이지 수 >> 13 나누기 10 => 2
+    
+  }
+  console.log("totalPages : " + totalPages);
+
+  
   if(totalPages > 5) pageCount = 5;
   else pageCount = totalPages;
 
@@ -51,9 +56,9 @@ function Pagination(props) {
       </span>
 
       <li onClick={() => setPage(firstNum)}
-        aria-current={page === firstNum ? "page" : null}
+        aria-current={page === firstNum ? "page" : 1}
       >
-        {firstNum}
+        {firstNum === 0 ? 1 : firstNum}
       </li>
 
       {Array(pageCount-1).fill().map((_, i) => {

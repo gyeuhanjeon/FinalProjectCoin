@@ -58,6 +58,8 @@
   /* width: 100%; */
   text-align: center;
   box-shadow: 12px 12px 12px rgba(32,32,32,.5);
+  border: 1px solid skyblue;
+  border-collapse: collapse;
   /* height: 500px; */
   /* background-color: gray; */
   /* border-collapse: collapse; */
@@ -81,7 +83,10 @@
   border: 1px solid skyblue;
 }
 
-
+.Postbox-table .checkbox { width: 34x; }
+.Postbox-table .postSender { width: 146px; }
+.Postbox-table .content { width: 375px; }
+.Postbox-table .postTime { width: 178px; }
 
 /* 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -95,15 +100,6 @@
   background-color: white;
 }
 
-.Postbox-table-tbody-td-checkbox {
-  width: 34px;
-}
-.Postbox-table-tbody-td-postSender {
-  width: 146px;
-}
-.Postbox-table-tbody-td-content {
-  width: 375px;
-}
 .Postbox-table-tbody-td-content-div {
   width: 370px;
   text-align: left;
@@ -111,9 +107,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.Postbox-table-tbody-td-postTime {
-  width: 178px;
 }
 
 
