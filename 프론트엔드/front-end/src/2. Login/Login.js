@@ -19,10 +19,18 @@ function Login() {
   // // ▲ 로그인되어 있으면 바로 HOME 으로 이동
 
   const cookies = new Cookies();
-  const localId = cookies.get('rememberId')  ;
+  const localId = cookies.get('rememberId');
 
   if (localId !== undefined) window.location.replace("/home");
-  
+
+  const EnterPress = (e) => {
+    if (e.key === 'Enter') {
+      onClickLogin();
+    }
+  }
+
+
+
   const signInWithGoogle = () => {
 
 
@@ -115,7 +123,7 @@ function Login() {
   /*
   Login 버튼 클릭 */
   const onClickLogin = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     console.log(checkedItems);
     console.log("입력한 ID : " + id);
@@ -181,18 +189,18 @@ function Login() {
 
         {/* 아이디 */}
         <div className="Login-Id">
-          <input className="Login-input" type="text" placeholder="Enter ID" value={id} onChange={onChangeId} required />
+          <input className="Login-input" type="text" placeholder="Enter ID" value={id} onKeyDown={EnterPress} onChange={onChangeId} required />
         </div>
 
         {/* 비밀번호 */}
         <div className="Login-PW">
-          <input className="Login-input" type="password" placeholder="Enter Password" value={pwd} onChange={onChangePwd} />
+          <input className="Login-input" type="password" placeholder="Enter Password" onKeyDown={EnterPress} value={pwd} onChange={onChangePwd} />
         </div>
 
         <form>
           <div className='Auto-Login'>
-          <input className='Auto-Login-input' type="checkbox" id='checkbox' onClick={onClickAutologin}></input>
-          <label for='checkbox'>자동로그인</label>
+            <input className='Auto-Login-input' type="checkbox" id='checkbox' onClick={onClickAutologin}></input>
+            <label for='checkbox'>자동로그인</label>
           </div>
         </form>
 
@@ -214,15 +222,15 @@ function Login() {
 
         {/* 소셜로그인 */}
         <div className='social-Login'>
-        <div className='Login-kakao'>
-          <a href={kakao_Auth_Url}>
-            <img className='kakao-img' src={kakao} />
-          </a>
-        </div>
+          <div className='Login-kakao'>
+            <a href={kakao_Auth_Url}>
+              <img className='kakao-img' src={kakao} />
+            </a>
+          </div>
 
-        <div className='Login-Google'>
-          <GoogleButton onClick={signInWithGoogle} />
-        </div>
+          <div className='Login-Google'>
+            <GoogleButton onClick={signInWithGoogle} />
+          </div>
         </div>
       </div>
     </div>

@@ -82,7 +82,7 @@ const Word1 = styled.span`
   width:100px;
   height: 20px;
   top:180px;
-  left:160px;
+  left:110px;
   color:skyblue;
 
 `;
@@ -92,7 +92,7 @@ const Word2 = styled.span`
   width:100px;
   height: 20px;
   top:180px;
-  right:162px;
+  right:110px;
   color:orangered;
 
 `;
@@ -136,7 +136,7 @@ const QuizContainer = styled.div`
 
   p{
     position: relative;
-    top:400px;
+    top:450px;
   }
 `
 
@@ -269,11 +269,12 @@ const RecommendByOne = styled.div`
     left: px;
   }
   &>p{
-    color:#6699FF;
+    color:#00FFFF;
     font-size: 30px;
     text-align: center;
     position: relative;
     bottom:10px;
+    font-weight: 900;
   }
   height: 250px;
 	width: 170px;
@@ -285,7 +286,7 @@ const RecommendByOne = styled.div`
     flex-direction: column;
     align-items: center;
     grid-row: 2/3;
-    background-color: #99CCFF;
+    background-color: #6633FF;
     position: relative;
     
 `;
@@ -332,6 +333,7 @@ const MyMbti = styled.div`
     font-size: 40px;
     position: relative;
     bottom: 10px;
+    font-weight: 900;
   }
 
 `
@@ -358,8 +360,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   opacity: 0.95;
   transition-duration: .5s;
-  text-shadow: 10px 10px 10px rgba(0, 0, 0, 5);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 5); ;
+  
   .arrow{
     transform: translateX(10px);
     transition-duration: .5s;
@@ -388,10 +389,10 @@ const RecommendWord = styled.div`
 const Character = styled.div`
   color: #FFFFCC;
   font-weight: 900;
-  font-size: 25px;
+  font-size: 15px;
   position: relative;
   text-align:center;
-  bottom: 20px;
+  bottom: 15px;
 `
 const StartContainer = styled.div`
   text-align: center;
