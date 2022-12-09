@@ -1,6 +1,5 @@
 package com.ISOUR.repository;
 
-import com.ISOUR.entity.MemberInfo;
 import com.ISOUR.entity.Postbox;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;

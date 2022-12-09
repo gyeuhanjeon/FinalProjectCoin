@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TeamAPI from '../0. API/TeamAPI';
 import hangjungdong from '../other/hangjungdong';
@@ -115,7 +115,7 @@ function SignUp() {
                 onChange={(e) => handleAllCheck(e.target.checked)}
                 checked={termsList.length === checkedItems.length ? true : false} />
               <label htmlFor="checkbox-check_all">모두 동의합니다.</label>
-            </div>m
+            </div>
             {termsList?.map(ball => (
               <div>
                 <div className='checkbox-check-single'>
@@ -231,13 +231,11 @@ function SignUp() {
 
   const [data, setData] = useState({
     name: "",
+    email: "",
+    loading: false,
     id: "",
     nickname: "",
-    friend: false,
-    email: "",
-    password: "",
-    error: null,
-    loading: false,
+    friends: [],
   });
 
 
@@ -441,10 +439,9 @@ function SignUp() {
   /*이메일 변경*/
   const OnChangeEmail = e => {
 
-
     let temp_email = e.target.value;
     setEmail(temp_email);
-    setEmail(e.target.value);
+
     if (temp_email === '' || !regexEmail.test(temp_email)) {
       setIsEmail(false);
       setShowReqEmail(true); // 이메일을 정확히 입력하세요.
@@ -456,9 +453,8 @@ function SignUp() {
 
 
   /*이메일 중복확인*/
-  const OnClickEmailCheck = async (e) => {
+  const onClickEmailCheck = async (e) => {
     e.preventDefault();
-
     console.log("\n\nemail 인증 버튼을 눌렀어요");
     try {
       const emailResult = await TeamAPI.emailDuplicateCheck(email);
@@ -589,14 +585,16 @@ function SignUp() {
     console.log("isRegion2 : " + isRegion2);
     console.log("introduce 값 : " + introduce);
 
-    // const result = await createUserWithEmailAndPassword(
-    //   auth,
-    //   email,
-    //   pwd
-    // );
-    // // console.log(result.user);
+    
+    // console.log(result.user);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        pwd
+      );
+
       const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
 
       console.log("name : " + name);
@@ -616,26 +614,24 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       navigate("/login");
 
-      // setDoc(doc(db, "users", id), {
-      //   uid: result.user.uid,
-      //   name,
-      //   id,
-      //   friend: false,
-      //   nickname,
-      //   email,
-      //   createdAt: Timestamp.fromDate(new Date()),
-      //   isOnline: true,
-      // });
-      // setData({
-      //   name: "",
-      //   id: "",
-      //   nickname: "",
-      //   friend: false,
-      //   email: "",
-      //   password: "",
-      //   error: null,
-      //   loading: false,
-      // });
+      setDoc(doc(db, "users", id), {
+        uid: result.user.uid,
+        name,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+        id,
+        nickname,
+        friends: [],
+      });
+      setData({
+        name: "",
+        email: "",
+        loading: false,
+        id: "",
+        nickname: "",
+        friends: [],
+      });
 
 
     } else {
@@ -738,7 +734,7 @@ function SignUp() {
               <div className="Form-item">
                 <span className="Form-item-icon material-symbols-rounded"></span>
                 <input className="Input-border-7" type="text" placeholder="이메일" value={email} onChange={OnChangeEmail} disabled={emailDoubleCheck ? true : false} />
-                {isEmail && <button className='ID-btn' onClick={OnClickEmailCheck} > 중복확인 </button>}
+                {isEmail && <button className='ID-btn' onClick={onClickEmailCheck} > 중복확인 </button>}
                 {emailDoubleCheck && <button className='ID-btn' onClick={onClickEmailAdress}> 이메일인증</button>}
                 <div className='MSG'>
                   {showReqEmail && reqEmail}
