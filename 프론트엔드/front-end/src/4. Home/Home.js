@@ -15,6 +15,8 @@ import {
   getDoc,
   updateDoc
 } from "firebase/firestore";
+import moment from 'moment';
+import './Home.css';
 
 const Home = () => {
     
@@ -28,7 +30,7 @@ const Home = () => {
   const kakaoId = window.sessionStorage.getItem("kakaoId");
   const kakaoEmail = window.sessionStorage.getItem("kakaoEmail");
   const [friend, setFriend] = useState("");
-
+  const [ registrationDate, setRegistrationDate ] = useState('');
   const [nickName, setNickName] = useState('');
 
 
@@ -57,8 +59,8 @@ useEffect(() => {
     try {
         const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
         setNickName(response.data.nickname)
+        setRegistrationDate(response.data.registrationDate);
         const localId_num = response.data.idNum;
-
 
         // setCookie('rememberEmail', email);
         cookies.set('rememberId_num', localId_num, {
@@ -73,13 +75,34 @@ useEffect(() => {
   };
   memberData();
   }, []);
+
+  const date = moment().format("YYYY.MM.DD HH:mm:ss");
+  const Dday = moment(date).diff(registrationDate, 'day');
    
   return(
-    <>
-        <button onClick={chatTest}>임시 채팅 테스트</button>
-      <h1>안녕하세요~ <span style={{color: "red" , fontWeight: "bold" }}>{nickName}</span> 님</h1>
-      <h1>반갑습니다^^*</h1>
-    </>
+    <div className="Container">
+      <div className="Home-Container">
+        <div className="WelcomeMessage">
+          <h2><span style={{color: "navy" , fontWeight: "bold" }}>{nickName}</span> 님과 MBTISOUR는 오늘, <span style={{color: 'red', fontWeight: 'bold'}}>{Dday + 1}일</span></h2>
+          <h3>새로운 쪽지가 있습니다!</h3>
+        </div>
+        
+        {/* <a href="https://dinorunner.com/ko/" > 
+          <img src={test} />
+        </a> */}
+        <div className="Dino">    
+        <iframe className="DinoAddr" src="https://chromedino.com/" type="text/css" frameborder="0" scrolling="no" width="100%" height="100%" loading="lazy"></iframe>
+          
+          {/* <object data="https://g.co/kgs/yY85xp" type="text/html" width="1000" height="600" /> */}
+          
+        </div>
+        <div className="DinoStartMessage">
+          <p>게임을 시작하려면 spacebar를 누르세요</p>
+        </div>
+        
+
+      </div>
+    </div>
   );
 }
 

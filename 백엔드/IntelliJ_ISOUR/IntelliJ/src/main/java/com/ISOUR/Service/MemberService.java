@@ -54,6 +54,7 @@ public class MemberService {
         memberInfo.setRegion1(region1);
         memberInfo.setRegion2(region2);
         memberInfo.setIntroduce(introduce);
+        memberInfo.setRegistrationDate(LocalDateTime.now().withNano(0));
 
         MemberInfo result = memberRepository.save(memberInfo);
         log.warn(result.toString());
@@ -208,6 +209,7 @@ public class MemberService {
         memberDTO.setMbti(memberInfo.getMbti());
         memberDTO.setIntroduce(memberInfo.getIntroduce());
         memberDTO.setFace(memberInfo.getFace());
+        memberDTO.setRegistrationDate(memberInfo.getRegistrationDate());
 
         return memberDTO;
     }

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
+
 @SpringBootTest
 @Slf4j
 class MemberRepositoryTest {
@@ -58,6 +60,8 @@ class MemberRepositoryTest {
             memberInfo.setPwd("test" + ( 32 +i));
             memberInfo.setMbti(MBTI[i]);
             memberInfo.setIntroduce("Im test" + (32 + i) + "입니다.");
+            memberInfo.setRegistrationDate(LocalDateTime.now().withNano(0));
+
             memberRepository.save(memberInfo);
         }
     }

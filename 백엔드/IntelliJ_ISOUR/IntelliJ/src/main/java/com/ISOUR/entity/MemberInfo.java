@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -32,4 +33,6 @@ public class MemberInfo {
     private String mbti;
     private String introduce;
     private String face;
+    @Column(updatable = false)
+    private LocalDateTime registrationDate;
 }

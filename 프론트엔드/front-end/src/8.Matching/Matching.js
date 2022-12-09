@@ -104,7 +104,7 @@ const Matching = () => {
         console.log("!",Mat.data)
         const my = Mat.data[0];
         setMyInfo(my);
-        setId_num(my.localId_num);
+        setId_num(my.user_id_num);
         setMyId(my.user_id);
         setMyFace(my.user_face);
         setMyNickname(my.user_nick);

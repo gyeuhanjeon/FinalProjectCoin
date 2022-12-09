@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,4 +23,5 @@ public class MemberDTO {
     private String mbti;
     private String introduce;
     private String face;
+    private LocalDateTime registrationDate;
 }
