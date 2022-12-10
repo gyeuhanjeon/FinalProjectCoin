@@ -1,11 +1,18 @@
 import Cookies from 'universal-cookie';
+import { db } from "../firebase";
+import { updateDoc, doc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 
 function Logout() {
   const cookies = new Cookies();
-  const location = useNavigate();
+  const navigate = useNavigate();
 
-  const onClickLogout = () => {
+  const onClickLogout = async () => {
+    console.log("id : ", cookies.get('rememberId'));
+    await updateDoc(doc(db, "users", cookies.get('rememberId')), {
+      isOnline: false,
+    });
+
     cookies.remove('rememberId');
     cookies.remove('rememberEmail');
     
@@ -16,13 +23,13 @@ function Logout() {
     window.sessionStorage.setItem("kakaoEmail",'');
 
     alert("메인으로 보내기 전에 확인용");
-    location("/");
+    navigate("/");
   }
 
   return (
-    <div onClick={onClickLogout}>
-      <span class="material-symbols-outlined">logout<a href="/">로그아웃</a></span>
-    </div>
+    <span className="material-symbols-outlined" onClick={onClickLogout}>logout
+      로그아웃
+    </span>
   );
 }
 
