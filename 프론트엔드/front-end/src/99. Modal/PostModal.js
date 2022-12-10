@@ -1,20 +1,23 @@
-import React, {useState} from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";  // yarn add react-bootstrap bootstrap 실행
+import React from "react";
 import TeamAPI from '../0. API/TeamAPI';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Cookies from 'universal-cookie';
+import './ChangePwdModal.css';
 
-const PostModal = ( { show, onHide, modalName, modalContent }) => {
-  const [signUpModalOn, setSignUpModalOn] = useState(false);
-  const localId = window.localStorage.getItem("userId");
+const PostModal = (props) => {
+  const { open, close, sender, content, senderId } = props;
+  console.log("\n>> PostModal : " + open);
+
+  const cookies = new Cookies();
+  // ▼ 로그인 안 되어 있으면 로그인 페이지로
+  const localId = cookies.get('rememberId');
   let sendMessage;
 
   const onClickReply = async() => {
     console.log("답장하기 버튼 눌렀어요.");
 
     try {
-      const isMember = await TeamAPI.memberRegCheck(modalName);
-      console.log(modalName + "이 현재 존재하는 회원인지 확인이 필요합니다.");
+      const isMember = await TeamAPI.memberRegCheck(senderId);
+      console.log(sender + "(" + senderId + ")이 현재 존재하는 회원인지 확인이 필요합니다.");
       console.log("isMember.data.result : " + isMember.data);
 
       if(isMember.data === true) {
@@ -22,9 +25,9 @@ const PostModal = ( { show, onHide, modalName, modalContent }) => {
         sendMessage = prompt("쪽지 내용을 작성하세요.", "");
 
         if(sendMessage !== null) {
-          const messageReg = await TeamAPI.messageReg(localId, modalName, sendMessage);
+          const response = await TeamAPI.sendPost(localId, senderId, sendMessage);
           console.log("\n\n보내는 사람(localId) : " + localId);
-          console.log("받는 사람(modalName) : " + modalName);
+          console.log("받는 사람(modalName) : " + senderId);
           console.log("쪽지 내용(sendMessage) : " + sendMessage);
           alert("쪽지 보내기 성공!!");
         } else {
@@ -43,43 +46,44 @@ const PostModal = ( { show, onHide, modalName, modalContent }) => {
   }
 
   return (
-    <Modal
-      // {...props}
-      show={show} // 추가
-      onHide={onHide} // 추가
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
+    <div className={open ? 'openModal modal' : 'modal'}>
+      {open ? (
+        <section>
 
-    {/* Modal.Body 의 내용이에요^^ */}
-      <Modal.Body>
+        {/* header 영역 */}
+          <header>
+            쪽지 자세히 보기
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+          </header>
 
-        <Form.Group className="mb-3">
-          <Form.Label>보낸 사람</Form.Label>
-          <Form.Control placeholder={modalName} disabled />
-        </Form.Group>
+        {/* main 영역 */}
+          <main>
+            <div className="Modal-Form-item">
+              <label className="form-label">보낸 사람 닉네임</label>
+              <input type="text" className="Modal-Form-control" value={sender} disabled/>
+            </div>
 
-        <Form.Group className="mb-3">
-          <Form.Label>쪽지내용</Form.Label>
-          <Form.Control placeholder={modalContent} disabled />
-        </Form.Group>
+            <div className="Modal-Form-item">
+              <label className="form-label">쪽지 내용</label>
+              <input type="text" className="Modal-Form-control" value={content} disabled/>
+            </div>
+          </main>
 
-      </Modal.Body>
+        {/* footer 영역 */}
+          <footer>
+            <button className="close" onClick={close}>
+              닫기
+            </button>
+            <button type="button" onClick={onClickReply}>
+              답장하기
+            </button>
+          </footer>
 
-    {/* Modal.Footer 의 내용이에요^^ */}
-      <Modal.Footer>
-        <Button variant="primary" type="button" onClick={onClickReply}>
-          답장하기
-        </Button>
-        <Button onClick={onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+        </section>
+      ) : null}
+    </div>
   );
 }
 

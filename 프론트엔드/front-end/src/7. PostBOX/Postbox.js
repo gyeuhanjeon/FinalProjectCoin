@@ -29,8 +29,9 @@ const Postbox = () => {
   // ▼ 체크된 쪽지를 담을 배열
   const [checkedPosts, setCheckedPosts] = useState([]);
   const [postSender, setPostSender] = useState("");
+  const [postSenderId, setPostSenderId] = useState("");
   const [content, setContent] = useState("");
-  const [postModalOn, setPostModalOn] = useState(false);
+  const [modalOn, setModalOn] = useState(false);
   const [goPagination, setGoPagination] = useState(false);
 
   /* 
@@ -47,6 +48,8 @@ const Postbox = () => {
         const response = await TeamAPI.postbox(localId);
         if (response.status == 200) {
           console.log("통신 성공(200)");
+          console.log(response.data);
+          console.log(response.data[0].postSenderId);
           setPostList(response.data);
           // console.log("보낸 사람[0] : " + response.data[0].postSender);
           // console.log("내용[0] : " + response.data[0].content);
@@ -63,14 +66,18 @@ const Postbox = () => {
 
   /* 
   쪽지 자세히 보기 */
-  const onClickPost = (postSender, content) => {
+  const openModal = () => { setModalOn(true); };
+  const closeModal = () => { setModalOn(false); };
+
+  const onClickPost = (postSendrId, postSender, content) => {
     console.log("보낸 사람(postSender) : " + postSender);
+    setPostSenderId(postSendrId);
     setPostSender(postSender);
 
     console.log("내용(content) : " + content);
     setContent(content);
 
-    setPostModalOn(true);
+    setModalOn(true);
   }
 
   /* 
@@ -139,9 +146,9 @@ const Postbox = () => {
     );
   }
 
-  return (
+  return ( 
     <div className='Container'>
-      <PostModal modalName={postSender} modalContent={content} show={postModalOn} onHide={() => setPostModalOn(false)} />
+      <PostModal open={modalOn} close={closeModal} sender={postSender} content={content} senderId={postSenderId} />
       <div className='Postbox-Container'>
 
         {/* header 영역 */}
@@ -188,7 +195,7 @@ const Postbox = () => {
                   </td>
                   <td className='Postbox-table-tbody-td-postSender'>{post.postSender}</td>
                   <td className='Postbox-table-tbody-td-content'
-                    onClick={() => onClickPost(post.postSender, post.content)}>
+                    onClick={() => onClickPost(post.postSenderId, post.postSender, post.content)}>
                     <div className='Postbox-table-tbody-td-content-div'>
                       {post.content}
                     </div>
