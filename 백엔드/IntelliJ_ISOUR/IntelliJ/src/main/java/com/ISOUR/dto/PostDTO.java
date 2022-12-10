@@ -9,6 +9,7 @@ import java.time.*;
 @Setter
 public class PostDTO {
     private Long postNum;
+    private String postSenderId;
     private String postSender;
     private String content;
     private LocalDateTime postTime;

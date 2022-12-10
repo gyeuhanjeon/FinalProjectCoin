@@ -33,6 +33,7 @@ public class PostService {
         for(Postbox e : postboxList) {
             PostDTO postDTO = new PostDTO();
             postDTO.setPostNum(e.getPostNum());
+            postDTO.setPostSenderId(e.getPostSender());
             String getSender = e.getPostSender();
             MemberInfo memberInfo = memberRepository.findById(getSender);
             postDTO.setPostSender(memberInfo.getNickname());
