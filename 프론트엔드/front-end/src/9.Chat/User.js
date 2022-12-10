@@ -1,12 +1,19 @@
-import React, { useEffect, useId, useState } from "react";
-// import Img from "../../";
+import React, { useEffect, useState } from "react";
+import Img from "../images/기본 프로필.png";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import Cookies from 'universal-cookie';
-import TeamAPI from "../0. API/TeamAPI";
 import "./Chat.css";
 
 const User = ({ user1 , user, selectUser, chat }) => {
+  console.log("\n>> User 방문");
+  console.log("==== Home 에서 받아오는 props ===");
+  console.log("user1(나) : " + user1);
+  console.log("user(상대방) : ", user); // [object Object] : users를 map 으로 돌면서 하나씩
+  // console.log("selectUser : ", selectUser); // 함수 그 자체
+  console.log("chat : ", chat); // 없음
+  
+  
   const cookies = new Cookies();
   const user2 = user?.uid;
   const [data, setData] = useState("");
@@ -35,7 +42,7 @@ const User = ({ user1 , user, selectUser, chat }) => {
       >
         <div className="user_info">
           <div className="user_detail">
-            <img src={user.avatar || `https://firebasestorage.googleapis.com/v0/b/isour-c9756.appspot.com/o/${user.id}?alt=media&token=` } alt="avatar" className="avatar" />
+            <img src={user.avatar || Img } alt="avatar" className="avatar" />
             <h4>{user.nickname}</h4>
             {data?.from !== user1 && data?.unread && (
               <small className="unread">New</small>
@@ -52,7 +59,16 @@ const User = ({ user1 , user, selectUser, chat }) => {
           </p>
         )}
       </div>
-      
+      <div
+        onClick={() => selectUser(user)}
+        className={`sm_container ${chat.name === user.name && "selected_user"}`}
+      >
+        <img
+          src={user.avatar || Img}
+          alt="avatar"
+          className="avatar sm_screen"
+        />
+      </div>
     </>
   );
 };

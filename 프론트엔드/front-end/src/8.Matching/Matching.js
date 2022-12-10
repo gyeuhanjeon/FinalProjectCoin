@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from 'react-bootstrap';
-import TeamAPI, { TEAM_DOMAIN } from '../0. API/TeamAPI';
-import styled from 'styled-components';
+import TeamAPI from '../0. API/TeamAPI';
 import { MatchingPostModal } from '../99. Modal/MatchingPostModal';
 import SmsIcon from '@mui/icons-material/Sms';
 import { IconButton } from '@mui/material';
 import { db } from "../firebase";
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  addDoc,
-  Timestamp,
-  orderBy,
-  setDoc,
-  doc,
-  getDoc,
-  updateDoc, arrayUnion
-} from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmailIcon from '@mui/icons-material/Email';
 import face from '../images/기본 프로필.png'
 import Cookies from 'universal-cookie';
 import '../0. API/defultMain.css'
-import firestore from '../firebase';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import NavigateNextIcon from '@mui/icons-material/ArrowBackIosNew';
 import './Matching.css';
@@ -46,39 +31,25 @@ const Matching = () => {
   const [myMbti, setMyMbti] = useState('');
   const [myIntroduce, setMyIntroduce] = useState('');
   const [myInfo, setMyInfo] = useState('');
-  const [friend, setFriend] = useState("");
 
   const [mat_memberInfo, setMat_MemberInfo] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [rnum, setRnum] = useState();
 
-  // const [like_user_num, setLike_user_num] = useState('');
-  // const [like_num, setLike_num] = useState(0);
-  // const [mat_id_num, setMat_id_num] = useState('');
+
 
   // 페이지 이동
   const onChangeNext = () => {
-      setPageNum(pageNum + 1);
-      console.log("pageNum : " + pageNum);
+    setPageNum(pageNum + 1);
+    console.log("pageNum : " + pageNum);
   }
 
   const onChangePrev = () => {
-      setPageNum(pageNum - 1);
-      console.log("pageNum : " + pageNum);
+    setPageNum(pageNum - 1);
+    console.log("pageNum : " + pageNum);
   }
 
-  // 좋아요 버튼
-  // const Click_like = () => {
-  //     setLike_num(1);
-  //     console.log("Click_like : " + like_num);
-  // }
 
-  // const UnClick_like = (e) => {
-  //     const like_user_num = e.target.value
-  //     setLike_user_num(like_user_num);
-  //     setLike_num(0);
-  //     console.log("UnClick_like : " + like_user_num);
-  // }
 
   // 내 정보 조회 
   useEffect(() => {
@@ -123,6 +94,9 @@ const Matching = () => {
       try {
         const Mat = await TeamAPI.MatchingMember2(localId, localId_num, pageNum);
         console.log("****************");
+        console.log(Mat.data);
+        console.log(Mat.data[0].mat_id);
+        console.log("****************");
         setMat_MemberInfo(Mat.data);
         // 마지막 페이지 찾기
         const Rnum = Number(Mat.data[0].r_NUM);
@@ -145,21 +119,14 @@ const Matching = () => {
  // 채팅하기 onClick
  const user1 = localId;
  console.log("user1 :",user1)
- const onClickChat = async (user) => {
-  //  user.preventDefault();
-   console.log("친구 아이디", user);
+
+ const onClickChat = async (matfriend) => {
+  console.log(matfriend);
+   console.log("친구 아이디", matfriend);
    console.log("내 아이디", myId);
 
-   const user2 = user;
-   user2 = "rornfl";
-  //  const chatList = await TeamAPI.chatAddMember(myId, user);
+   const user2 = matfriend;
 
-  //  if(chatList.data) {
-  //    setFriend(user);
-  //    alert("친구추가완료");
-  //  } 
-  
-  // const user2 = friend;
   const sodaRef = doc(db, "users", user1);
   try {
     await updateDoc(sodaRef, {
@@ -168,19 +135,12 @@ const Matching = () => {
   } catch (e) {
     console.log(e);
   }
+  
+
   nav("/chathome")
 
 
-  // await addDoc(collection(db, "friends",localId,"check"), {
-  //   friend: user2
-  // });
-  // console.log("로컬아이디는?",localId)
-  // const friendRef = doc(db, "users", localId);
 
-  // await updateDoc(friendRef, {
-  //   friend:true
-  // })
-  //   nav("/ChatHome")
   };
 
   /* 쪽지 기능 구현 */
@@ -294,3 +254,19 @@ const Matching = () => {
 }
 
 export default Matching;
+// const [like_user_num, setLike_user_num] = useState('');
+// const [like_num, setLike_num] = useState(0);
+// const [mat_id_num, setMat_id_num] = useState('');
+
+// 좋아요 버튼
+// const Click_like = () => {
+//     setLike_num(1);
+//     console.log("Click_like : " + like_num);
+// }
+
+// const UnClick_like = (e) => {
+//     const like_user_num = e.target.value
+//     setLike_user_num(like_user_num);
+//     setLike_num(0);
+//     console.log("UnClick_like : " + like_user_num);
+// }
