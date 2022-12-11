@@ -105,6 +105,10 @@ function SignUp() {
         alert("1번과 2번에에 무조건 동의해야합니다.");
       }
     }
+    const onClickNonAgree = () => {
+      
+      navigate('/login');
+    }
 
     return (
       <form>
@@ -141,7 +145,8 @@ function SignUp() {
             ))}
           </div>
             <div className='Terms-agree-btn'>
-              <button type="button" onClick={onClickAgree}>동의하고 가입하기</button>
+              <button type="button" className='nonAgreeBtn' onClick={onClickNonAgree}>취소</button>
+              <button type="button" className='agreeBtn'  onClick={onClickAgree}>확인</button>
             </div>
         </div>
       </form>
