@@ -10,12 +10,55 @@
     overflow: scroll;
     align-items: center;
     justify-items: stretch;
+    background-color: rgba(0, 0, 0, 0.05);
 }
+
+.Terms-title{
+    margin-bottom: 20px;
+}
+
+.Terms-content{
+    max-height: 100px;
+    overflow:scroll;
+    background-color: #f7f7f7;
+}
+
 
 .SignUp-header {
     margin: 50px;
 }
 
+.SignUp-Allagree{
+
+    width: 400px;
+    margin-left: 20px;
+    margin-top: 30px;
+    float:left;
+}
+
+.checkbox-check-btn1{
+    position: relative;
+    /* left:380px; */
+    top:40px;
+    left:25px;
+}
+.checkbox-check-btn2{
+    position: relative;
+    /* left:380px; */
+    float:right;
+    left:40px;
+}
+
+
+
+.SignUp-Main-Box{
+    max-width: 500px;
+    margin: 20px auto 20px;
+    background-color: white;
+    border: 0.5px solid #ddd;
+    box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
 .SignUp-Box {
     display: flex;
     flex-direction: column;

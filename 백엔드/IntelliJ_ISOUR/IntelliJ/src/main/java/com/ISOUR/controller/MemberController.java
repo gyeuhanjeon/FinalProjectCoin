@@ -95,8 +95,9 @@ public class MemberController {
 
         String getCheck_term1 = signUpData.get("check_term1");
         String getCheck_term2 = signUpData.get("check_term2");
+        String getCheck_term3 = signUpData.get("check_term3");
 
-        isSave = memberService.agreeTerms(getId, getCheck_term1, getCheck_term2);
+        isSave = memberService.agreeTerms(getId, getCheck_term1, getCheck_term2, getCheck_term3);
         if (isSave) log.warn("Terms 테이블 DB 저장 : " + isSave);
 
         if (signUpData.get("kakaoId") != null) {
@@ -257,7 +258,11 @@ public class MemberController {
     public ResponseEntity<MemberDTO> memberInfo(@RequestParam String id, String email, String birth) {
         log.warn("★★★★★★★★★비밀번호 찾기 정보 조회Controller★★★★★★★★★");
         MemberDTO memberDTO = memberService.findPwd(id, email, birth);
-        return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+        if(memberDTO ==null){
+            return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+        }
     }
 
     /* 아이디 찾기 정보 조회 */

@@ -36,7 +36,6 @@ const Startbtn = styled.button`
   font-size: 25px;
   background-color: orangered;
   border: 0px none;
-  box-shadow: ;
   transition: all .2s ea  se-in-out;
   font-weight: 900;  
   position: relative;
@@ -149,7 +148,7 @@ const O3 = styled.div`
     
     width: 110px;
     height: 110px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: skyblue;
 
@@ -167,7 +166,7 @@ const X3 = styled.div`
     
     width: 110px;
     height: 110px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: orangered;
 
@@ -185,7 +184,7 @@ const O2 = styled.div`
     
     width: 75px;
     height: 75px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: skyblue;
     margin: 0 30px;
@@ -205,7 +204,7 @@ const X2 = styled.div`
      
      width: 75px;
     height: 75px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: orangered;
     margin : 0 30px;
@@ -225,7 +224,7 @@ const O1 = styled.div`
     
     width: 40px;
     height: 40px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: skyblue;
     margin : 0 10px;
@@ -246,7 +245,7 @@ const X1 = styled.div`
      
     width: 40px;
     height: 40px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 70%;
     border-color: orangered;
     margin: 0 10px;

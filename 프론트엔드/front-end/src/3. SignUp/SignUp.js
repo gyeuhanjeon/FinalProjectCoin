@@ -31,112 +31,122 @@ function SignUp() {
   const [checkedItems, setCheckedItems] = useState([]);
   const [check_term1, setCheck_term1] = useState("");
   const [check_term2, setCheck_term2] = useState("");
+  const [check_term3, setCheck_term3] = useState("");
   const [emailConfirm, setEmailConfirm] = useState(false);
 
 
 
-  // const Terms = () => {
-  //   const [termsList, setTermsList] = useState([
-  //     { termNum: 1, title: "[필수] 아이셔계정 약관", content: "테스트23" },
-  //     {
-  //       termNum: 2, title: "[선택] 프로모션 정보 수신 동의(선택)",
-  //       content: "엠비티아이셔에서 제공하는 이벤트/혜택 등 다양한 정보를 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 엠비티아이셔 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다."
-  //     }
-  //   ]);
+  const Terms = () => {
+    const [termsList, setTermsList] = useState([
+      {
+        termNum: 1, title: "[필수] 아이셔계정 이용 약관",
+        content: "MBTISOUR 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 MBTISOUR 서비스의 이용과 관련하여 MBTISOUR 서비스를 제공하는 MBTISOUR 주식회사(이하 MBTISOUR)와 이를 이용하는 MBTISOUR 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 MBTISOUR 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다."
+      },
+      {
+        termNum: 2, title: "[필수] 개인 정보 수집 및 이용에 대한 안내(필수)",
+        content: 
+        "개인정보보호법에 따라 MBTISOUR 에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다."
+        + "이용자는 개인정보의 수집 및 이용 동의를 거부할 권리가 있습니다. 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실 경우, 회원가입이 어려울 수 있습니다."
+      },
+      {
+        termNum: 3, title: "[선택] 프로모션 정보 수신 동의(선택)",
+        content: "MBTISOUR 에서 제공하는 이벤트/혜택 등 다양한 정보를 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 MBTISOUR 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다."
+      }
+    ]);
 
+    /* 
+    체크박스 전체 선택 */
+    const handleAllCheck = (checked) => {
+      console.log("\n\n전체 선택 되었나요? : " + checked);
 
-  //   function AllCheck() {
-  //     return (
-  //       <p>
-  //         전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며, 개별적으로도 동의를 선택하실 수 있습니다.
-  //         <br />
-  //         선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이 가능합니다.
-  //       </p>
-  //     );
-  //   }
+      if (checked) {
+        const termNumArray = []; // termNum 을 담을 빈 배열(termNumArray) 생성
+        termsList.forEach((e) => termNumArray.push(e.termNum)); // termsList 를 하나씩 돌면서 termNumArray termNum 추가
+        console.log("postNumArray : " + termNumArray); // 모든 약관의 termNum 을 담은 배열로 checkedItems 상태 업데이트
+        setCheckedItems(termNumArray);
+      }
+      else {
+        setCheckedItems([]); // checkedItems 를 빈 배열로 상태 업데이트
+      }
+    }
 
-  //   /* 
-  //   체크박스 전체 선택 */
-  //   const handleAllCheck = (checked) => {
-  //     console.log("\n\n전체 선택 되었나요? : " + checked);
+    /* 
+    체크박스 단일 선택 */
+    const handleSingleCheck = (checked, num) => {
+      console.log(num + "번 약관이 선택 되었나요? : " + checked);
 
-  //     if (checked) {
-  //       const termNumArray = []; // termNum 을 담을 빈 배열(termNumArray) 생성
-  //       termsList.forEach((e) => termNumArray.push(e.termNum)); // termsList 를 하나씩 돌면서 termNumArray termNum 추가
-  //       console.log("postNumArray : " + termNumArray); // 모든 약관의 termNum 을 담은 배열로 checkedItems 상태 업데이트
-  //       setCheckedItems(termNumArray);
-  //     }
-  //     else {
-  //       setCheckedItems([]); // checkedItems 를 빈 배열로 상태 업데이트
-  //     }
-  //   }
+      if (checked) {
+        setCheckedItems(fix => [...fix, num]); // 체크된 약관 번호를 checkedItems 배열에 추가
+        console.log("checkedItems : " + checkedItems.toString());
+      } else {
+        setCheckedItems(checkedItems.filter((e) => e !== num)); // 체크된 약관 번호를 checkedItems 배열에서 삭제
+        console.log("checkedItems : " + checkedItems.toString());
+      }
+    };
 
-  //   /* 
-  //   체크박스 단일 선택 */
-  //   const handleSingleCheck = (checked, num) => {
-  //     console.log(num + "번 약관이 선택 되었나요? : " + checked);
+    /*
+    동의하고 가입하기 */
+    const onClickAgree = () => {
+      console.log("\n\n동의하고 가입하기 버튼 눌렀어요.");
 
-  //     if (checked) {
-  //       setCheckedItems(fix => [...fix, num]); // 체크된 약관 번호를 checkedItems 배열에 추가
-  //       console.log("checkedItems : " + checkedItems.toString());
-  //     } else {
-  //       setCheckedItems(checkedItems.filter((e) => e !== num)); // 체크된 약관 번호를 checkedItems 배열에서 삭제
-  //       console.log("checkedItems : " + checkedItems.toString());
-  //     }
-  //   };
+      if (checkedItems.includes(1) && checkedItems.includes(2)) {
+        setCheck_term1("동의");
+        setCheck_term2("동의");
+        if (checkedItems.includes(3)) setCheck_term3("동의")
+        else setCheck_term3("비동의")
 
-  //   /*
-  //   동의하고 가입하기 */
-  //   const onClickAgree = () => {
-  //     console.log("\n\n동의하고 가입하기 버튼 눌렀어요.");
+        console.log(check_term1);
+        console.log(check_term2);
+        console.log(check_term3);
 
-  //     if (checkedItems.includes(1)) {
-  //       setCheck_term1("동의")
-  //       if (checkedItems.includes(2)) setCheck_term2("동의")
-  //       else setCheck_term2("비동의")
+        setMode("join");
 
-  //       setMode("join");
+      } else {
+        alert("1번과 2번에에 무조건 동의해야합니다.");
+      }
+    }
 
-  //     } else {
-  //       alert("1번에 무조건 동의해야합니다.");
-  //     }
-  //   }
+    return (
+      <form>
+        <div className='SignUp-Container'>
+          <div className='SignUp-Main-Box'>
+            <div className='checkbox-check-all'>
+              <div className='SignUp-Allagree'>
+                <b>전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있습니다.<br /></b>
+              </div>
+              <span className='checkbox-check-btn1'>
+                <input type="checkbox" id="checkbox-check_all"
+                  onChange={(e) => handleAllCheck(e.target.checked)}
+                  checked={termsList.length === checkedItems.length ? true : false} />
+                <label htmlFor="checkbox-check_all"></label>
+              </span>
 
-  //   return (
-  //     <form>
-  //       <div className='SignUp-Container'>
-  //         <div className='SignUp-Main-Box'>
-  //           <div className='checkbox-check-all'>
-  //             <AllCheck />
-  //           </div>
-  //           <div className='checkbox-check-btn'>
-  //             <input type="checkbox" id="checkbox-check_all"
-  //               onChange={(e) => handleAllCheck(e.target.checked)}
-  //               checked={termsList.length === checkedItems.length ? true : false} />
-  //             <label htmlFor="checkbox-check_all">모두 동의합니다.</label>
-  //           </div>
-  //           {termsList?.map(ball => (
-  //             <div>
-  //               <div className='checkbox-check-single'>
-  //                 <label htmlFor="checkbox-check_single">{ball.title}</label>
-  //                 <div>{ball.content}</div>
-  //               </div>
-  //               <div className='checkbox-check-btn'>
-  //                 <input type="checkbox" id="checkbox-check_single"
-  //                   onChange={(e) => handleSingleCheck(e.target.checked, ball.termNum)}
-  //                   checked={checkedItems.includes(ball.termNum) ? true : false} />
-  //                 <label htmlFor="checkbox-check_all">동의합니다.</label>
-  //               </div>
-  //             </div>
-  //           ))}
-  //           <div className='Terms-agree-btn'>
-  //             <button type="button" onClick={onClickAgree}>동의하고 가입하기</button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </form>
-  //   );
-  // }
+              <div className='SignUp-Allagree'>
+              선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이 가능합니다.
+              </div>
+            </div>
+            {termsList?.map(ball => (
+              <div>
+                <div className='SignUp-Allagree'>
+                  <label className='Terms-title' htmlFor="checkbox-check_single"><b>{ball.title}</b></label>
+                  <span className='checkbox-check-btn2'>
+                    <input type="checkbox" id="checkbox-check_single"
+                      onChange={(e) => handleSingleCheck(e.target.checked, ball.termNum)}
+                      checked={checkedItems.includes(ball.termNum) ? true : false} />
+                    <label htmlFor="checkbox-check_all"></label>
+                  </span>
+                  <div className='Terms-content'>{ball.content}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+            <div className='Terms-agree-btn'>
+              <button type="button" onClick={onClickAgree}>동의하고 가입하기</button>
+            </div>
+        </div>
+      </form>
+    );
+  }
 
   // 이름, 아이디, 비밀번호, 비밀번호 확인, 생년월일, 나이, 성별, 주소 1, 주소 2
   const [name, setName] = useState('');
@@ -173,7 +183,8 @@ function SignUp() {
   useEffect(() => {
     console.log("현재 mode : " + mode);
     console.log("필수 약관 : " + check_term1);
-    console.log("선택 약관 : " + check_term2);
+    console.log("필수 약관 : " + check_term2);
+    console.log("선택 약관 : " + check_term3);
     console.log("카카오 아이디 : ", kakaoId);
     console.log("카카오 닉네임 : ", kakaoNickname);
     console.log("카카오 이메일 : ", cookies.get('rememberEmail'));
@@ -594,7 +605,7 @@ function SignUp() {
       //   pwd
       // );
 
-      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2);
+      const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2,check_term3);
 
       console.log("name : " + name);
       console.log("id : " + id);
@@ -608,7 +619,9 @@ function SignUp() {
       console.log("region2 : " + region2);
       console.log("introduce : " + introduce);
       console.log("필수 약관 : " + check_term1);
-      console.log("선택 약관 : " + check_term2);
+      console.log("필수 약관 : " + check_term2);
+      console.log("선택 약관 : " + check_term3);
+
       alert("회원가입 성공! 콘솔창 보세요");
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       navigate("/login");
@@ -647,21 +660,21 @@ function SignUp() {
 
 
   return (
-    // mode === 'agree' ?
-    //   <Terms />
-    //   :
-    <div className='Container'>
-      <div className="SignUp-Container">
-        <div className='SignUp-Box'>
-          <div className="SignUp-header">
-            <h1>Sign Up</h1>
-            <p>회원정보를 입력해주세요</p>
-          </div>
+    mode === 'agree' ?
+      <Terms />
+      :
+      <div className='Container'>
+        <div className="SignUp-Container">
+          <div className='SignUp-Box'>
+            <div className="SignUp-header">
+              <h1>Sign Up</h1>
+              <p>회원정보를 입력해주세요</p>
+            </div>
             <table action="" className="SignUp-Table">
 
               {/* 이메일 인증 모달창 */}
               <EmailModal open={open} modalName={email} modalContent={() => setEmailConfirm(true)} onHide={() => setOpen(false)} />
-              
+
               {/* 이름 */}
               <tr className="SignUp-item">
                 <td>
@@ -669,7 +682,7 @@ function SignUp() {
                   <div className='Message'>
                     {showReqName && reqName}
                   </div>
-                </td> 
+                </td>
               </tr>
 
               {/* 아이디 */}
@@ -684,7 +697,7 @@ function SignUp() {
                 </td>
                 <td>
                   <button className='Chacked-btn' onClick={onClickIdCheck} required><span>중복확인 </span></button>
-                </td> 
+                </td>
               </tr>
 
 
@@ -740,9 +753,9 @@ function SignUp() {
                   </div>
                 </td>
                 <td>
-                  {isEmail && 
+                  {isEmail &&
                     <button className='Chacked-btn' onClick={onClickEmailCheck} > 중복확인 </button>}
-                  {emailDoubleCheck && 
+                  {emailDoubleCheck &&
                     <button className='Chacked-btn' onClick={onClickEmailAdress}> 이메일인증</button>}
                 </td>
               </tr>
@@ -751,11 +764,11 @@ function SignUp() {
               <tr className="SignUp-item">
                 <td>
                   <input className='date' type="date" value={birth} onChange={onChangeBirth} />
-                <th>
-                  <div className='Message'>
-                    생년월일을 선택하세요
-                  </div>
-                </th>
+                  <th>
+                    <div className='Message'>
+                      생년월일을 선택하세요
+                    </div>
+                  </th>
                 </td>
                 <td>
                   <p className='Span-Age'>만 {age}세</p>
@@ -767,9 +780,9 @@ function SignUp() {
                 <td>
                   <label className='gender'>
                     <input className='checkbox' type="checkbox" name="male" value="남자" onChange={onChangeRadio} />
-                      남자
+                    남자
                   </label>
-                    
+
                   <label className='gender'>
                     <input className='checkbox' type="checkbox" name="female" value="여자" onChange={onChangeRadio} />
                     여자
@@ -811,9 +824,9 @@ function SignUp() {
               <button className="SignUp-btn" type="submit" onClick={onClickButton}><span>회원가입</span></button>
 
             </table>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 

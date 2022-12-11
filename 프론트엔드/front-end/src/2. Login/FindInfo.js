@@ -4,22 +4,28 @@ import TeamAPI from '../0. API/TeamAPI';
 import FindInfoModal from './FindInfoModal';
 import EmailModal from './EmailModal';
 import ChangePwdModal from '../99. Modal/ChangePwdModal';
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import '../0. API/defultMain.css';
+
 
 const Find_Container = styled.div`
     width:600px;
-    border: 1px solid black;
+    border: 1px  ;
     position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1;
     margin: 20vh auto;
     height: 400px;
     box-sizing: border-box;
 `
 const Select_Mode = styled.span`
     width:300px;
-    border: 1px solid black;
-    border-top: none;
-    border-right: none;
-    border-left: none;
+    border: 1px  black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20%;
+    overflow: hidden;
+    z-index: 3;
+    
     position: absolute;
     height: 10vh;
     &>p{
@@ -32,12 +38,15 @@ const Select_Mode = styled.span`
 `
 const Select_Mode2 = styled.span`
     width:300px;
-    border: 1px solid black;
-    border-top: none;
-    border-right: none;
+    border: 1px black;
+    border-radius: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 3;
+    overflow: hidden;
+
     position: absolute;
     height: 10vh;
-    left:250px;
+    left:300px;
     &>p{
         margin-top: 30px;
         font-size: 25px;
@@ -50,14 +59,55 @@ const Select_Mode2 = styled.span`
 
 const Input_Container = styled.div`
     margin-top: 200px;
+    position: relative;
+    top: 160px;
+
+    th{
+        position: relative;
+        left: 20px;
+        width: 80px;
+    }
+
+    .findInfo-btn{
+        border : none;
+        background-color: white;
+        background: black;
+        color: white;
+        padding: 0.1rem;
+        width: 560px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 25px;
+        background-color: skyblue;
+        border: 0px none;
+        font-weight: 900;  
+        position: relative;
+        top:30px;
+        margin-left: 20px;
+    }
+    
     
 `
 
 const Input = styled.input`
-    width:350px;
-    position: relative;
-    left: 75px;
-    margin: 0 auto;
+        width:350px;
+        position: relative;
+        margin-left: 130px;
+        border : none;
+        background-color: white;
+        color: black;
+        padding: 0.1rem;
+        height: 30px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding-left: 20px;
+        font-size: 15px;
+        border: 0px none;
+        font-weight: 900;  
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 `
 
 
@@ -84,8 +134,8 @@ const FindInfo = () => {
     const [gender, setGender] = useState('');
     const [region1, setRegion1] = useState("");
     const [region2, setRegion2] = useState("");
-    const [url,setUrl] = useState("");
-    const [mbti,setMbti] = useState("");
+    const [url, setUrl] = useState("");
+    const [mbti, setMbti] = useState("");
 
 
 
@@ -93,6 +143,7 @@ const FindInfo = () => {
     const [isId, setIsId] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
     const [isBirth, setIsBirth] = useState(false);
+    const [isFind, setIsFind] = useState(true);
 
 
     const [showReqName, setShowReqName] = useState(false);
@@ -155,7 +206,7 @@ const FindInfo = () => {
             setIsName(false);
             setShowReqName(true); //이름을 정확히 입력하세요.
         } else {
-            setIsId(true);
+            setIsName(true);
             setShowReqName(false);
         }
     }
@@ -211,13 +262,21 @@ const FindInfo = () => {
             const findPwd = await TeamAPI.findPwd(id, email, birth);
 
 
-            console.log(findPwd.data);
+            console.log(findPwd);
+            console.log(findPwd.status);
 
-            if (findPwd.status === 200) {
-                alert("입력 정보가 맞습니다.");
+            if (findPwd.data === '') {
+                setId("");
+                setEmail("");
+                setBirth("");
+                console.log('일치하지 않는 정보입니다.');
+                // alert('일치하지 않는 정보입니다.');
+            } else {
+                // alert("입력 정보가 맞습니다.");
                 console.log("입력 정보가 맞습니다.");
                 setFindDate(true);
                 setIsBirth(false);
+                setIsFind(false);
                 setName(findPwd.data.name);
                 setId(findPwd.data.id);
                 setBirth(findPwd.data.birth);
@@ -230,12 +289,6 @@ const FindInfo = () => {
                 setRegion2(findPwd.data.region2);
                 setUrl(findPwd.data.face);
                 setMbti(findPwd.data.mbti);
-            } else {
-                setId("");
-                setEmail("");
-                setBirth("");
-                console.log('일치하지 않는 정보입니다.');
-                alert('일치하지 않는 정보입니다.');
             }
 
 
@@ -270,24 +323,24 @@ const FindInfo = () => {
         console.log("isBirth : " + isBirth);
         console.log("isEmail : " + isEmail);
         try {
-            if (isId && isEmail && isBirth) {
+            if (isName && isEmail && isBirth) {
                 const findId = await TeamAPI.findId(name, email, birth);
 
 
                 console.log(findId.data);
 
-                if (findId.status === 200) {
-                    // alert(findId.data.id);
-                    console.log("입력 정보가 맞습니다.");
-                    setGetId(findId.data.id);
-                    setOpen(true);
-
-                } else {
+                if (findId.data === '') {
                     setId("");
                     setEmail("");
                     setBirth("");
                     console.log('일치하지 않는 정보입니다.');
                     alert('일치하지 않는 정보입니다.');
+                    
+                } else {
+                    // alert(findId.data.id);
+                    console.log("입력 정보가 맞습니다.");
+                    setGetId(findId.data.id);
+                    setOpen(true);
                 }
 
             } else {
@@ -300,7 +353,7 @@ const FindInfo = () => {
     };
 
     return (
-        <div>
+        <div className='Container'>
 
             {/* mode 가 main 일 때 */}
             {states.mode === 'findId'
@@ -315,22 +368,36 @@ const FindInfo = () => {
                     <Input_Container>
                         <FindInfoModal open={open} modalName={getId} onHide={() => setOpen(false)} />
                         <form>
-                            <div>
-                                <label>이름</label>
-                                <Input type="text" placeholder="이름" value={name} onChange={onChangeName} required />
-                                <p>{showReqName && reqName}</p>
-                            </div>
-                            <div>
-                                <label>이메일</label>
-                                <Input type="text" placeholder="이메일" value={email} onChange={onChangeEmail} required />
-                                <p>{showReqEmail && reqEmail}</p>
-                            </div>
-                            <div>
-                                <label>생년월일</label>
-                                <Input type="date" value={birth} onChange={onChangeBirth} />
-                            </div>
+                            <table>
+                                <div>
+                                    <th>
+                                        <label>이름</label>
+                                    </th>
+                                    <td>
+                                        <Input type="text" placeholder="이름" value={name} onChange={onChangeName} required />
+                                    </td>
+                                    <p>{showReqName && reqName}</p>
+                                </div>
+                                <div>
+                                    <th>
+                                        <label>이메일</label>
+                                    </th>
+                                    <td>
+                                        <Input type="text" placeholder="이메일" value={email} onChange={onChangeEmail} required />
+                                    </td>
+                                    <p>{showReqEmail && reqEmail}</p>
+                                </div>
+                                <div>
+                                    <th>
+                                        <label>생년월일</label>
+                                    </th>
+                                    <td>
+                                        <Input type="date" value={birth} onChange={onChangeBirth} />
+                                    </td>
+                                </div>
+                            </table>
                         </form>
-                        <button onClick={onClickFindId}>아이디 찾기</button>
+                        <button className='findInfo-btn' onClick={onClickFindId}>아이디 찾기</button>
                     </Input_Container>
                 </Find_Container>
                 : null
@@ -346,26 +413,42 @@ const FindInfo = () => {
                         <p>비밀번호 찾기</p>
                     </Select_Mode2>
                     <Input_Container>
+                        <EmailModal open={open} modalName={email} modalContent={() => setChangePwdModalOpen(true)} onHide={() => setOpen(false)} />
+                        <ChangePwdModal open={changePwdModalOpen} close={closeChangePwdModal} getPwd={getPwd} onSavePwd={onSavePwd}></ChangePwdModal>
                         <form>
-                            <EmailModal open={open} modalName={email} modalContent={() => setChangePwdModalOpen(true)} onHide={() => setOpen(false)} />
-                            <ChangePwdModal open={changePwdModalOpen} close={closeChangePwdModal} getPwd={getPwd} onSavePwd={onSavePwd}></ChangePwdModal>
-                            <div>
-                                <label >아이디</label>
-                                <Input type="text" placeholder="아이디" value={id} onChange={onChangeId} required />
-                                <p>{showReqId && reqId}</p>
-                            </div>
-                            <div>
-                                <label>이메일</label>
-                                <Input type="text" placeholder="이메일" value={email} onChange={onChangeEmail} disabled={findDate ? true : false} />
-                                {findDate && <button onClick={onClickEmailAdress}>이메일 인증</button>}
-                                <p>{showReqEmail && reqEmail}</p>
-                            </div>
-                            <div>
-                                <label>생년월일</label>
-                                <Input type="date" value={birth} onChange={onChangeBirth} />
-                            </div>
+                            <table>
+                                <div>
+                                    <th>
+                                        <label >아 이 디</label>
+                                    </th>
+                                    <td>
+                                        <Input type="text" placeholder="아이디" value={id} onChange={onChangeId} required />
+                                    </td>
+                                    <p>{showReqId && reqId}</p>
+                                </div>
+                                <div>
+                                    <th>
+                                        <label>이 메 일</label>
+                                    </th>
+                                    <td>
+                                        <Input type="text" placeholder="이메일" value={email} onChange={onChangeEmail} disabled={findDate ? true : false} />
+                                    </td>
+
+                                    <p>{showReqEmail && reqEmail}</p>
+                                </div>
+                                <div>
+                                    <th>
+                                        <label>생 년 월 일</label>
+                                    </th>
+                                    <td>
+                                        <Input type="date" value={birth} onChange={onChangeBirth} />
+                                    </td>
+                                </div>
+                            </table>
                         </form>
-                        {isId && isEmail && isBirth && <button onClick={onClickFindPwd}>정보 조회 하기</button>}
+
+                        {isFind&&<button className='findInfo-btn' onClick={onClickFindPwd}>정보 조회 하기</button>}
+                        {findDate && <button className='findInfo-btn' onClick={onClickEmailAdress}>이메일 인증</button>}
 
                     </Input_Container>
                 </Find_Container>

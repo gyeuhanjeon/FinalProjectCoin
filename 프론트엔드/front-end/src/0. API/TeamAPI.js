@@ -27,7 +27,7 @@ const TeamAPI = {
   },
 
   /* 회원가입 */
-  memberReg: async function (kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2) {
+  memberReg: async function (kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2, check_term3) {
     const memberObj = {
       kakaoId: kakaoId,
       kakaoEmail: kakaoEmail,
@@ -42,7 +42,8 @@ const TeamAPI = {
       region2: region2,
       introduce: introduce,
       check_term1: check_term1,
-      check_term2: check_term2
+      check_term2: check_term2,
+      check_term3: check_term3
     };
     // @PostMapping("/SignUp")
     return await axios.post(TEAM_DOMAIN + "SignUp", memberObj, HEADER);

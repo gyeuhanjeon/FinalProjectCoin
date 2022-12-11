@@ -13,5 +13,6 @@ public class Terms {
     private Long id_num;
     private String term1;
     private String term2;
+    private String term3;
     private LocalDateTime registrationTime;
 }

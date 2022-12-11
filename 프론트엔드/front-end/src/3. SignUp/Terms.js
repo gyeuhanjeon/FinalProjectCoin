@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import '../3. SignUp/Terms.css';
-import { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 
 
-const SignUpContainer = div`
+const SignUpContainer = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: auto;
