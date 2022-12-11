@@ -9,6 +9,7 @@ import ChatHome from './9.Chat/ChatHome';
 import Matching from './8.Matching/Matching';
 import MyPage from './5. MyPage/MyPage';
 import Navber from './Navber/Nav';
+// import Navbar from './Navber/Navbar';
 import '../src/App.css';
 import KakaoToken from './2. Login/KakaoToken';
 
@@ -16,6 +17,7 @@ function LoginUser() {
   return (
     <>
       <Navber/>
+      {/* <Navbar/> */}
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='/mypage' element={<MyPage />} />

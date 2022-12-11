@@ -1,0 +1,212 @@
+/* 
+* padding: (top, bottom), (left, right)
+
+
+
+
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+:root {
+  --bg-color: #29335c;
+  --text-color: #fff;
+  --main-color: pink;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Navbar-Container 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.Navbar-Container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+
+  color: var(--text-color);
+}
+.Navbar-Container a {
+  text-decoration: none;
+}
+.Navbar-Container li {
+  list-style: none;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  header 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* 붙여넣기 : header */
+.Navbar-Container header {
+  width: 100%;
+  background: var(--bg-color);
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 2%;
+  transition: all .50s ease;
+}
+.Navbar-Container header ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  logo 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* 붙여넣기 : logo */
+.Navbar-Container header .logo {
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+}
+.Navbar-Container header .logo img {
+  width: 35px;
+  margin-right: 5px;
+}
+.Navbar-Container header .logo span {
+  color: var(--text-color);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Navbar 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Navbar-Container .Navbar {
+  display: flex;
+  text-align: left;
+  padding: 0;
+  align-items: center;
+}
+.Navbar-Container .Navbar li {
+  /* width: 120px; */
+  /* background-color: brown; */
+  list-style: none;
+  position: relative;
+  padding: 10px 0;
+  transition: 0.5s;
+  box-sizing: border-box;
+  /* width: 150px; */
+  border-right: 1px solid rgba(255, 255, 255, .2);
+}
+.Navbar-Container .Navbar li a {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0 20px; 
+  /* margin: 0px 30px; */
+  transition: all .50s ease;
+}
+
+.Navbar-Container .Navbar li:hover {
+  background: #2196f3;
+}
+.Navbar-Container .Navbar a.active {
+  color: yellow;
+}
+
+.Navbar-Container .Navbar .MBTI-sub-menu {
+  position: absolute;
+  /* top 은 전체 네비 높이에 따라 다르게 설정할 것! */
+  top: 70px; 
+  left: 0;
+  display: block;
+  background: rgb(226, 75, 75);
+  /* line-height: 40px; */
+  border-radius: 0 0 70px 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 0 10px;
+  width: 150px;
+  text-align: center;
+  transition: .5s;
+}
+
+.MBTI-sub-menu li {
+  padding: 5px;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Main 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.Navbar-Container .Main  {
+  display: flex;
+  /* display: inline-block; */
+  align-items: center;
+  position: relative;
+  margin-right: 0;
+  justify-content: flex-end;
+}
+.Navbar-Container .Main  a {
+  margin-right: 25px;
+  margin-left: 10px;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all .50s ease;
+}
+.Navbar-Container .Main  a {
+  color: var(--main-color);
+}
+
+.Navbar-Container .Main  .LoginUser-sub-menu {
+  position: absolute;
+  /* top 은 전체 네비 높이에 따라 다르게 설정할 것! */
+  top: 70px;
+  right: 0;
+  display: block;
+  transition: 0.5s;
+  background: rgb(226, 75, 75);
+  line-height: 40px;
+  border-radius: 0 0 70px 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  /* padding: 5px 20px; */
+  /* width: 150px; */
+  text-align: left;
+}
+
+.Main-sub-menu li {
+  padding: 5px;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  LoginUser 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.LoginUser {
+  display: flex;
+  /* align-items: center; */
+}
+.LoginUser span {
+  color: var(--main-color);
+  font-size: 50px;
+  /* margin-right: 7px; */
+}
+.LoginUser:hover {
+  cursor: pointer;
+}
+
+#menu-icon {
+  font-size: 35px;
+  color: var(--text-color);
+  cursor: pointer;
+  z-index: 10001;
+  display: none;
+}
+
+

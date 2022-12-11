@@ -19,7 +19,7 @@ const Postbox = () => {
   /* 변수(useState) 선언 */
   const [loading, setLoading] = useState(false);
   const [postList, setPostList] = useState([]);
-
+  const [myNickname, setMyNickname] = useState("");
   
   const [limit, setLimit] = useState(10); // 페이지당 게시물 수
   const [page, setPage] = useState(1); // 현재 페이지 번호
@@ -45,11 +45,14 @@ const Postbox = () => {
       setLoading(true);
 
       try {
+        const myInfo = await TeamAPI.memberInfo(localId); // 회원 정보 조회
+        setMyNickname(myInfo.data.nickname);
+        
         const response = await TeamAPI.postbox(localId);
         if (response.status == 200) {
           console.log("통신 성공(200)");
           console.log(response.data);
-          console.log(response.data[0].postSenderId);
+          console.log(response.data[0]);
           setPostList(response.data);
           // console.log("보낸 사람[0] : " + response.data[0].postSender);
           // console.log("내용[0] : " + response.data[0].content);
@@ -153,7 +156,7 @@ const Postbox = () => {
 
         {/* header 영역 */}
         <div className='Postbox-header'>
-          <h1>{localId} 님의 쪽지함</h1>
+          <h1>{myNickname} 님의 쪽지함</h1>
         </div>
 
         <button className='delete' onClick={onClickDelete} disabled={postList.length === 0}>삭제</button>

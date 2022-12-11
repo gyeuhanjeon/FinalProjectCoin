@@ -34,9 +34,11 @@ public class PostService {
             PostDTO postDTO = new PostDTO();
             postDTO.setPostNum(e.getPostNum());
             postDTO.setPostSenderId(e.getPostSender());
+
             String getSender = e.getPostSender();
-            MemberInfo memberInfo = memberRepository.findById(getSender);
-            postDTO.setPostSender(memberInfo.getNickname());
+            MemberInfo senderInfo = memberRepository.findById(getSender);
+            postDTO.setPostSender(senderInfo.getNickname());
+
             postDTO.setContent(e.getContent());
             postDTO.setPostTime(e.getPostTime());
 

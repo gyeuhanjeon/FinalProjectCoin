@@ -75,7 +75,7 @@
   main 영역 - thead
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .Postbox-table thead tr  {
-  background-color: navy;
+  background-color: #29335c;
   color: white;
 }
 .Postbox-table thead tr th {
@@ -133,7 +133,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  background: navy;
+  background: #29335c;
   border-radius: 50px;
   color: white;
   list-style: none;
@@ -160,7 +160,7 @@
 .Postbox-Pagination .next:hover,
 .Postbox-Pagination li:hover {
   background: #fff;
-  color: navy;
+  color: #29335c;
 }
 
 

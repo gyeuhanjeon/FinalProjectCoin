@@ -18,11 +18,18 @@ class MemberRepositoryTest {
     @Test
     @DisplayName("회원가입 테스트")
     public void signUpTest() {
+        String[] ball = new String[] {"", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구", "십"};
         for(int i = 1; i <= 10; i++) {
             MemberInfo memberInfo = new MemberInfo();
-            memberInfo.setName("이름" + i);
-            memberInfo.setId("idtest" + i);
-            memberInfo.setPwd("password" + i);
+            memberInfo.setName("나라" + ball[i]);
+            memberInfo.setId("skfk" + i);
+            memberInfo.setPwd("dkfldkfl");
+            memberInfo.setEmail("skfk" + i + "@skfk" + i +".com");
+            memberInfo.setNickname("닉나라" + ball[i]);
+            memberInfo.setGender("여자");
+            memberInfo.setBirth("1999-09-09");
+            memberInfo.setIntroduce("우리" + ball[i] + "의 자기소개");
+            memberInfo.setRegistrationDate(LocalDateTime.now().withNano(0));
             memberRepository.save(memberInfo);
         }
     }
@@ -30,6 +37,7 @@ class MemberRepositoryTest {
     // 회원가입
     public boolean signUpMember(String name, String id, String pwd, String birth, String gender, String region1, String region2) {
         MemberInfo memberInfo = new MemberInfo();
+
         memberInfo.setName(name);
         memberInfo.setId(id);
         memberInfo.setPwd(pwd);
