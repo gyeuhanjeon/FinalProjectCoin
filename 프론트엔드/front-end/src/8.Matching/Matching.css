@@ -137,6 +137,15 @@
     z-index: 3;
 }
 
+/* 
+매칭 회원 없을 때 문구
+*/
+.Matching-Message {
+    grid-column: 2/4;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
 .prevbtn {
     margin-left: auto;
     grid-row: 2/3;

@@ -14,6 +14,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import NavigateNextIcon from '@mui/icons-material/ArrowBackIosNew';
 import './Matching.css';
 import { useNavigate } from 'react-router-dom';
+import SadIcon from '@mui/icons-material/SentimentDissatisfiedOutlined';
 
 
 const Matching = () => {
@@ -207,7 +208,9 @@ const Matching = () => {
             </div>
           </div>
 
-          { mat_memberInfo.map((mat) => (
+          { (mat_memberInfo.length != 0 ) ?
+
+          mat_memberInfo.map((mat) => (
           <div>
             <div className='Mat-Box' key={mat.id}>
               <div className='Mat-profile'>
@@ -239,12 +242,15 @@ const Matching = () => {
               {/* </ButtonGroup> */}
             </div>
           </div>
-            ))}
+            ))
+
+          : <div className='Matching-Message'> 아쉽지만, 매칭된 친구가 없어요 <SadIcon style = {{fontSize: 'xx-large'}}/> </div>
+          }
 
           <IconButton className='prevbtn' style={{backgroundColor: 'unset'}} onClick={onChangePrev} disabled={(pageNum === 1) ? true : false }>
             <ArrowBackIosNewIcon  style = {{fontSize: 'xx-large'}} />   
           </IconButton>
-          <IconButton className='nextbtn' style={{backgroundColor: 'unset'}} onClick={onChangeNext} disabled={(pageNum === rnum) ? true : false }>
+          <IconButton className='nextbtn' style={{backgroundColor: 'unset'}} onClick={onChangeNext} disabled={(pageNum === (( mat_memberInfo.length === 0 ) ? 1 : rnum)) ? true : false }>
             <NavigateNextIcon style = {{transform: 'rotate(180deg)',  fontSize: 'xx-large'}} />
           </IconButton>           
         </div>
