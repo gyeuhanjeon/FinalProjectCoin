@@ -157,7 +157,7 @@ display: inline-flex;
     text-align: center;
 }
 
-.gender-checkbox {
+.checkbox {
     scale: 1.5;
     margin: 0 15px;
 }

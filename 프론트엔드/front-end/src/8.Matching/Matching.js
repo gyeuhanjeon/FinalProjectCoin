@@ -38,6 +38,7 @@ const Matching = () => {
   const [rnum, setRnum] = useState();
 
 
+
   // 페이지 이동
   const onChangeNext = () => {
     setPageNum(pageNum + 1);
@@ -48,6 +49,8 @@ const Matching = () => {
     setPageNum(pageNum - 1);
     console.log("pageNum : " + pageNum);
   }
+
+
 
   // 내 정보 조회 
   useEffect(() => {

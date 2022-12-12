@@ -784,12 +784,12 @@ function SignUp() {
                 <td>
                   <div className='Gender'>
                     <label className='gender'>
-                      <input className='gender-checkbox' type="checkbox" name="male" value="남자" onChange={onChangeRadio} />
+                      <input className='checkbox' type="checkbox" name="male" value="남자" onChange={onChangeRadio} />
                       남자
                     </label>
 
                     <label className='gender'>
-                      <input className='gender-checkbox' type="checkbox" name="female" value="여자" onChange={onChangeRadio} />
+                      <input className='checkbox' type="checkbox" name="female" value="여자" onChange={onChangeRadio} />
                       여자
                     </label>
                   </div>
