@@ -9,6 +9,7 @@
     font-family: "Jalnan";
     background-color: white;
     justify-content:center;
+
   }
 
   .chat-box1 {
@@ -22,6 +23,7 @@
     scroll-padding-right: 10px;
     font-family: "Jalnan";
     border-radius: 20px;
+
   }
 
   
@@ -37,21 +39,32 @@
      padding: 0.8rem;
   }
   .gchatNum {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    margin-right: 53rem;
+    float: left;
+    margin-left: 0.3rem;
   }
+ 
   .gcontent {
-    margin-left: 5rem;
-    width: 40rem;
-    word-break:break-all;    
+   width: 85%;
+   margin-left:  7rem;
+   margin-right: auto;
+   margin-top: 0.5rem;
+   text-align: left;
+   white-space: normal;
   }
   .gchattime{
-    margin-left: 45rem;
-  }
+    float: right;
+    font-size: 0.5rem;
+  } 
   .gchat {
+    float: left;
     font-family: "Jalnan";
-    
+    flex-direction: column-reverse;
+    word-break:break-all;  
+    white-space: normal;
+    width: 90%;
+    margin-left: 3rem;
+    margin-right: auto;
+    border-bottom: 1px solid gray;
  }
  .minibox {
     margin-top: 1rem;

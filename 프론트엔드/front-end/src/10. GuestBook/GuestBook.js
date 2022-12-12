@@ -3,6 +3,9 @@ import TeamAPI from "../0. API/TeamAPI";
 import Cookies from 'universal-cookie';
 import { useNavigate  } from "react-router-dom";
 import './GuestBook.css';
+import Moment from "react-moment";
+import { storage } from '../firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const GuestBook = () => {
     const [nickname, setNickname] = useState('');
@@ -12,6 +15,7 @@ const GuestBook = () => {
     const [nickName, setNickName] = useState('');
     const cookies = new Cookies();
     const navigate = useNavigate();
+    const [url, setUrl] = useState(null);
 
     const chatContent = /^\w{1,40}$/;
     const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
@@ -28,6 +32,7 @@ const GuestBook = () => {
         try {
           const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
           setNickName(response.data.nickname)
+          setUrl(response.data.face);
           const localId_num = response.data.idNum;
 
           cookies.set('rememberId_num', localId_num, {
@@ -100,13 +105,17 @@ const GuestBook = () => {
             <input className="gsend" type="text" placeholder="입력" value={content} onChange={onChangeText}/>
             <button className ="gbtn" onClick={onClickBTN}>보내기</button>
                 <div className="minibox">
-                {chatInfo && chatInfo.map((chat) => (
-                    <div key={chat.id}>
-                        <div className="gchat">
-                            <div className="gchatNum">{chat.chatNum}</div>
-                            <div className="gcontent">{chat.content}</div>
-                            <div className="gchattime">{chat.chatTime}</div>
-                        </div>
+                {chatInfo.reverse().map((chat) => (
+                    <div className="gchat" key={chat.id}>
+                            <div className="gchatNum">
+                            <img src={url} alt="프로필 이미지" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "30px", height: "30px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+                            {nickName}
+                            </div>
+                            <div className="gcontent">{chat.content}
+                            <Moment format=" YYYY.MM.DD HH:mm" className="gchattime">{chat.chatTime}</Moment>
+                            </div>
+                          
+    
                     </div>
                 ))}
                 </div>
