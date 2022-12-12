@@ -23,11 +23,14 @@ public class GChattingController {
     @PutMapping("/Chat")
     public ResponseEntity<Boolean> sendPost(@RequestBody Map<String, String> chatData) {
         log.warn("★★★★★★★★★쪽지 보내기 Controller★★★★★★★★★");
+
         String getContent = chatData.get("content");
+        String getNickname = chatData.get("nickname");
+//        String getId = chatData.get("id");
 
         log.info(getContent);
 
-        boolean isTrue = GChatService.sendPost(getContent);
+        boolean isTrue = GChatService.sendPost(getContent,getNickname);
         if(isTrue) {
             log.warn(">" + isTrue + " : 채팅성공 ");
             return new ResponseEntity<>(true, HttpStatus.OK);

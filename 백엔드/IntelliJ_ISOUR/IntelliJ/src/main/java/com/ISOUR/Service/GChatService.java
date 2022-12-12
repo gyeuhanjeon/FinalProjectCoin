@@ -28,13 +28,15 @@ public class GChatService {
     @Autowired
     private ChatListRepository chatListRepository;
 
-    public boolean sendPost(String content) {
+    public boolean sendPost(String content, String nickname) {
         log.warn("★★★★★★★★★채팅 보내기 서비스★★★★★★★★★");
         log.warn("내용(content) : " + content);
 
         GChat GChat = new GChat();
         GChat.setContent(content);
-        GChat.setChatTime(now().withNano(0));
+        GChat.setChatTime(LocalDateTime.now().withNano(0));
+        GChat.setNickname(nickname);
+//        GChat.setId(id);
 
         GChat result = GChatRepository.save(GChat);
         log.warn(result.toString());
@@ -49,6 +51,8 @@ public class GChatService {
         List<GChat> GChatInfoList = GChatRepository.findAll();
         for(GChat e : GChatInfoList) {
             GChatDTO GChatDTO = new GChatDTO();
+//            GChatDTO.setId(e.getId());
+            GChatDTO.setNickname(e.getNickname());
             GChatDTO.setChatNum(e.getChatNum());
             GChatDTO.setContent(e.getContent());
             GChatDTO.setChatTime(e.getChatTime());
