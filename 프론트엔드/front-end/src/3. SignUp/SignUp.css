@@ -100,7 +100,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .SignUp-Table {
@@ -150,6 +150,8 @@ display: inline-flex;
 }
 
 .gender {
+    margin: 0;
+    padding: 0;
     width: 150px;
     font-size: 1.5rem;
     text-align: center;
