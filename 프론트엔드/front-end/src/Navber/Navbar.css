@@ -8,11 +8,7 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-:root {
-  --bg-color: #29335c;
-  --text-color: #fff;
-  --main-color: pink;
-}
+
 
 
 /* 
@@ -26,7 +22,7 @@
   margin: 0;
   font-family: 'Poppins', sans-serif;
 
-  color: var(--text-color);
+  color: #fff;
 }
 .Navbar-Container a {
   text-decoration: none;
@@ -43,7 +39,7 @@
 /* 붙여넣기 : header */
 .Navbar-Container header {
   width: 100%;
-  background: var(--bg-color);
+  background: #29335c;
   top: 0;
   z-index: 1000;
   display: flex;
@@ -74,7 +70,7 @@
   margin-right: 5px;
 }
 .Navbar-Container header .logo span {
-  color: var(--text-color);
+  color: #fff;
   font-size: 1.7rem;
   font-weight: 600;
 }
@@ -102,7 +98,7 @@
   border-right: 1px solid rgba(255, 255, 255, .2);
 }
 .Navbar-Container .Navbar li a {
-  color: var(--text-color);
+  color: #fff;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 0 20px; 
@@ -192,7 +188,7 @@
   align-items: center;
 }
 .User span {
-  color: var(--main-color);
+  color: pink;
   font-size: 50px;
   margin-right: 7px;
 }
@@ -202,7 +198,7 @@
 
 #menu-icon {
   font-size: 35px;
-  color: var(--text-color);
+  color: #fff;
   cursor: pointer;
   z-index: 10001;
   display: none;
@@ -238,7 +234,7 @@
     right: -100%; /* rigth : 2% ☞ -100% */
     width: 270px;
     height: 30vh;
-    background: var(--main-color);
+    background: #29335c;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -252,11 +248,11 @@
     transition: all .50s ease;
   }
   .Navbar-Container .Navbar a:hover {
-    color: var(--text-color);
+    color: #fff;
     transform: translateY(5px);
   }
   .Navbar-Container .Navbar a.active {
-    color: var(--text-color);
+    color: #fff;
   }
   .Navbar-Container .open {
     top: 20%;
