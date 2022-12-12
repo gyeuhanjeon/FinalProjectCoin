@@ -572,7 +572,6 @@ const MyPage = () => {
           <button className='input6-btn-keep' onClick={onSaveNickname}>저장</button>}
           {isNicknamecheck&&
           <button className='input6-btn-keep' onClick={cancelNickname}>취소</button>}
-
           </div>
         </>
         }
@@ -634,10 +633,6 @@ const MyPage = () => {
             </option>
           ))}
         </select>
-
-
-
-        <tr className="Form-item">
         <select className='Select-SiGuGun' onChange={onChangeRegion2}>
           <option disabled selected>시/구/군선택</option>
 
@@ -650,13 +645,14 @@ const MyPage = () => {
               </option>
             ))}
         </select>
+        
 
+        <div>       
         <button className='input10-btn' onClick={onSaveAddress}>저장</button>
         <button className='input10-btn' onClick={e => setIsChangeAddress(false)}>취소</button>
-
+        </div>
         </tr>
         
-      </tr>
       : 
       <div>
       <tr className="Form-item">
@@ -664,15 +660,9 @@ const MyPage = () => {
         <span>주소</span>
         </div>
         <input className='Form-input9' type="text" value ={region1} />
-        <div className='s'/>
-        </tr>
         
-
-        <tr className="Form-item">
-        <div className="Form-Name">
-          <div></div>
-          </div>
         <input className='Form-input10' type="text" value ={region2} />
+        
         <button className='input10-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
         </tr>
         </div>
