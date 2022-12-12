@@ -158,7 +158,7 @@ const O3 = styled.div`
       transition: 1s;
     }
     :active{
-      border: 55px solid blueviolet;
+      border: 52px solid blueviolet;
     }
   
 `;
