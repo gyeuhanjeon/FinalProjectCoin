@@ -12,6 +12,7 @@ import { storage } from '../firebase'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 //쿠키
 import Cookies from 'universal-cookie';
+import { set } from 'date-fns';
 
 const regexName = /^[ㄱ-ㅎ가-힣]{2,20}$/;
 
@@ -49,10 +50,15 @@ const MyPage = () => {
   const [region2, setRegion2] = useState("");
   const [mbti, setMbti] = useState("");
   const [keySido, setKeySido] = useState("");
+  const [nicknameBefore,setNicknameBefore] = useState("");
+  const [introduceBefore,setIntroduceBefore] = useState("");
+  const [emailBefore,setEmailBefore] = useState("");
+
 
   const [isNicknamecheck, setIsNicknamecheck] = useState(false);
 
   // 변경 여부 변수 선언
+  const [isCheckedNickname, setIsCheckedNickname] = useState(true);
   const [isChangeNickname, setIsChangeNickname] = useState(false);
   const [isChangeIntroduce, setIsChangeIntroduce] = useState(false);
   const [isChangeEmail, setIsChangeEmail] = useState(false);
@@ -91,6 +97,9 @@ const MyPage = () => {
           setEmail(member.email);
           setRegion1(member.region1);
           setRegion2(member.region2);
+          setNicknameBefore(member.nickname);
+          setIntroduceBefore(member.introduce);
+          setEmailBefore(member.email);
           console.log("기존 회원 정보 가져오기 완료")
         } else {
           console.log("통신 실패("+ response.status + ")");
@@ -237,12 +246,20 @@ const MyPage = () => {
           console.log("사용 가능한 닉네임 입니다.");
           setIsNicknamecheck(true);
           alert("사용 가능한 닉네임 입니다.");
+          setIsCheckedNickname(false);
         }
       } catch (e) {
         console.log(e);
       }
     }
   }
+    /* 닉네임 변경 취소 */
+  const cancelNickname = ()=>{
+      setIsChangeNickname(false);
+      setNickname(nicknameBefore);
+  }
+
+
 
   /* 닉네임 저장 */
   const onSaveNickname = async(e) => {
@@ -274,6 +291,11 @@ const MyPage = () => {
 
     } catch (e) {console.log(e);}
   } 
+  /* 자기소개 변경 취소 */
+  const cancelIntroduce = () =>{
+    setIsChangeIntroduce(false);
+    setIntroduce(introduceBefore);
+  }
 
   /* 자기소개 변경 */
   const onChangeIntroduce = e => { 
@@ -310,6 +332,12 @@ const MyPage = () => {
   const onChangeEmail = e => { 
     let temp_email = e.target.value;
     setEmail(temp_email); 
+  }
+
+   /* 이메일 변경 취소 */
+   const cancelEmail = () => { 
+    setIsChangeEmail(false);
+    setEmail(emailBefore);
   }
 
   /* 이메일 저장 */
@@ -538,8 +566,13 @@ const MyPage = () => {
         <>
           <input className='Form-input6-2' type="text" onChange={onChangeNickname}/>
           <div className='input6-btn'>
-          <button className='input6-btn-select' onClick={onClickNicknameCheck}>중복확인</button>
-          <button className='input6-btn-keep' onClick={onSaveNickname}>저장</button>
+          {isCheckedNickname&&
+          <button className='input6-btn-select' onClick={onClickNicknameCheck}>중복확인</button>}
+          {isNicknamecheck&&
+          <button className='input6-btn-keep' onClick={onSaveNickname}>저장</button>}
+          {isNicknamecheck&&
+          <button className='input6-btn-keep' onClick={cancelNickname}>취소</button>}
+
           </div>
         </>
         }
@@ -560,6 +593,7 @@ const MyPage = () => {
         <>
           <input className='Form-input7-2' type="text" onChange={onChangeIntroduce}/>
           <button className='input7-btn-keep' onClick={onSaveIntroduce}>저장</button>
+          <button className='input7-btn-keep' onClick={cancelIntroduce}>취소</button>
         </>
         }
       </tr>
@@ -579,6 +613,7 @@ const MyPage = () => {
         <>
           <input className='Form-input8-2' type="mail" onChange={onChangeEmail}/>
           <button className='input8-btn-keep' onClick={onSaveEmail}>저장</button>
+          <button className='input8-btn-keep' onClick={cancelEmail}>취소</button>
         </>
         }
       </tr>
@@ -616,7 +651,9 @@ const MyPage = () => {
             ))}
         </select>
 
-        <button onClick={onSaveAddress}>저장</button>
+        <button className='input10-btn' onClick={onSaveAddress}>저장</button>
+        <button className='input10-btn' onClick={e => setIsChangeAddress(false)}>취소</button>
+
         </tr>
         
       </tr>
@@ -637,7 +674,6 @@ const MyPage = () => {
           </div>
         <input className='Form-input10' type="text" value ={region2} />
         <button className='input10-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
-
         </tr>
         </div>
       }
