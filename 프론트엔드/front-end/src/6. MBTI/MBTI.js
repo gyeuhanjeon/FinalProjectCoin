@@ -23,6 +23,8 @@ import { MdPsychology, MdQuiz } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import '../0. API/defultMain.css';
 
+
+
 //스타일 컴포넌트
 
 const Startbtn = styled.button`
@@ -154,8 +156,16 @@ const O3 = styled.div`
 
     :hover{
       background-color: aqua;
-      transition: 1s;
-      transition-timing-function:cubic-bezier(0.95, 0.05, 0.795, 0.035)
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: aqua;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
     
 `;
@@ -171,8 +181,16 @@ const X3 = styled.div`
 
     :hover{
       background-color: #FF0099;
-      transition: 1s;
-      transition-timing-function:ease-in-out
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: #FF0099;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
   
   
@@ -191,8 +209,16 @@ const O2 = styled.div`
     
     :hover{
       background-color: aqua;
-      transition: 1s;
-      transition-timing-function:ease-in-out
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: aqua;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
   
 `;
@@ -211,8 +237,16 @@ const X2 = styled.div`
 
     :hover{
       background-color: #FF0099;
-      transition: 1s;
-      transition-timing-function:ease-in-out
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: #FF0099;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
   
   
@@ -231,8 +265,16 @@ const O1 = styled.div`
 
     :hover{
       background-color: aqua;
-      transition: 1s;
-      transition-timing-function:ease-in-out
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: aqua;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
 `;
 const X1 = styled.div`
@@ -248,8 +290,16 @@ const X1 = styled.div`
 
     :hover{
       background-color: #FF0099;
-      transition: 1s;
-      transition-timing-function:ease-in-out
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(-20px);
+    }
+
+    :active{
+      background-color: #FF0099;
+      transition: 0.5s;
+      transition-timing-function:ease-in-out;
+      transform: translateY(0px);
     }
   
 `;
@@ -274,7 +324,7 @@ const RecommendByOne = styled.div`
     font-size: 30px;
     text-align: center;
     position: relative;
-    bottom:10px;
+    bottom:30px;
     font-weight: 900;
   }
   height: 250px;
@@ -298,7 +348,7 @@ const ResultContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0,0,0, .04);
+  top:170px;
   /* border-right: 2px solid black;
   border-left: 2px solid black; */
   
@@ -307,7 +357,6 @@ const ResultContainer = styled.div`
 const MyMbti = styled.div`
   height: 300px;
 	width: 200px;
-    margin-bottom: 100px;
 	border-radius: 15px;
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	overflow: hidden;
@@ -319,7 +368,7 @@ const MyMbti = styled.div`
     grid-column-end: 5;
     grid-row: 1/2;
     background-color: #6699FF;
-    margin: 0 auto;
+    margin: 0 auto 30px;
 
   img{
     width: 120px;
@@ -333,7 +382,7 @@ const MyMbti = styled.div`
     color:#66FF33;
     font-size: 40px;
     position: relative;
-    bottom: 10px;
+    bottom: 40px;
     font-weight: 900;
   }
 
@@ -390,10 +439,11 @@ const RecommendWord = styled.div`
 const Character = styled.div`
   color: #FFFFCC;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 16px;
   position: relative;
   text-align:center;
-  bottom: 15px;
+  bottom: 45px;
+  margin: 5px 0px;
 `
 const StartContainer = styled.div`
 
@@ -808,7 +858,7 @@ const Quiz = (props) => {
             <MyMbti>
               <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-isfp" target='_blank'>
                 <img src={모험가}></img>
-              </a>|
+              </a>
               <p>{"ISFP"}</p>
               <Character>{"#개방적"}</Character>
               <Character>{"#조화로운 삶"}</Character>
