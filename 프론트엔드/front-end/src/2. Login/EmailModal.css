@@ -26,8 +26,8 @@
   bottom: 10px;
 }
 
-.modal>section>main>form>div>label {
-  width: 140px;
+section>main>form>div>label {
+  min-width: 130px;
 }
 
 .modal>section>main>form>div>input {
@@ -35,7 +35,7 @@
   border: none;
   background-color: white;
   color: black;
-  padding: 0.1rem;
+  padding: 0.08rem;
   height: 30px;
   border-radius: 100px;
   text-transform: uppercase;
@@ -45,7 +45,11 @@
   border: 0px none;
   font-weight: 900;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+  margin-left: 10px;
+  float: right;
+  margin-bottom: 4px;
+  position: relative;
+  bottom: 10px;
 }
 
 .modal>section>main>form>.modal-findId{
@@ -60,7 +64,7 @@
 
 .modal>section {
   width: 90%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;

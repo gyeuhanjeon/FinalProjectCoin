@@ -371,7 +371,7 @@ const FindInfo = () => {
                             <table>
                                 <div>
                                     <th>
-                                        <label>이름</label>
+                                        <label>이 름</label>
                                     </th>
                                     <td>
                                         <Input type="text" placeholder="이름" value={name} onChange={onChangeName} required />
@@ -380,7 +380,7 @@ const FindInfo = () => {
                                 </div>
                                 <div>
                                     <th>
-                                        <label>이메일</label>
+                                        <label>이 메 일</label>
                                     </th>
                                     <td>
                                         <Input type="text" placeholder="이메일" value={email} onChange={onChangeEmail} required />
@@ -389,7 +389,7 @@ const FindInfo = () => {
                                 </div>
                                 <div>
                                     <th>
-                                        <label>생년월일</label>
+                                        <label>생 년 월 일</label>
                                     </th>
                                     <td>
                                         <Input type="date" value={birth} onChange={onChangeBirth} />
