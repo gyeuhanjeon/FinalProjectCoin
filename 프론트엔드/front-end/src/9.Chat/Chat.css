@@ -95,9 +95,8 @@ section .form {
   margin: 0 auto;
   padding: 0;
   font-family: "Jalnan";
-  /* 아래 두 줄 조혜경이 추가(확인용) */
-  margin-top: 200px;
-  background-color: yellow;
+  margin-top: 3rem;
+  background-color: darkgrey;
 
 }
 .users_container {
@@ -150,7 +149,7 @@ section .form {
 }
 .no_conv {
   font-size: 20px;
-  color: var(--color-4);
+  color: black;
   text-align: center;
 }
 .message_form {

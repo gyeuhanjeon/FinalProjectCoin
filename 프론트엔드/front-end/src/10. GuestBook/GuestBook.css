@@ -1,0 +1,66 @@
+.chat-Container{
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    max-width: 1180px;
+    font-family: "Jalnan";
+    background-color: white;
+    justify-content:center;
+  }
+
+  .chat-box1 {
+    border: 1px solid;
+    height: 80%;
+    width: 100%;
+    padding: 25px;
+    margin: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-padding-right: 10px;
+    font-family: "Jalnan";
+    border-radius: 20px;
+  }
+
+  
+  .gsend {
+    width: 25rem;
+    font-family: "Jalnan";
+    padding: 0.8rem;
+  }
+
+  .gbtn {
+     margin-right: auto;
+     font-family: "Jalnan";
+     padding: 0.8rem;
+  }
+  .gchatNum {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 53rem;
+  }
+  .gcontent {
+    margin-left: 5rem;
+    width: 40rem;
+    word-break:break-all;    
+  }
+  .gchattime{
+    margin-left: 45rem;
+  }
+  .gchat {
+    font-family: "Jalnan";
+    
+ }
+ .minibox {
+    margin-top: 1rem;
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    height: 700px;
+    width: 80%;
+    overflow: scroll;
+    font-family: "Jalnan";
+ }

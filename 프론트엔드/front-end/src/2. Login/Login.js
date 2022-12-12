@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import TeamAPI from '../0. API/TeamAPI';
 import '../2. Login/Login.css';
 import '../font/Jalnan.ttf';
@@ -6,7 +6,7 @@ import "../images/아이셔용.png"
 import { motion } from "framer-motion";
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../firebase';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 import kakao from '../images/kakao_login_small (1).png';
 import { REST_API_KEY, REDIRECT_URI } from '../0. API/kakaoAPI';
@@ -91,16 +91,16 @@ function Login() {
   // 카카오톡 로그인
   const kakao_Auth_Url = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-  const handlerLogin = () => {
-  //   window.location.href = kakao_Auth_Url;
-    navigate(kakao_Auth_Url);
+  // const handlerLogin = () => {
+  // //   window.location.href = kakao_Auth_Url;
+  //   navigate(kakao_Auth_Url);
 
-  }
+  // }
 
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const [checkedItems, setCheckedItems] = useState(false);
-  const [googleEmail, setGoogleEmail] = useState("");
+
 
   const onClickAutologin = () => {
     if (checkedItems === false) {

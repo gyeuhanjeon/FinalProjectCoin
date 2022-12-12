@@ -9,9 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.OrderBy;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static java.time.LocalDateTime.*;
 
 @Service
 @Slf4j
@@ -30,7 +34,7 @@ public class GChatService {
 
         GChat GChat = new GChat();
         GChat.setContent(content);
-        GChat.setChatTime(LocalDateTime.now().withNano(0));
+        GChat.setChatTime(now().withNano(0));
 
         GChat result = GChatRepository.save(GChat);
         log.warn(result.toString());
@@ -58,12 +62,10 @@ public class GChatService {
         log.warn("★★★★★★★★★ 채팅 친구 추가 서비스★★★★★★★★★");
         log.warn("내 아이디 : " + userId);
         log.warn("친구 아이디 : " + chatMemberId);
-
         ChatList chatList = new ChatList();
         chatList.setUserId(userId);
         chatList.setChatMemberId(chatMemberId);
-        chatList.setFirstChatTime(LocalDateTime.now().withNano(0));
-
+        chatList.setFirstChatTime(now().withNano(0));
         ChatList result = chatListRepository.save(chatList);
         log.warn(result.toString());
 

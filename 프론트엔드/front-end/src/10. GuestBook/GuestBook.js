@@ -2,20 +2,43 @@ import { useEffect, useState } from "react";
 import TeamAPI from "../0. API/TeamAPI";
 import Cookies from 'universal-cookie';
 import { useNavigate  } from "react-router-dom";
+import './GuestBook.css';
 
-const GChat = () => {
-
-
-
+const GuestBook = () => {
     const [nickname, setNickname] = useState('');
     const [content, setContent] = useState('');
     const [chatInfo,setChatinfo] = useState([]);
     const [isText, setIsText] = useState('');
+    const [nickName, setNickName] = useState('');
     const cookies = new Cookies();
     const navigate = useNavigate();
 
+    const chatContent = /^\w{1,40}$/;
+    const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
+    const localId = cookies.get('rememberId');
 
-    const localId = cookies.get('rememberId')  ;
+    useEffect(() => {
+        if (localId === undefined) navigate("/login");
+    const memberData = async () => {
+        // console.log("\n\n현재 sessionStorage 에 저장된 ID : " + id);
+        console.log("\n\n현재 cookies 에 저장된 ID : " + localId);
+        console.log("\n\n현재 sessionStorage 에 저장된 카카오 Id_num : " + kakaoId_num);
+  
+        console.log(typeof (kakaoId_num));
+        try {
+          const response = await TeamAPI.memberInfo(localId); // 원래는 전체 회원 조회용
+          setNickName(response.data.nickname)
+          const localId_num = response.data.idNum;
+
+          cookies.set('rememberId_num', localId_num, {
+            path: '/',
+            expires: 0
+          })
+        } catch (e) {
+        }
+      };
+      memberData();
+    }, []);
 
     const onChangeText = e => {
         let textShow = e.target.value;
@@ -36,8 +59,6 @@ const GChat = () => {
             if( isText === true ) {
                 
                 const res = await TeamAPI.memberChat(content);
-                console.log(res.data);
-
                 if(res.data === true) {
                     setContent('')
                 }else{
@@ -62,44 +83,35 @@ const GChat = () => {
         //로그인 안될시 로그인 화면으로 이동.
 
         const chatData = async () => {
-        //   console.log("\n\n현재 localStorage 에 저장된 isLogin : " + isLogin);
           let id = content;
           try {
             const response = await TeamAPI.chatInfo(id); // 원래는 전체 회원 조회용
             setChatinfo(response.data);
-            console.log("1111", response.data);
-            // console.log("1111", response.data[1].content)
-
-   
-            
           } catch (e) {
-            console.log(e);
           }
         };
         chatData();
         }, [onClickBTN]);
     
-   
-
     
     return (
-        <div>
-            <div>
-                <h1>채팅내용</h1>
-                <div>*********************</div>
+        <div className="chat-Container">
+            <div className="chat-box1">
+            <input className="gsend" type="text" placeholder="입력" value={content} onChange={onChangeText}/>
+            <button className ="gbtn" onClick={onClickBTN}>보내기</button>
+                <div className="minibox">
                 {chatInfo && chatInfo.map((chat) => (
                     <div key={chat.id}>
-                        <tr>
-                            <td>{chat.chatNum}</td>
-                            <td>{chat.content}</td>
-                            <td>{chat.chatTime}</td>
-                        </tr>
+                        <div className="gchat">
+                            <div className="gchatNum">{chat.chatNum}</div>
+                            <div className="gcontent">{chat.content}</div>
+                            <div className="gchattime">{chat.chatTime}</div>
+                        </div>
                     </div>
                 ))}
+                </div>
             </div>
-            <input type="text" placeholder="입력" value={content} onChange={onChangeText}/>
-            <button onClick={onClickBTN}>보내기</button>
-        </div>
+            </div>
     )
 }
-export default GChat;
+export default GuestBook;
