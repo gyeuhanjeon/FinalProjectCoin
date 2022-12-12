@@ -1,0 +1,52 @@
+.AboutUs-Container {
+  width: 800px;
+  height: 700px;
+  align-items: center;
+  margin: 150px auto;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  position: relative;
+  background-color: yellow;
+}
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  header 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.AboutUs-header {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.AboutUs-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  main 영역
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.AboutUs-main {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  
+}
+
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  main 영역 - OurInfo
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.OurInfo {
+  margin: 20px;
+  background: pink;
+  border-radius: 20px;
+  padding: 3rem 4rem 1rem;
+}
+.OurInfo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  object-fit: cover;
+}

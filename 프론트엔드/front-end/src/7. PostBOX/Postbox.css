@@ -7,6 +7,7 @@
   padding: 1rem;
   border-radius: 10px;
   position: relative;
+  background-color: yellow;
   /* box-shadow: 0 12px 12px rgba(32,32,32,.8); */
   /* font-family: 'Poppins', sans-serif; */
   /* border: 1px solid grey; */
@@ -19,7 +20,7 @@
   header 영역
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .Postbox-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   margin-top: 2rem;
   text-align: center;
 }
@@ -49,7 +50,7 @@
   main 영역
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .Postbox-main {
-  height: 400px;
+  height: 450px;
   margin-bottom: 4rem;
 }
 
@@ -79,7 +80,7 @@
   color: white;
 }
 .Postbox-table thead tr th {
-  padding: .5rem;
+  padding: .8rem;
   border: 1px solid skyblue;
 }
 
@@ -94,7 +95,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .Postbox-table tbody td {
   /* padding: 위아래 좌우 */
-  padding: 5px 12px; 
+  padding: 10px 12px; 
   
   border: 1px solid skyblue;
   background-color: white;
@@ -142,12 +143,12 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  height: 45px;
+  height: 30px;
   padding: 8px;
 }
 
 .Postbox-Pagination .move {
-  border-radius: 50%;
+  border-radius: 25px;
 }
 .Postbox-Pagination .before:hover {
   border-radius: 25px 5px 5px 25px;
@@ -170,6 +171,7 @@
   align-items: center;
   justify-content: center;
   width: 27px;
+  height: 27px;
   display: flex;
   border-radius: 50%;
   color: white;

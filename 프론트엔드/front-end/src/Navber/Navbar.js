@@ -38,7 +38,7 @@ function Navbar() {
 
       {/* Navbar 영역 */}
         <ul className= {isMenuOpen ? "Navbar" : "Navbar open"}>
-          <li><a href="/home" className="active">About Us</a></li>
+          <li><a href="/aboutus" className="active">About Us</a></li>
           {/* <li>
             <a onClick={onClickMBTI}>MBTI
               {!showMbtiList 

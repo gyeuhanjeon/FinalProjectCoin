@@ -12,7 +12,7 @@ import MyPage from './5. MyPage/MyPage';
 import Navbar from './Navber/Navbar';
 import '../src/App.css';
 import KakaoToken from './2. Login/KakaoToken';
-
+import AboutUs from './11. AboutUs/AboutUs';
 function LoginUser() {
   return (
     <>
@@ -20,6 +20,7 @@ function LoginUser() {
       <Navbar/>
       <Routes>
         <Route path='/home' element={<Home />} />
+        <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/mypage' element={<MyPage />} />
         <Route path='/MBTI' element={<MBTI />} />
         <Route path='/MbtiTypes' element={<MbtiTypes />} />

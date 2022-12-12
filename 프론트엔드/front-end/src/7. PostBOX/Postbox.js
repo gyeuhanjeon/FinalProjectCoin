@@ -151,77 +151,79 @@ const Postbox = () => {
 
   return ( 
     <div className='Container'>
-      <PostModal open={modalOn} close={closeModal} sender={postSender} content={content} senderId={postSenderId} />
-      <div className='Postbox-Container'>
+      <div className='Middle-Container'>
+        <PostModal open={modalOn} close={closeModal} sender={postSender} content={content} senderId={postSenderId} />
+        <div className='Postbox-Container'>
 
-        {/* header 영역 */}
-        <div className='Postbox-header'>
-          <h1>{myNickname} 님의 쪽지함</h1>
-        </div>
+          {/* header 영역 */}
+          <div className='Postbox-header'>
+            <h1>{myNickname} 님의 쪽지함</h1>
+          </div>
 
-        <button className='delete' onClick={onClickDelete} disabled={postList.length === 0}>삭제</button>
+          <button className='delete' onClick={onClickDelete} disabled={postList.length === 0}>삭제</button>
 
-        {/* main 영역 */}
-        <div className='Postbox-main'>
-          <table className='Postbox-table'>
-            {/* thead 의 시작 */}
-            <thead>
-              <tr>
-                <th>
-                  <input type='checkbox' className='Postbox-table checkbox'
-                    // ▼ checked 는 true 또는 false
-                    onChange={(e) => handleAllCheck(e.target.checked)}
-                    // ▼ 전체 쪽지 수와 체크된 쪽지의 수가 다르면 false(전체 선택 해제)
-                    checked={checkedPosts.length === postList.length ? true : false} />
-                </th>
-                <th className='Postbox-table postSender'>보낸 사람</th>
-                <th className='Postbox-table content'>내용</th>
-                <th className='Postbox-table postTime'>시간</th>
-              </tr>
-            </thead>
-
-            {/* tbody 의 시작 */}
-            <tbody>
-              {postList.length === 0 
-              ? 
-              <tr>
-                <td colSpan='4'>쪽지가 없습니다.</td>
-              </tr>
-              // slice(2, 4) : 인덱스 2부터 4-1(=3)까지
-              : (postList.slice(offset, offset + limit).map(post => (
-                <tr key={post.postNum}>
-                  <td className='Postbox-table-tbody-td-checkbox'>
-                    <input type='checkbox'
-                      onChange={(e) => handleSingleCheck(e.target.checked, post.postNum)}
-                      // ▼ checkedPosts 에 해당 쪽지의 postNum 이 있으면 true, 아니면 false
-                      checked={checkedPosts.includes(post.postNum) ? true : false} />
-                  </td>
-                  <td className='Postbox-table-tbody-td-postSender'>{post.postSender}</td>
-                  <td className='Postbox-table-tbody-td-content'
-                    onClick={() => onClickPost(post.postSenderId, post.postSender, post.content)}>
-                    <div className='Postbox-table-tbody-td-content-div'>
-                      {post.content}
-                    </div>
-                  </td>
-                  <td className='Postbox-table-tbody-td-postTime'>
-                    <Moment format='YY-MM-DD HH:mm'>{post.postTime}</Moment>
-                  </td>
+          {/* main 영역 */}
+          <div className='Postbox-main'>
+            <table className='Postbox-table'>
+              {/* thead 의 시작 */}
+              <thead>
+                <tr>
+                  <th>
+                    <input type='checkbox' className='Postbox-table checkbox'
+                      // ▼ checked 는 true 또는 false
+                      onChange={(e) => handleAllCheck(e.target.checked)}
+                      // ▼ 전체 쪽지 수와 체크된 쪽지의 수가 다르면 false(전체 선택 해제)
+                      checked={checkedPosts.length === postList.length ? true : false} />
+                  </th>
+                  <th className='Postbox-table postSender'>보낸 사람</th>
+                  <th className='Postbox-table content'>내용</th>
+                  <th className='Postbox-table postTime'>시간</th>
                 </tr>
-              )))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
 
-        {/* footer 영역 */}
-        <div className='Postbox-footer'>
-        {goPagination ?
-          <Pagination
-            total={postList.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
-        : null}
+              {/* tbody 의 시작 */}
+              <tbody>
+                {postList.length === 0 
+                ? 
+                <tr>
+                  <td colSpan='4'>쪽지가 없습니다.</td>
+                </tr>
+                // slice(2, 4) : 인덱스 2부터 4-1(=3)까지
+                : (postList.slice(offset, offset + limit).map(post => (
+                  <tr key={post.postNum}>
+                    <td className='Postbox-table-tbody-td-checkbox'>
+                      <input type='checkbox'
+                        onChange={(e) => handleSingleCheck(e.target.checked, post.postNum)}
+                        // ▼ checkedPosts 에 해당 쪽지의 postNum 이 있으면 true, 아니면 false
+                        checked={checkedPosts.includes(post.postNum) ? true : false} />
+                    </td>
+                    <td className='Postbox-table-tbody-td-postSender'>{post.postSender}</td>
+                    <td className='Postbox-table-tbody-td-content'
+                      onClick={() => onClickPost(post.postSenderId, post.postSender, post.content)}>
+                      <div className='Postbox-table-tbody-td-content-div'>
+                        {post.content}
+                      </div>
+                    </td>
+                    <td className='Postbox-table-tbody-td-postTime'>
+                      <Moment format='YY-MM-DD HH:mm'>{post.postTime}</Moment>
+                    </td>
+                  </tr>
+                )))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* footer 영역 */}
+          <div className='Postbox-footer'>
+          {goPagination ?
+            <Pagination
+              total={postList.length}
+              limit={limit}
+              page={page}
+              setPage={setPage}
+            />
+          : null}
+          </div>
         </div>
       </div>
     </div>
