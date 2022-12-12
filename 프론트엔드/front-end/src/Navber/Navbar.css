@@ -45,10 +45,13 @@
   width: 100%;
   background: var(--bg-color);
   top: 0;
+  z-index: 1000;
   display: flex;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 10px 2%;
   transition: all .50s ease;
+  position: fixed;
 }
 .Navbar-Container header ul {
   margin: 0;
@@ -114,7 +117,7 @@
   color: yellow;
 }
 
-.Navbar-Container .Navbar .MBTI-sub-menu {
+.MBTI-sub-menu {
   position: absolute;
   /* top 은 전체 네비 높이에 따라 다르게 설정할 것! */
   top: 70px; 
@@ -140,45 +143,41 @@
 
 /* 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Main 영역
+  Main-Icon 영역
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.Navbar-Container .Main  {
+.Navbar-Container .Main-Icon  {
   display: flex;
-  /* display: inline-block; */
   align-items: center;
-  position: relative;
-  margin-right: 0;
-  justify-content: flex-end;
+  position: absolute;
+  right: 2%;
 }
-.Navbar-Container .Main  a {
-  margin-right: 25px;
+.Navbar-Container .Main-Icon a {
+  margin-right: 20px;
   margin-left: 10px;
-  color: var(--text-color);
   font-size: 1.1rem;
   font-weight: 500;
   transition: all .50s ease;
 }
-.Navbar-Container .Main  a {
-  color: var(--main-color);
-}
 
-.Navbar-Container .Main  .LoginUser-sub-menu {
+.User-submenu {
   position: absolute;
   /* top 은 전체 네비 높이에 따라 다르게 설정할 것! */
-  top: 70px;
-  right: 0;
+  top: 70px; 
+  right: 50px;
   display: block;
   transition: 0.5s;
   background: rgb(226, 75, 75);
   line-height: 40px;
-  border-radius: 0 0 70px 70px;
+  /* border-radius: 0 0 70px 70px; */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   /* padding: 5px 20px; */
   /* width: 150px; */
   text-align: left;
+  color: white;
 }
 
-.Main-sub-menu li {
+.User-submenu li {
+  color: white;
   padding: 5px;
   border-right: none;
   border-bottom: 1px solid rgba(255, 255, 255, .2);
@@ -186,18 +185,18 @@
 
 /* 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  LoginUser 영역
+  Main-Icon 영역 - User
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.LoginUser {
+.User {
   display: flex;
-  /* align-items: center; */
+  align-items: center;
 }
-.LoginUser span {
+.User span {
   color: var(--main-color);
   font-size: 50px;
-  /* margin-right: 7px; */
+  margin-right: 7px;
 }
-.LoginUser:hover {
+.User:hover {
   cursor: pointer;
 }
 
@@ -209,4 +208,58 @@
   display: none;
 }
 
+#logout {
+  font-size: 1.1rem;
+}
 
+/* 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  반응형
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* @media (max-width: 1280px) {
+  .Navbar-Container header {
+    padding: 14px 2%;
+    transition: .2s;
+  }
+  .Navbar-Container .Navbar a {
+    padding: 5px 0;
+    margin: 0px 20px;
+  }
+} */
+
+@media (max-width: 935px) {
+  #menu-icon {
+    display: block;
+  }
+  .Navbar-Container .Navbar {
+    position: absolute;
+    top: 100%;
+    
+    right: -100%; /* rigth : 2% ☞ -100% */
+    width: 270px;
+    height: 30vh;
+    background: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+    transition: all .50s ease;
+  }
+  .Navbar-Container .Navbar a {
+    display: block;
+    margin: 12px 0;
+    padding: 0px 25px;
+    transition: all .50s ease;
+  }
+  .Navbar-Container .Navbar a:hover {
+    color: var(--text-color);
+    transform: translateY(5px);
+  }
+  .Navbar-Container .Navbar a.active {
+    color: var(--text-color);
+  }
+  .Navbar-Container .open {
+    top: 20%;
+    right: 2%;
+  }
+}

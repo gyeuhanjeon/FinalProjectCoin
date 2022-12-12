@@ -57,22 +57,22 @@ function Navbar() {
         </ul>
 
       {/* Main 영역 */}        
-        <div className="Main">
-          <span className="LoginUser" onClick={onClickAccount}>
-            <span class="material-symbols-outlined">account_circle</span>
-          </span>
+        <div className="Main-Icon">
+          <a className="User">
+            <span className="material-symbols-outlined" onClick={onClickAccount}>account_circle</span>
+          </a>
           {showAccount ?
-          <ul className='Main-sub-menu'>
+          <ul className='User-submenu'>
             <li><a href="/mypage">마이페이지</a></li>
             <li><a href="/postbox">쪽지함</a></li>
             <li><a href="/chathome">1:1채팅</a></li>
             <li><Logout /></li>
           </ul>
           : null}
-          <span className="material-symbols-outlined" 
+          <div className="material-symbols-outlined" 
             id="menu-icon" onClick={onClickMenu}>
             {isMenuOpen ? "menu" : "close"}
-          </span>
+          </div>
         </div>
 
       </header>

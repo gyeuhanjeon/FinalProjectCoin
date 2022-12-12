@@ -27,9 +27,11 @@ function Logout() {
   }
 
   return (
-    <span className="material-symbols-outlined" onClick={onClickLogout}>logout
-      로그아웃
-    </span>
+    <a>
+      <span id="logout" className="material-symbols-outlined" onClick={onClickLogout}>logout
+        로그아웃
+      </span>
+    </a>
   );
 }
 
