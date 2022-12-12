@@ -18,6 +18,7 @@ import 모험가 from '../images/모험가.png';
 import 사업가 from '../images/사업가.png';
 import 연예인 from '../images/연예인.png';
 import styled from 'styled-components';
+import { style } from "@mui/system";
 
 
 
@@ -27,8 +28,8 @@ const MbtiInfoBox1 = styled.span`
 
     & div{
       position:relative;
-      left:20px;
-      color:black;
+      color:white;
+      text-align: center;
     }
 
     & a{
@@ -42,19 +43,60 @@ const MbtiInfoBox2 = styled.div`
     width: 150px;
     height: 150px;
     position: relative;
-    right: 10px;
+    
   }
   display  : flex;
   align-items: center;
   justify-content: center;
 
-  margin-top: 100px;
-
-  & ul :nth-child(1){
-    background-color: purple;
+  & h2{
+    text-align: center;
+    color:whitesmoke;
   }
+
+
   background-color: rgba(0, 0, 0, 0.04);
   height: 100%;
+
+  list-style: none;
+
+  & li:nth-of-type(1){
+    background-color: rgba(149,98,123,0.7);
+  }
+  & li:nth-of-type(2){
+    background-color: rgba(153,194,108,0.7);
+  }
+  & li:nth-of-type(3){
+    background-color: rgba(113,202,204,0.7);
+  }
+  & li:nth-of-type(4){
+    background-color: rgba(228,199,40,0.7);
+  }
+
+
+
+`
+const MbtiTypeBox = styled.div`
+  margin: 0 10px;
+
+
+
+`
+
+const MbtiInfoHead = styled.div`
+
+  position: absolute;
+  bottom:680px;
+  font-size: 35px;
+  text-align: center;
+
+  & div{
+    position: relative;
+    font-size: 16px ;
+    top: 10px;
+  }
+
+
 `
 
 
@@ -67,9 +109,13 @@ function MbtiTypes() {
     <div>
       <div className="Container">
         <MbtiInfoBox2>
-          <div>
+          <MbtiInfoHead>
+            mbti 유형들
+            <div>이미지를 클릭하시면 해당 유형의 설명페이지로 이동합니다.</div>
+          </MbtiInfoHead>
+          <li>
 
-            <ul>
+            <MbtiTypeBox>
               <h2 className="title-box1" >분석가형</h2>
               <MbtiInfoBox1>
                 <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-intj" >
@@ -95,13 +141,13 @@ function MbtiTypes() {
                   <div>ENTP 변론가 </div>
                 </a>
               </MbtiInfoBox1>
-            </ul>
-          </div>
+            </MbtiTypeBox>
+          </li>
 
           <br></br>
-          <div className="mbti-box">
+          <li>
 
-            <ul>
+            <MbtiTypeBox>
               <h2 className="title-box1" >외교관형</h2>
               <MbtiInfoBox1>
                 <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-infj">
@@ -127,12 +173,12 @@ function MbtiTypes() {
                   <div>ENFP 활동가</div>
                 </a>
               </MbtiInfoBox1>
-            </ul>
-          </div>
+            </MbtiTypeBox>
+          </li>
           <br></br>
-          <div className="mbti-box">
+          <li>
 
-            <ul>
+            <MbtiTypeBox>
               <h2 className="title-box1" >관리자형</h2>
               <MbtiInfoBox1>
                 <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istj">
@@ -158,12 +204,12 @@ function MbtiTypes() {
                   <div>ESFJ 집정관</div>
                 </a>
               </MbtiInfoBox1>
-            </ul>
-          </div>
+            </MbtiTypeBox>
+          </li>
           <br></br>
-          <div className="mbti-box">
+          <li>
 
-            <ul>
+            <MbtiTypeBox>
               <h2 className="title-box1" >탐험가형</h2>
               <MbtiInfoBox1>
                 <a href="https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-istp">
@@ -189,8 +235,8 @@ function MbtiTypes() {
                   <div>ESFP 연예인</div>
                 </a>
               </MbtiInfoBox1>
-            </ul>
-          </div>
+            </MbtiTypeBox>
+          </li>
           <br></br>
 
 
