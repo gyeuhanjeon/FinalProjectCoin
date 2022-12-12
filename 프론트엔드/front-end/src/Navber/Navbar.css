@@ -1,6 +1,12 @@
 /* 
-* padding: (top, bottom), (left, right)
-
+* (top, bottom), (left, right)
+* top, (right, left), bottom
+* top, right, bottom, left
+* ▶ positon ◀
+* relative 요소 자기 자신을 기준으로 배치
+* absolute 부모(조상) 요소를 기준으로 배치
+* fixed    뷰포트 기준으로 배치
+* stickey	 스크롤 영역 기준으로 배치
 
 
 
@@ -18,11 +24,12 @@
 
 .Navbar-Container {
   display: flex;
-  padding: 0;
+  /* padding: 10px 2rem; */
   margin: 0;
   font-family: 'Poppins', sans-serif;
-
+  /* width: 100%; */
   color: #fff;
+  background: #29335c;
 }
 .Navbar-Container a {
   text-decoration: none;
@@ -45,9 +52,10 @@
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  padding: 10px 2%;
+  /* padding: 10px 2rem; */
   transition: all .50s ease;
   position: fixed;
+  margin: 0;
 }
 .Navbar-Container header ul {
   margin: 0;
@@ -63,7 +71,10 @@
 .Navbar-Container header .logo {
   display: flex;
   align-items: center;
-  margin-right: 60px;
+  margin-top: 1rem;
+  margin-right: 5rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
 }
 .Navbar-Container header .logo img {
   width: 35px;
@@ -87,7 +98,7 @@
   align-items: center;
 }
 .Navbar-Container .Navbar li {
-  /* width: 120px; */
+  width: 150px;
   /* background-color: brown; */
   list-style: none;
   position: relative;
@@ -104,7 +115,9 @@
   padding: 0 20px; 
   /* margin: 0px 30px; */
   transition: all .50s ease;
+  display: flex;
 }
+
 
 .Navbar-Container .Navbar li:hover {
   background: #2196f3;
@@ -145,38 +158,43 @@
   display: flex;
   align-items: center;
   position: absolute;
-  right: 2%;
+  right: 2rem;
 }
 .Navbar-Container .Main-Icon a {
-  margin-right: 20px;
-  margin-left: 10px;
+  /* margin-right: 20px; */
+  /* margin-left: 10px; */
+  /* margin: auto 10px; */
   font-size: 1.1rem;
   font-weight: 500;
   transition: all .50s ease;
+  color: white;
 }
 
 .User-submenu {
   position: absolute;
   /* top 은 전체 네비 높이에 따라 다르게 설정할 것! */
-  top: 70px; 
-  right: 50px;
+  top: 61px; 
+  right: 2%;
   display: block;
   transition: 0.5s;
   background: rgb(226, 75, 75);
   line-height: 40px;
-  /* border-radius: 0 0 70px 70px; */
+  border-radius: 0 0 60% 60%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   /* padding: 5px 20px; */
-  /* width: 150px; */
+  width: 200px;
   text-align: left;
   color: white;
+  transition: all .50s ease;
 }
 
 .User-submenu li {
+  text-align: center;
   color: white;
-  padding: 5px;
+  padding: 10px 0;
   border-right: none;
   border-bottom: 1px solid rgba(255, 255, 255, .2);
+  transition: all .50s ease;
 }
 
 /* 
@@ -197,7 +215,7 @@
 }
 
 #menu-icon {
-  font-size: 35px;
+  font-size: 50px;
   color: #fff;
   cursor: pointer;
   z-index: 10001;
@@ -223,7 +241,7 @@
   }
 } */
 
-@media (max-width: 935px) {
+@media (max-width: 840px) {
   #menu-icon {
     display: block;
   }
@@ -232,14 +250,18 @@
     top: 100%;
     
     right: -100%; /* rigth : 2% ☞ -100% */
-    width: 270px;
-    height: 30vh;
-    background: #29335c;
+    width: 200px;
+    height: 30vh; /* 전체 길이*/
+    background: purple;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 10px;
     transition: all .50s ease;
+  }
+  .Navbar-Container .Navbar li {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
   }
   .Navbar-Container .Navbar a {
     display: block;
@@ -254,8 +276,10 @@
   .Navbar-Container .Navbar a.active {
     color: #fff;
   }
-  .Navbar-Container .open {
-    top: 20%;
+  .Navbar .open {
     right: 2%;
+  }
+  .User-submenu .open {
+    top: 61px
   }
 }
