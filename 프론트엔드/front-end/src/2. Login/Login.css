@@ -83,7 +83,7 @@
 
   .social-Login {
     display: flex;
-    justify-items: center;
+    justify-content: center;
     margin: 0 auto;
   }
 
