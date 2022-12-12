@@ -5,6 +5,7 @@ import face from '../images/기본 프로필.png'
 import { ChangePwdModal } from '../99. Modal/ChangePwdModal';
 import { UnregisterModal } from '../99. Modal/UnregisterModal';
 import '../5. MyPage/MyPage.css';
+import '../0. API/defultMain.css';
 
 // 파이어베이스 설치 ☞ yarn add firebase
 import { storage } from '../firebase'
@@ -431,74 +432,100 @@ const MyPage = () => {
   
   return(
     <>
+    <div className='Container'>
     <div className='Mypage-Container'>
       <div className='Mypage-box'>
       <ChangePwdModal open={changePwdModalOpen} close={closeChangePwdModal} getPwd={getPwd} onSavePwd={onSavePwd}></ChangePwdModal>
       <UnregisterModal open={unregisterModalOpen} close={closeUnregisterModal} id={id} getInputPwd={getInputPwd} onDeleteMember={onDeleteMember}></UnregisterModal>
+      
+      <div className='MyPage-header'>
       <h1>마이페이지</h1>
       <h6>프로필 사진 미리보기 가능</h6>
+      </div>
+      
       <div className='MyPage-img'>
       {url != null 
       ? <img src={url} alt="프로필 이미지" style={{width: "150px", height: "150px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
       : <img src={face} alt="프로필 이미지" style={{width: "150px", height: "150px",border:"1px solid", borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/> }
       </div>
-      <div className='MyPage-box2'>
+   
+    <div className='MyPage-box3'>
       <div className="MyPage-img-file">
-      <label for='file'>
-        <div class="btn-upload">사진 첨부</div>
-      </label>
+        <label for='file'>
+          <div class="btn-upload">사진 첨부</div>
+        </label>
       <input type="file"  name="file" id="file" accept="image/*" onChange={onChangeFace}/>
 
       </div>
-      <div className='MyPage-img-btn'>
-      <button className='MyPage-img-select' onClick={onSaveFace}>저장</button>
-      <button className='MyPage-img-delect' onClick={onDeleteFace}>삭제</button>
-      </div>
-      
+        <div className='MyPage-img-btn'>
+          <button className='MyPage-img-select' onClick={onSaveFace}>저장</button>
+          <button className='MyPage-img-delect' onClick={onDeleteFace}>삭제</button>
+        </div>
+        </div>
 
-      <div className="Form-item">
+
+        <table action="" className="MyPage-Table">
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>이름</span>
         </div>
         <input className='Form-input1' type="text" value ={name} disabled/>
-      </div>
-      <div className="Form-item">
+        <div className='s'/>
+      </tr>
+
+
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>아이디</span>
         </div>
+        <div>
         <input className='Form-input2' type="text" value ={id} disabled/>
-      </div>
-      <div className="Form-item">
+        </div>
+        <div className='s'></div>
+      </tr>
+
+
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>생년월일</span>
         </div>
+        <div>
         <input className='Form-input3' type="text" value ={birth} disabled/>
-      </div>
-      <div className="Form-item">
+        </div>
+        <div className='s'></div>
+      </tr>
+
+
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>성별</span>
         </div>
         <input className='Form-input4' type="text" value ={gender} disabled/>
-      </div>
-      <div className="Form-item">
+        <div className='s'/>
+      </tr>
+
+
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>MBTI</span>
         </div>
         { mbti ? <input className='MyPage-MBTI' type="text" value ={mbti} />
           : <button className='Mypage-examine' onClick={onClickTestStart}>검사하기</button>}
-      </div>
+          <div className='s'/>
+      </tr>
 
       {/* 비밀번호 */}
-      <div className="Form-item">
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>비밀번호</span>
         </div>
         <input className='Form-input5' type="password" value ={pwd} />
         <button className="MyPage-Modify-Btn" onClick={openChangePwdModal}>수정</button>
-      </div>
+      </tr>
+
 
       {/* 닉네임 */}
-      <div className="Form-item">
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>닉네임</span>
         </div>
@@ -516,10 +543,11 @@ const MyPage = () => {
           </div>
         </>
         }
-      </div>
+      </tr>
+
 
       {/* 자기소개 */}
-      <div className="Form-item">
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>자기소개</span>
         </div>
@@ -534,10 +562,11 @@ const MyPage = () => {
           <button className='input7-btn-keep' onClick={onSaveIntroduce}>저장</button>
         </>
         }
-      </div>
+      </tr>
+
 
       {/* 이메일 */}
-      <div className="Form-item">
+      <tr className="Form-item">
       <div className="Form-Name">
         <span>이메일</span>
         </div>
@@ -552,12 +581,13 @@ const MyPage = () => {
           <button className='input8-btn-keep' onClick={onSaveEmail}>저장</button>
         </>
         }
-      </div>
+      </tr>
+
 
       {/* 주소 */}
       <>
       {isChangeAddress ?
-      <div className="Form-item">
+      <tr className="Form-item">
         <div className="Form-Name">
         <span>주소</span>
         </div>
@@ -569,6 +599,10 @@ const MyPage = () => {
             </option>
           ))}
         </select>
+
+
+
+        <tr className="Form-item">
         <select className='Select-SiGuGun' onChange={onChangeRegion2}>
           <option disabled selected>시/구/군선택</option>
 
@@ -581,23 +615,38 @@ const MyPage = () => {
               </option>
             ))}
         </select>
+
         <button onClick={onSaveAddress}>저장</button>
+        </tr>
         
-      </div>
+      </tr>
       : 
-      <div className="Form-item">
+      <div>
+      <tr className="Form-item">
         <div className="Form-Name">
         <span>주소</span>
         </div>
         <input className='Form-input9' type="text" value ={region1} />
-        <br/>
+        <div className='s'/>
+        </tr>
+        
+
+        <tr className="Form-item">
+        <div className="Form-Name">
+          <div></div>
+          </div>
         <input className='Form-input10' type="text" value ={region2} />
         <button className='input10-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
-      </div>
+
+        </tr>
+        </div>
       }
       
       </>
+      </table>
+      <div className="Mypage-leave">
       <button className='Mypage-leave-btn' onClick={openUnregisterModal}>탈퇴하기</button>
+      </div>
       </div>
       </div>
       </div>

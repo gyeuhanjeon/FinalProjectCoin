@@ -7,7 +7,8 @@ ISOUR Final Project
 
 - 배경 0.04 수정
 - index.html 부트스트랩 부분 삭제
-- mbti type 페이지 수정중 -> 수정 
+- mbti type 페이지 수정중 -> 수정
+- 부트스트랩없애고 오류났던 css 
 
 
 

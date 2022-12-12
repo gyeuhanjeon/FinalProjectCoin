@@ -67,7 +67,6 @@ const Startbtn = styled.button`
 `
 
 const ObuttonContainer = styled.div`
-  width:600px;
   position: relative;
   align-items: center;
   display: flex;
@@ -84,7 +83,7 @@ const Word1 = styled.span`
   width:100px;
   height: 20px;
   color:skyblue;
-  right: 500px;
+  right: 470px;
   bottom: 250px;
 `;
 const Word2 = styled.span`
@@ -146,119 +145,111 @@ const QuizContainer = styled.div`
 
 const O3 = styled.div`
     
+    display: flex;
     width: 110px;
     height: 110px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: skyblue;
 
     :hover{
-      border-color: skyblue;
-      border: 55px groove blue;
+      background-color: aqua;
       transition: 1s;
+      transition-timing-function:cubic-bezier(0.95, 0.05, 0.795, 0.035)
     }
-    :active{
-      border: 52px solid blueviolet;
-    }
-  
+    
 `;
 const X3 = styled.div`
     
+    display: flex;
     width: 110px;
     height: 110px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: orangered;
+    position: relative;
 
     :hover{
-      border-color: orangered;
-      border: 55px groove orangered;
+      background-color: #FF0099;
       transition: 1s;
+      transition-timing-function:ease-in-out
     }
-    :active{
-      border: 55px solid blueviolet;
-    }
+  
   
 `;
 const O2 = styled.div`
     
+    display: flex;
     width: 75px;
     height: 75px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: skyblue;
-    margin: 0 30px;
     position: relative;
-    top:19px;
+    top: 19px;
+    margin: 0 20px;
+    
     :hover{
-      border-color: skyblue;
-      border: 37.5px groove blue;
+      background-color: aqua;
       transition: 1s;
-    }
-    :active{
-      border: 37.5px solid blueviolet;
+      transition-timing-function:ease-in-out
     }
   
 `;
 const X2 = styled.div`
      
-     width: 75px;
+     display: flex;
+    width: 75px;
     height: 75px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: orangered;
-    margin : 0 30px;
     position: relative;
     top:19px;
+    margin: 0 20px;
+
+
     :hover{
-      border-color: orangered;
-      border: 37.5px groove orangered;
+      background-color: #FF0099;
       transition: 1s;
+      transition-timing-function:ease-in-out
     }
-    :active{
-      border: 37.5px solid blueviolet;
-    }
+  
   
 `;
 const O1 = styled.div`
     
+    display: flex;
     width: 40px;
     height: 40px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: skyblue;
-    margin : 0 10px;
     position: relative;
     top:36px;
+    margin-right: 10px;
 
     :hover{
-      border-color: skyblue;
-      border: 20px groove blue;
+      background-color: aqua;
       transition: 1s;
+      transition-timing-function:ease-in-out
     }
-    :active{
-      border: 20px solid blueviolet;
-    }
-  
 `;
 const X1 = styled.div`
-     
+  display: flex;
     width: 40px;
     height: 40px;
     border: 2px solid black;
-    border-radius: 70%;
+    border-radius: 100%;
     border-color: orangered;
-    margin: 0 10px;
     position: relative;
     top:36px;
+    margin-left: 10px;
 
     :hover{
-      border-color: orangered;
-      border: 20px groove orangered;
+      background-color: #FF0099;
       transition: 1s;
-    }
-    :active{
-      border: 20px solid blueviolet;
+      transition-timing-function:ease-in-out
     }
   
 `;
@@ -406,10 +397,11 @@ const Character = styled.div`
 `
 const StartContainer = styled.div`
 
+  padding-top: 50px;
   text-align: center;
   max-width:600px;
   height: 700px;
-  margin:0px auto;
+  margin:50px auto 0px;
   top : 100px;
 
   
@@ -446,17 +438,17 @@ const Container = styled.div`
 
 const Sentence1 = styled.div`
   font-size: 39px;
-  span:nth-of-type(1){
-    color:red;
+  & span:nth-of-type(1){
+    color: rgba(149,98,123);
   }
-  span:nth-of-type(2){
-    color:orange;
+  & span:nth-of-type(2){
+    color: rgba(153,194,108);
   }
-  span:nth-of-type(3){
-    color:yellowgreen;
+  & span:nth-of-type(3){
+    color: rgba(113,202,204);
   }
-  span:nth-of-type(4){
-    color:#CC33FF;
+  & span:nth-of-type(4){
+    color: rgba(228,199,40);
   }
   span:nth-of-type(5){
     color:#0000FF;

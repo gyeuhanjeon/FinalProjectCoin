@@ -30,6 +30,8 @@ const MbtiInfoBox1 = styled.span`
       position:relative;
       color:white;
       text-align: center;
+      margin-bottom: 5px;
+
     }
 
     & a{
@@ -93,21 +95,21 @@ const MbtiTypeBox = styled.div`
 const MbtiInfoHead = styled.div`
   
   position: absolute;
-  bottom:820px;
+  bottom:830px;
   font-size: 35px;
   text-align: center;
 
   & span:nth-of-type(1){
-    color: rgba(149,98,123,0.7);
+    color: rgba(149,98,123);
   }
   & span:nth-of-type(2){
-    color: rgba(153,194,108,0.7);
+    color: rgba(153,194,108);
   }
   & span:nth-of-type(3){
-    color: rgba(113,202,204,0.7);
+    color: rgba(113,202,204);
   }
   & span:nth-of-type(4){
-    color: rgba(228,199,40,0.7);
+    color: rgba(228,199,40);
   }
 
 

@@ -26,6 +26,7 @@ const FindInfoModal = ({ open,  onHide, modalName }) => {
                     <form>
                         <div className="modal-findId">
                             <label>조회된 아이디</label>
+                            <p></p>
                             <div>{<b>{id.substring(0,2)+seq+seq+id.substring(3)}</b>}</div>
                         </div>
                     </form>
