@@ -604,11 +604,11 @@ function SignUp() {
     // console.log(result.user);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        pwd
-      );
+      // const result = await createUserWithEmailAndPassword(
+      //   auth,
+      //   email,
+      //   pwd
+      // );
 
       const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2,check_term3);
 
@@ -631,24 +631,24 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       navigate("/login");
 
-      setDoc(doc(db, "users", id), {
-        uid: result.user.uid,
-        name,
-        email,
-        createdAt: Timestamp.fromDate(new Date()),
-        isOnline: true,
-        id,
-        nickname,
-        friends: [],
-      });
-      setData({
-        name: "",
-        email: "",
-        loading: false,
-        id: "",
-        nickname: "",
-        friends: [],
-      });
+      // setDoc(doc(db, "users", id), {
+      //   uid: result.user.uid,
+      //   name,
+      //   email,
+      //   createdAt: Timestamp.fromDate(new Date()),
+      //   isOnline: true,
+      //   id,
+      //   nickname,
+      //   friends: [],
+      // });
+      // setData({
+      //   name: "",
+      //   email: "",
+      //   loading: false,
+      //   id: "",
+      //   nickname: "",
+      //   friends: [],
+      // });
       window.sessionStorage.setItem("kakaoId_num", '');
       window.sessionStorage.setItem("nickname", '');
       window.sessionStorage.setItem("kakaoNickname", '');
@@ -668,7 +668,8 @@ function SignUp() {
     mode === 'agree' ?
       <Terms />
       :
-      <div className='Container'>
+    <div className='Container'>
+      <div className='SignUp-middle'>
         <div className="SignUp-Container">
           <div className='SignUp-Box'>
             <div className="SignUp-header">
@@ -769,29 +770,29 @@ function SignUp() {
               <tr className="SignUp-item">
                 <td>
                   <input className='date' type="date" value={birth} onChange={onChangeBirth} />
-                  <th>
-                    <div className='Message'>
-                      생년월일을 선택하세요
-                    </div>
-                  </th>
+                  <div className='Message'>
+                    생년월일을 선택하세요
+                  </div>
                 </td>
-                {/* <td>
+                <td>
                   <p className='Span-Age'>만 {age}세</p>
-                </td> */}
+                </td>
               </tr>
 
               {/* 성별 */}
               <tr className="SignUp-item">
                 <td>
-                  <label className='gender'>
-                    <input className='checkbox' type="checkbox" name="male" value="남자" onChange={onChangeRadio} />
-                    남자
-                  </label>
+                  <div className='Gender'>
+                    <label className='gender'>
+                      <input className='checkbox' type="checkbox" name="male" value="남자" onChange={onChangeRadio} />
+                      남자
+                    </label>
 
-                  <label className='gender'>
-                    <input className='checkbox' type="checkbox" name="female" value="여자" onChange={onChangeRadio} />
-                    여자
-                  </label>
+                    <label className='gender'>
+                      <input className='checkbox' type="checkbox" name="female" value="여자" onChange={onChangeRadio} />
+                      여자
+                    </label>
+                  </div>
                 </td>
               </tr>
 
@@ -832,6 +833,7 @@ function SignUp() {
           </div>
         </div>
       </div>
+    </div>
   );
 }
 

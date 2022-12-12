@@ -10,7 +10,6 @@
     overflow: scroll;
     align-items: center;
     justify-items: stretch;
-    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .Terms-title{
@@ -24,12 +23,8 @@
 }
 
 
-.SignUp-header {
-    margin: 50px;
-}
 
 .SignUp-Allagree{
-
     width: 400px;
     margin-left: 20px;
     margin-top: 30px;
@@ -42,12 +37,14 @@
     top:40px;
     left:25px;
 }
+
 .checkbox-check-btn2{
     position: relative;
     /* left:380px; */
     float:right;
     left:40px;
 }
+
 .Terms-agree-btn{
     width: 500px;
     margin: 0 auto;
@@ -76,11 +73,7 @@
     font-size: 20px;
     background-color: grey;
     color: whitesmoke;
-
-
-
 }
-
 
 .SignUp-Main-Box{
     max-width: 500px;
@@ -90,6 +83,12 @@
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+
+.SignUp-header {
+    margin: 50px;
+}
+
 .SignUp-Box {
     display: flex;
     flex-direction: column;
@@ -100,15 +99,16 @@
 .SignUp-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 20px 0;
 }
 
 .SignUp-Table {
+    height: 1100px;
     display: flex;
     flex-direction: column;
     width: 450px;
     justify-content: space-around
-    
 }
 
 .SignUp-item > tr {
@@ -122,24 +122,37 @@
 .SignUp-item > td > input {
     border-radius: 25px;
     height: 50px;
-    width: 300px;
+    width: 310px;
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding-left: 20px;
+    border: 0px;
+    outline: none;
 }
 
 .SignUp-item > td > select {
     border-radius: 25px;
     height: 50px;
-    width: 140px;
+    width: 155px;
+    margin-right: 10px;
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding-left: 20px;
-    text-align: center;
+    outline: none;
+    border: 0px;
+}
+
+.Span-Age {
+    display: inline-flex;
+    justify-content: flex-start;
+}
+
+.Gender {
+display: inline-flex;
 }
 
 .gender {
-    font-size: 1.2rem;
-    padding: 0;
-    margin: 0;
+    width: 150px;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .checkbox {
@@ -150,24 +163,34 @@
 .Message {
     position: relative;
     color: red;
-    font-size: 10px;
+    font-size: 12px;
     text-align: right;    
+    margin-top: 2px;
 }
 
 .Chacked-btn {
     width: 100px;
     height: 50px;
     border-radius: 25px;
-    background-color: white;
+    background-color: rgb(0, 11, 59);
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 0px;
+    outline: none;
+    color: white;
 }
 
 .SignUp-btn {
-    width: 300px;
+    width: 332px;
     height: 50px;
     border-radius: 25px;
-    background-color: white;
+    background-color:  rgb(0, 11, 59);
     box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 0px;
+    outline: none;
+    color: white;
+    letter-spacing: 10px;
+    position: sticky;
+    bottom: 15px
 }
 
 
