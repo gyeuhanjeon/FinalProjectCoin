@@ -9,6 +9,7 @@ ISOUR Final Project
 - index.html 부트스트랩 부분 삭제
 - mbti type 페이지 수정중 -> 수정
 - 부트스트랩없애고 오류났던 css 
+- 회원 정보 수정페이지 취소버튼 추가-> 취소시 그전 정보 입력창에 보이게
 
 
 
