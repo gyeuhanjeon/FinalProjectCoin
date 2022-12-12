@@ -7,7 +7,7 @@ ISOUR Final Project
 
 - 배경 0.04 수정
 - index.html 부트스트랩 부분 삭제
-- mbti type 페이지 수정중
+- mbti type 페이지 수정중 -> 수정 
 
 
 
