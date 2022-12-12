@@ -39,6 +39,8 @@ const MbtiInfoBox1 = styled.span`
     
 `
 const MbtiInfoBox2 = styled.div`
+  
+  
   img{
     width: 150px;
     height: 150px;
@@ -59,6 +61,11 @@ const MbtiInfoBox2 = styled.div`
   height: 100%;
 
   list-style: none;
+
+  & li{
+    position:relative;
+    top:60px;
+  }
 
   & li:nth-of-type(1){
     background-color: rgba(149,98,123,0.7);
@@ -84,11 +91,25 @@ const MbtiTypeBox = styled.div`
 `
 
 const MbtiInfoHead = styled.div`
-
+  
   position: absolute;
-  bottom:680px;
+  bottom:820px;
   font-size: 35px;
   text-align: center;
+
+  & span:nth-of-type(1){
+    color: rgba(149,98,123,0.7);
+  }
+  & span:nth-of-type(2){
+    color: rgba(153,194,108,0.7);
+  }
+  & span:nth-of-type(3){
+    color: rgba(113,202,204,0.7);
+  }
+  & span:nth-of-type(4){
+    color: rgba(228,199,40,0.7);
+  }
+
 
   & div{
     position: relative;
@@ -110,7 +131,11 @@ function MbtiTypes() {
       <div className="Container">
         <MbtiInfoBox2>
           <MbtiInfoHead>
-            mbti 유형들
+            <span>m</span>
+            <span>b</span>
+            <span>t</span>
+            <span>i </span>
+            유형 상세설명
             <div>이미지를 클릭하시면 해당 유형의 설명페이지로 이동합니다.</div>
           </MbtiInfoHead>
           <li>
