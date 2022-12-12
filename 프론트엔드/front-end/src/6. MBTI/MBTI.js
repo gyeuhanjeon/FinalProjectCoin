@@ -533,6 +533,8 @@ const Mbtiword = styled.p`
 `
 const DetailWord = styled.p`
     text-align: center;
+    position: relative;
+    bottom: 10px;
 `
 
 
