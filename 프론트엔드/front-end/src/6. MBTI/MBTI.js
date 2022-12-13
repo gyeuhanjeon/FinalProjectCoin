@@ -465,7 +465,7 @@ const StartContainer = styled.div`
   }
   &>.mbti-person2{
     position: relative;
-    bottom: 50px;
+    bottom: 80px;
   }
   &>.mbti-quiz{
     position: relative;

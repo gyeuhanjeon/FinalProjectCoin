@@ -212,6 +212,15 @@ const TeamAPI = {
     return await axios.post(TEAM_DOMAIN + "service/verifyCode", regCmd, HEADER);
   },
 
+  coinUpdate: async function(localId, coin){
+
+    const regCmd={
+      id : localId,
+      coin : coin
+    }
+    return await axios.post(TEAM_DOMAIN + "coinUpdate", regCmd, HEADER);
+  },
+
 
   //이메일 중복확인
   emailDuplicateCheck: async function (email) {

@@ -7,14 +7,15 @@ import LoginUser from './App_Navbar';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/*' element={<LoginUser />} />
-      </Routes>
-    </Router>
+    
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/*' element={<LoginUser />} />
+        </Routes>
+      </Router>
   );
 }
 

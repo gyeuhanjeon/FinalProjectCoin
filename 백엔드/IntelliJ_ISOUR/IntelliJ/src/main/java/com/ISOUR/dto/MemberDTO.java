@@ -23,5 +23,6 @@ public class MemberDTO {
     private String mbti;
     private String introduce;
     private String face;
+    private String coin;
     private LocalDateTime registrationDate;
 }

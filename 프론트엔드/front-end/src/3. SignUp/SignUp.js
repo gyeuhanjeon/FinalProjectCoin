@@ -604,11 +604,11 @@ function SignUp() {
     // console.log(result.user);
 
     if (isName && isId && isIdcheck && isPwd && isPwdcheck && isBirth && isGender && isRegion1 && isRegion2 && isNickname && isNicknamecheck && emailConfirm) {
-      // const result = await createUserWithEmailAndPassword(
-      //   auth,
-      //   email,
-      //   pwd
-      // );
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        pwd
+      );
 
       const memberReg = await TeamAPI.memberReg(kakaoId, kakaoEmail, name, id, pwd, nickname, email, birth, gender, region1, region2, introduce, check_term1, check_term2,check_term3);
 
@@ -631,24 +631,24 @@ function SignUp() {
       console.log("가입 성공!! \n로그인 페이지로 이동합니다.");
       navigate("/login");
 
-      // setDoc(doc(db, "users", id), {
-      //   uid: result.user.uid,
-      //   name,
-      //   email,
-      //   createdAt: Timestamp.fromDate(new Date()),
-      //   isOnline: true,
-      //   id,
-      //   nickname,
-      //   friends: [],
-      // });
-      // setData({
-      //   name: "",
-      //   email: "",
-      //   loading: false,
-      //   id: "",
-      //   nickname: "",
-      //   friends: [],
-      // });
+      setDoc(doc(db, "users", id), {
+        uid: result.user.uid,
+        name,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+        id,
+        nickname,
+        friends: [],
+      });
+      setData({
+        name: "",
+        email: "",
+        loading: false,
+        id: "",
+        nickname: "",
+        friends: [],
+      });
       window.sessionStorage.setItem("kakaoId_num", '');
       window.sessionStorage.setItem("nickname", '');
       window.sessionStorage.setItem("kakaoNickname", '');

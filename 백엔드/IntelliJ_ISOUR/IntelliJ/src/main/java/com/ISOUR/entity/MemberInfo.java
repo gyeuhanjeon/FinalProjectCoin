@@ -33,6 +33,7 @@ public class MemberInfo {
     private String mbti;
     private String introduce;
     private String face;
+    private String coin;
     @Column(updatable = false)
     private LocalDateTime registrationDate;
 }

@@ -85,6 +85,19 @@
   font-size: 1.7rem;
   font-weight: 600;
 }
+.Nav-Coin{
+  color: gold;
+  margin-right:40px;
+}
+
+.HowManyCoin{
+  font-size: 27px;
+  color:gold;
+  position:relative;
+  right:35px;
+  font-weight: 900;
+  
+}
 
 
 /* 

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
 import java.util.*;
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -88,6 +89,7 @@ public class MemberController {
         String getRegion1 = signUpData.get("region1");
         String getRegion2 = signUpData.get("region2");
         String getIntroduce = signUpData.get("introduce");
+
         log.warn(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
 
         isTrue = memberService.signUpMember(getName, getId, getPwd, getNickname, getEmail, getBirth, getGender, getRegion1, getRegion2, getIntroduce);
@@ -295,6 +297,21 @@ public class MemberController {
         log.warn("뭐가 담겨 있니? : " + memberDTO);
         return new ResponseEntity<>(memberDTO, HttpStatus.OK);
     }
+
+    /* 코인 계산 및 조회*/
+    @PostMapping("/coinUpdate")
+    // 객체 타입이 와야하기 때문에 Boolean 대문자
+    public ResponseEntity<MemberDTO> coinUpdater(@RequestBody Map<String, String> memberData ) {
+        log.warn("★★★★★★★★★코인 업데이터 Controller★★★★★★★★★");
+        String getId = memberData.get("id");
+        String getCoin = memberData.get("coin");
+
+        MemberDTO memberDTO = memberService.updateCoin(getId, getCoin);
+
+        log.warn("컨트롤러까지 코인 잘 배송왔나?" + memberDTO.getCoin());
+        return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+    }
+
 
 
 }

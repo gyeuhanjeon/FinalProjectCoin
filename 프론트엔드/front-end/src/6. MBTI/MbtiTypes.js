@@ -44,8 +44,8 @@ const MbtiInfoBox2 = styled.div`
   
   
   img{
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     position: relative;
     
   }
@@ -95,7 +95,7 @@ const MbtiTypeBox = styled.div`
 const MbtiInfoHead = styled.div`
   
   position: absolute;
-  bottom:830px;
+  bottom:810px;
   font-size: 35px;
   text-align: center;
 

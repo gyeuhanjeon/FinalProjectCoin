@@ -54,6 +54,7 @@ public class MemberService {
         memberInfo.setRegion1(region1);
         memberInfo.setRegion2(region2);
         memberInfo.setIntroduce(introduce);
+        memberInfo.setCoin("10");
         memberInfo.setRegistrationDate(LocalDateTime.now().withNano(0));
 
         MemberInfo result = memberRepository.save(memberInfo);
@@ -211,6 +212,7 @@ public class MemberService {
         memberDTO.setMbti(memberInfo.getMbti());
         memberDTO.setIntroduce(memberInfo.getIntroduce());
         memberDTO.setFace(memberInfo.getFace());
+        memberDTO.setCoin(memberInfo.getCoin());
         memberDTO.setRegistrationDate(memberInfo.getRegistrationDate());
 
         return memberDTO;
@@ -342,5 +344,21 @@ public class MemberService {
             log.warn("대체 뭘 담고 있니?" + memberInfo);
             return memberDTO;
         }
+    }
+
+    /* 코인 조회 서비스*/
+    public MemberDTO updateCoin(String id, String coin) {
+        log.warn("★★★★★★★★★회원정보 수정 서비스★★★★★★★★★");
+        log.warn("아이디(id) : " + id);
+        log.warn("사용하고 남은 coin(coin) : " + coin);
+
+        MemberDTO memberDTO = new MemberDTO();
+        MemberInfo memberInfo = memberRepository.findById(id);
+        memberInfo.setId(memberInfo.getId());
+        memberInfo.setCoin(coin);
+        memberRepository.save(memberInfo);
+        memberDTO.setCoin(memberInfo.getCoin());
+
+        return memberDTO;
     }
 }

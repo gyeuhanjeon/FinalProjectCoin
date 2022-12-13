@@ -13,24 +13,28 @@ import Navbar from './Navber/Navbar';
 import '../src/App.css';
 import KakaoToken from './2. Login/KakaoToken';
 import AboutUs from './11. AboutUs/AboutUs';
+import UserStore from './98. Context/UserStore';
+
 function LoginUser() {
   return (
     <>
       {/* <Navber/> */}
-      <Navbar/>
-      <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/aboutus' element={<AboutUs />} />
-        <Route path='/mypage' element={<MyPage />} />
-        <Route path='/MBTI' element={<MBTI />} />
-        <Route path='/MbtiTypes' element={<MbtiTypes />} />
-        <Route path='/Postbox' element={<Postbox />} />
-        <Route path='/FindInfo' element={<FindInfo />} />
-        <Route path='/GuestBook' element={<GuestBook/>}/>
-        <Route path='/ChatHome' element={<ChatHome/>}/>
-        <Route path='/Matching' element={<Matching/>}/>
-        <Route path='/login/kakao' element={<KakaoToken />}/>
-      </Routes>
+      <UserStore>
+        <Navbar />
+        <Routes>
+          <Route path='/home' element={<Home />} />
+          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/mypage' element={<MyPage />} />
+          <Route path='/MBTI' element={<MBTI />} />
+          <Route path='/MbtiTypes' element={<MbtiTypes />} />
+          <Route path='/Postbox' element={<Postbox />} />
+          <Route path='/FindInfo' element={<FindInfo />} />
+          <Route path='/GuestBook' element={<GuestBook />} />
+          <Route path='/ChatHome' element={<ChatHome />} />
+          <Route path='/Matching' element={<Matching />} />
+          <Route path='/login/kakao' element={<KakaoToken />} />
+        </Routes>
+      </UserStore>
     </>
   );
 }
